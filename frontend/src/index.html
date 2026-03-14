@@ -874,13 +874,13 @@
       </section>
 
       <!-- 6. Value Proposition Section -->
-      <section class="py-24 bg-white border-y border-slate-100">
+      <section class="py-16 lg:py-24 bg-white border-y border-slate-100">
         <div class="container">
-          <div class="grid lg:grid-cols-2 gap-16 items-center">
-            <div class="order-2 lg:order-1 relative reveal is-visible">
-              <!-- Image Composition -->
+          <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <!-- Image Composition -->
+            <div class="order-2 lg:order-1 relative w-full mt-10 lg:mt-0">
               <div
-                class="relative z-10 rounded-2xl overflow-hidden shadow-Sana"
+                class="relative z-10 w-full rounded-2xl overflow-hidden shadow-elevated"
               >
                 <img
                   src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
@@ -888,34 +888,39 @@
                   class="w-full object-cover"
                 />
               </div>
+
+              <!-- Floating smaller image -->
               <div
-                class="absolute -bottom-8 -left-8 w-64 rounded-2xl overflow-hidden shadow-floating border-4 border-white z-20 hidden md:block hover-lift"
+                class="absolute -bottom-8 -left-4 sm:-left-8 w-48 sm:w-64 rounded-2xl overflow-hidden shadow-floating border-[4px] border-white z-20 hover:-translate-y-2 transition-transform duration-300"
               >
                 <img
                   src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
                   alt="Student studying"
-                  class="w-full object-cover"
+                  class="w-full h-full object-cover"
                 />
               </div>
+
+              <!-- Decorative blobs -->
               <div
-                class="absolute top-1/2 -right-12 w-24 h-24 bg-accent-light rounded-full -z-10 animate-pulse-slow"
+                class="absolute top-1/2 -right-6 sm:-right-12 w-16 sm:w-24 h-16 sm:h-24 bg-accent-light rounded-full -z-10 animate-pulse-slow"
               ></div>
               <div
-                class="absolute -bottom-12 right-12 w-32 h-32 bg-primary-100 rounded-full -z-10 animate-pulse-slow delay-200"
+                class="absolute -bottom-6 right-6 sm:right-12 w-24 sm:w-32 h-24 sm:h-32 bg-primary-100 rounded-full -z-10 animate-pulse-slow delay-200"
               ></div>
             </div>
 
+            <!-- Content Area -->
             <div class="order-1 lg:order-2">
               <span
                 class="text-primary-600 font-semibold tracking-wide uppercase text-sm mb-3 block"
                 >Why Choose Us</span
               >
               <h2
-                class="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-6"
+                class="text-3xl sm:text-4xl font-serif font-bold text-slate-900 mb-6 leading-tight"
               >
                 Built for serious learners delivering proven results.
               </h2>
-              <p class="text-slate-600 text-lg mb-10">
+              <p class="text-slate-600 text-lg mb-10 leading-relaxed max-w-lg">
                 We believe in quality over quantity. That's why we accept only
                 the top 3% of tutor applicants globally to ensure you receive
                 world-class education.
@@ -923,7 +928,7 @@
 
               <div class="space-y-8">
                 <!-- Prop 1 -->
-                <div class="flex gap-4">
+                <div class="flex gap-4 sm:gap-5">
                   <div
                     class="flex-shrink-0 w-12 h-12 rounded-xl bg-success-50 text-success-500 flex items-center justify-center"
                   >
@@ -938,21 +943,24 @@
                         stroke-linejoin="round"
                         stroke-width="2"
                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      ></path>
+                      />
                     </svg>
                   </div>
                   <div>
                     <h3 class="text-xl font-bold text-slate-900 mb-2">
                       Expert Vetted Teachers
                     </h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
+                    <p
+                      class="text-slate-600 text-sm sm:text-base leading-relaxed"
+                    >
                       Every teacher undergoes a strict 4-stage vetting process
                       including live lesson evaluations and background checks.
                     </p>
                   </div>
                 </div>
+
                 <!-- Prop 2 -->
-                <div class="flex gap-4">
+                <div class="flex gap-4 sm:gap-5">
                   <div
                     class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center"
                   >
@@ -967,21 +975,24 @@
                         stroke-linejoin="round"
                         stroke-width="2"
                         d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                      ></path>
+                      />
                     </svg>
                   </div>
                   <div>
                     <h3 class="text-xl font-bold text-slate-900 mb-2">
                       100% Flexible Learning
                     </h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
+                    <p
+                      class="text-slate-600 text-sm sm:text-base leading-relaxed"
+                    >
                       Learn at your own pace. Schedule, reschedule, or cancel
                       lessons easily with our 24/7 global availability.
                     </p>
                   </div>
                 </div>
+
                 <!-- Prop 3 -->
-                <div class="flex gap-4">
+                <div class="flex gap-4 sm:gap-5">
                   <div
                     class="flex-shrink-0 w-12 h-12 rounded-xl bg-accent-light text-accent-dark flex items-center justify-center"
                   >
@@ -996,14 +1007,16 @@
                         stroke-linejoin="round"
                         stroke-width="2"
                         d="M13 10V3L4 14h7v7l9-11h-7z"
-                      ></path>
+                      />
                     </svg>
                   </div>
                   <div>
                     <h3 class="text-xl font-bold text-slate-900 mb-2">
                       Proven Methodology
                     </h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
+                    <p
+                      class="text-slate-600 text-sm sm:text-base leading-relaxed"
+                    >
                       Our curriculum is scientifically designed. Students report
                       an average grade increase of 25% within just 3 months.
                     </p>
@@ -1179,10 +1192,9 @@
               <p
                 class="text-slate-300 text-lg mb-8 leading-relaxed italic flex-grow hover:text-white transition-colors"
               >
-                "I use Sana Academy for professional development. The
-                platform is extremely polished, the video works flawlessly, and
-                learning Python from an actual FAANG engineer has been
-                invaluable."
+                "I use Sana Academy for professional development. The platform
+                is extremely polished, the video works flawlessly, and learning
+                Python from an actual FAANG engineer has been invaluable."
               </p>
               <div class="flex items-center gap-4 mt-auto">
                 <img
