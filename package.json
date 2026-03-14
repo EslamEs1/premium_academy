@@ -1,0 +1,19 @@
+{
+  "name": "premium_academy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests defined, passing...\" && exit 0",
+    "lint": "eslint frontend/src/js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "eslint": "^10.0.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-html": "^8.1.4",
+    "prettier": "^3.8.1"
+  }
+}
