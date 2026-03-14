@@ -1,5 +1,5 @@
 /**
- * Premium Academy - Foundation Elements
+ * Sana Academy - Foundation Elements
  * Handles global injection of header, footer, announcement bar, mobile menu, and sticky behaviors.
  */
 
@@ -104,7 +104,7 @@ function injectHeader() {
                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
                         </svg>
                     </div>
-                    <span class="font-serif text-xl sm:text-2xl font-bold text-slate-900 tracking-tight transition-colors group-hover:text-primary-800">Premium<span class="text-primary-600">Academy</span></span>
+                    <span class="font-serif text-xl sm:text-2xl font-bold text-slate-900 tracking-tight transition-colors group-hover:text-primary-800">Sana<span class="text-primary-600">Academy</span></span>
                 </a>
 
                 <!-- Desktop Navigation -->
@@ -167,7 +167,7 @@ function injectMobileMenu() {
 
   const html = `
         <div id="mobile-menu-overlay" class="fixed inset-0 z-[50] bg-slate-950/20 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
-        <div id="mobile-menu-panel" class="fixed top-0 right-0 bottom-0 z-[55] w-[85%] max-w-sm bg-white shadow-premium transform translate-x-full transition-transform duration-500 ease-smooth flex flex-col overflow-y-auto" aria-hidden="true" tabindex="-1">
+        <div id="mobile-menu-panel" class="fixed top-0 right-0 bottom-0 z-[55] w-[85%] max-w-sm bg-white shadow-Sana transform translate-x-full transition-transform duration-500 ease-smooth flex flex-col overflow-y-auto" aria-hidden="true" tabindex="-1">
             <div class="p-6 flex items-center justify-between border-b border-slate-100">
                 <span class="font-serif text-xl font-bold text-slate-900">Menu</span>
                 <button id="mobile-menu-close" type="button" class="p-2 -mr-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="Close menu">
@@ -360,7 +360,7 @@ function injectFooter() {
                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                                 </svg>
                             </div>
-                            <span class="font-serif text-2xl font-bold text-white tracking-tight">Premium<span class="text-primary-500">Academy</span></span>
+                            <span class="font-serif text-2xl font-bold text-white tracking-tight">Sana<span class="text-primary-500">Academy</span></span>
                         </a>
                         <p class="text-slate-400 text-sm leading-relaxed mb-6">
                             Empowering students globally with world-class education. Discover experts in mathematics, languages, technology and more through personalized learning formats.
@@ -409,7 +409,7 @@ function injectFooter() {
                                         <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                         </svg>
-                                        hello@premium.edu
+                                        hello@Sana.edu
                                     </span>
                                 </li>
                             </ul>
@@ -429,7 +429,7 @@ function injectFooter() {
                 <!-- Bottom Footer -->
                 <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
                     <p class="text-slate-500 text-sm">
-                        &copy; ${new Date().getFullYear()} Premium Academy. All rights reserved.
+                        &copy; ${new Date().getFullYear()} Sana Academy. All rights reserved.
                     </p>
                     
                     <!-- Social Links -->

@@ -1,6 +1,6 @@
-# Research: Premium Academy Frontend Website
+# Research: Sana Academy Frontend Website
 
-**Branch**: `002-premium-academy-frontend` | **Date**: 2026-03-14
+**Branch**: `002-Sana-academy-frontend` | **Date**: 2026-03-14
 
 ## Research Areas
 
@@ -69,7 +69,7 @@ This enables the `prose` class for rich content (blog detail page).
 
 ### Decision: Deep Sapphire + Burnished Gold Palette
 
-**Rationale**: The primary color `#1B3F6B` (deep sapphire navy) conveys institutional trust and authority, similar to leading universities and financial institutions. This avoids the overused SaaS blue (`#3B82F6`) and immediately differentiates from template-based sites. The accent `#E8A830` (burnished gold) evokes achievement and premium positioning, common in university crests and luxury education brands. Warm neutral grays prevent the sterile feeling of pure cool grays.
+**Rationale**: The primary color `#1B3F6B` (deep sapphire navy) conveys institutional trust and authority, similar to leading universities and financial institutions. This avoids the overused SaaS blue (`#3B82F6`) and immediately differentiates from template-based sites. The accent `#E8A830` (burnished gold) evokes achievement and Sana positioning, common in university crests and luxury education brands. Warm neutral grays prevent the sterile feeling of pure cool grays.
 
 **Alternatives considered**:
 - Standard blue palette (too generic, looks like every SaaS template)
@@ -158,7 +158,7 @@ This enables the `prose` class for rich content (blog detail page).
 - Poppins + Inter: Poppins is overused on educational sites
 - Montserrat + Open Sans: Generic, no personality
 - DM Serif Display + DM Sans: Good pairing but less established
-- All-Inter (no serif): Loses the premium editorial quality
+- All-Inter (no serif): Loses the Sana editorial quality
 
 **Google Fonts URL**:
 ```
@@ -345,7 +345,7 @@ tailwind.config = {
 
 ### Decision: IIFE Namespace Pattern for JavaScript
 
-**Rationale**: ES modules (`import/export`) require `<script type="module">` which enforces CORS and breaks on `file://` protocol. The IIFE + namespace pattern (`PremiumAcademy.*`) is universally compatible, works with `defer`, and is perfectly adequate for the scope of interactions needed (mobile menu, accordion, sticky header, form validation).
+**Rationale**: ES modules (`import/export`) require `<script type="module">` which enforces CORS and breaks on `file://` protocol. The IIFE + namespace pattern (`SanaAcademy.*`) is universally compatible, works with `defer`, and is perfectly adequate for the scope of interactions needed (mobile menu, accordion, sticky header, form validation).
 
 **Alternatives considered**:
 - ES modules: CORS issues with `file://`, adds complexity for no real benefit at this scope

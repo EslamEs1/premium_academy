@@ -4,7 +4,7 @@
   Version change: N/A → 1.0.0 (initial ratification)
 
   Principles established:
-    I.   Premium Over Decorative
+    I.   Sana Over Decorative
     II.  Conversion-First UX
     III. Clear Visual Hierarchy
     IV.  Strong Trust Signals
@@ -27,13 +27,13 @@
   Follow-up TODOs: None
 -->
 
-# Premium Academy Frontend Constitution
+# Sana Academy Frontend Constitution
 
 ## Core Principles
 
-### I. Premium Over Decorative
+### I. Sana Over Decorative
 
-The interface MUST use a clean, modern, premium design language.
+The interface MUST use a clean, modern, Sana design language.
 
 - Layouts MUST avoid noise, excessive gradients, childish education
   visuals, and visual clutter.
@@ -42,10 +42,10 @@ The interface MUST use a clean, modern, premium design language.
 - Template-looking layouts, generic Bootstrap feel, crowded card grids,
   weak spacing, overuse of shadows, over-rounded childish UI,
   inconsistent section spacing, and random typography are prohibited.
-- Interactions MUST feel restrained and premium: smooth hover states,
+- Interactions MUST feel restrained and Sana: smooth hover states,
   subtle transitions, elegant dropdowns, polished tabs/accordions/modals.
 - Flashy animations and visual gimmicks are prohibited.
-- Asset placeholders MUST support a premium visual concept using
+- Asset placeholders MUST support a Sana visual concept using
   high-quality tutor/student imagery, modern education visuals, clean
   avatars, and professional icons. Cheap stock-photo feeling and
   cartoon-heavy education style are prohibited.
@@ -62,12 +62,12 @@ action.
   contacting the academy, understanding the offer, trusting the
   platform.
 - The homepage is a strategic conversion page: it MUST contain a
-  premium hero, strong value proposition, search/CTA block, featured
+  Sana hero, strong value proposition, search/CTA block, featured
   teachers, categories, how-it-works, testimonials, trust blocks,
   benefits, trial CTA, FAQ preview, and final CTA.
-- Mock content MUST be realistic and premium. Lorem ipsum in important
+- Mock content MUST be realistic and Sana. Lorem ipsum in important
   sections is prohibited.
-- Copy MUST sound clear, confident, premium, simple, and trustworthy.
+- Copy MUST sound clear, confident, Sana, simple, and trustworthy.
   Exaggerated marketing hype, awkward filler text, and generic low-trust
   language are prohibited.
 
@@ -80,7 +80,7 @@ The user MUST always understand where they are, what the main action is,
 what the academy offers, and why they should trust it.
 
 - Every page MUST use a consistent spacing system, consistent grid
-  behavior, consistent section rhythm, and premium typography hierarchy.
+  behavior, consistent section rhythm, and Sana typography hierarchy.
 - CTA styling, card systems, icon treatment, and form styling MUST be
   consistent across all pages.
 - No rough, rushed, or placeholder-like sections may remain in the
@@ -203,7 +203,7 @@ Every page MUST pass these quality gates before delivery:
 - Consistent spacing system applied
 - Consistent grid behavior verified
 - Consistent section rhythm maintained
-- Premium typography hierarchy enforced
+- Sana typography hierarchy enforced
 - CTA styling consistent
 - Card system consistent
 - Icon treatment consistent
@@ -227,7 +227,7 @@ later without major redesign.
 ## Governance
 
 This constitution is the authoritative source of design and
-implementation principles for the Premium Academy Frontend project.
+implementation principles for the Sana Academy Frontend project.
 
 - **Supremacy**: This constitution supersedes all other style guides,
   conventions, or ad-hoc decisions. Conflicts MUST be resolved in favor

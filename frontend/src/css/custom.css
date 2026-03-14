@@ -1,5 +1,5 @@
 /* =========================================================================
-   Premium Academy - Core Custom Styles
+   Sana Academy - Core Custom Styles
    ========================================================================= */
 
 /* 1. Base Variables & Utility Enhancements */
@@ -68,7 +68,7 @@ body {
 *:focus-visible {
   outline: 2px solid #b48154; /* Primary 600 */
   outline-offset: 3px;
-  box-shadow: 0 0 0 4px rgba(180, 129, 84, 0.15); /* Soft premium focus glow */
+  box-shadow: 0 0 0 4px rgba(180, 129, 84, 0.15); /* Soft Sana focus glow */
   transition:
     outline-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -116,7 +116,7 @@ img {
   display: block;
 }
 
-/* 7. Reusable Premium Utilities */
+/* 7. Reusable Sana Utilities */
 
 /* Glassmorphism */
 .glass {
@@ -141,7 +141,7 @@ img {
   background-clip: text;
 }
 
-/* Premium Button Transitions */
+/* Sana Button Transitions */
 .btn-transition {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -177,7 +177,7 @@ img {
   transform: translateY(-4px);
   box-shadow:
     0 20px 25px -5px rgba(15, 23, 42, 0.1),
-    0 8px 10px -6px rgba(15, 23, 42, 0.05); /* shadow-premium */
+    0 8px 10px -6px rgba(15, 23, 42, 0.05); /* shadow-Sana */
 }
 
 /* Smooth opacity reveal utilities */

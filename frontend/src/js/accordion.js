@@ -1,5 +1,5 @@
 /**
- * Premium Academy - Accordion Component
+ * Sana Academy - Accordion Component
  * Handles accessible FAQ accordion behavior with smooth CSS transitions and single-open logic.
  */
 

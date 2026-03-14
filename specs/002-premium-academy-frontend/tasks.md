@@ -1,6 +1,6 @@
-# Tasks: Premium Academy Frontend Website
+# Tasks: Sana Academy Frontend Website
 
-**Input**: Design documents from `/specs/002-premium-academy-frontend/`
+**Input**: Design documents from `/specs/002-Sana-academy-frontend/`
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, quickstart.md
 
 **Tests**: No automated tests requested. Verification is via manual browser testing, Lighthouse audits, and W3C validation as described in success criteria.
@@ -54,7 +54,7 @@ All source files live under `src/` at repository root per plan.md:
 
 **Goal**: A visitor landing on the homepage immediately understands the academy's value, sees trust signals, featured teachers, subject categories, testimonials, and is guided toward a primary CTA. The homepage functions as the complete conversion landing experience.
 
-**Independent Test**: Load `src/index.html` on desktop (1280px+) and mobile (375px). Verify: hero section with value proposition and CTAs visible in first viewport; all 10 sections render with realistic premium content; announcement bar is dismissible; FAQ preview accordion works; mobile menu opens/closes; footer newsletter form is present; no horizontal scroll at 320px.
+**Independent Test**: Load `src/index.html` on desktop (1280px+) and mobile (375px). Verify: hero section with value proposition and CTAs visible in first viewport; all 10 sections render with realistic Sana content; announcement bar is dismissible; FAQ preview accordion works; mobile menu opens/closes; footer newsletter form is present; no horizontal scroll at 320px.
 
 ### Implementation for User Story 1
 
@@ -70,7 +70,7 @@ All source files live under `src/` at repository root per plan.md:
 - [x] T019 [US1] Build final CTA band section with compelling heading, supporting text, and primary + secondary CTA buttons in `src/index.html`
 - [x] T020 [US1] Verify homepage responsive behavior at all 4 breakpoints (320px, 768px, 1024px, 1280px): card stacking, section spacing adjustments, hero layout changes, category grid reflow, mobile-appropriate font sizes
 
-**Checkpoint**: Homepage is fully functional and viewable. A visitor can see the complete premium landing experience, interact with mobile menu, dismiss announcement bar, expand FAQ items, and navigate to other pages (which will be empty shells until their phases complete).
+**Checkpoint**: Homepage is fully functional and viewable. A visitor can see the complete Sana landing experience, interact with mobile menu, dismiss announcement bar, expand FAQ items, and navigate to other pages (which will be empty shells until their phases complete).
 
 ---
 
@@ -142,7 +142,7 @@ All source files live under `src/` at repository root per plan.md:
 
 **Goal**: A visitor evaluating the academy reads the story, mission, philosophy, and trust indicators to build confidence.
 
-**Independent Test**: Navigate to `src/about.html`. Verify: academy story, mission/vision, teaching philosophy, "Why Choose Us" section, trust indicators, and CTA are all present with premium content.
+**Independent Test**: Navigate to `src/about.html`. Verify: academy story, mission/vision, teaching philosophy, "Why Choose Us" section, trust indicators, and CTA are all present with Sana content.
 
 ### Implementation for User Story 5
 
@@ -156,7 +156,7 @@ All source files live under `src/` at repository root per plan.md:
 
 ## Phase 8: User Story 6 - Visitor Contacts the Academy (Priority: P3)
 
-**Goal**: A visitor submits an inquiry via a premium contact form with client-side validation, sees alternative contact methods, and is prompted to check FAQ.
+**Goal**: A visitor submits an inquiry via a Sana contact form with client-side validation, sees alternative contact methods, and is prompted to check FAQ.
 
 **Independent Test**: Navigate to `src/contact.html`. Verify: form displays 4 fields with labels; submitting empty form shows inline errors; valid email format required; successful submission shows client-side confirmation; email, phone, and FAQ link visible.
 
@@ -182,7 +182,7 @@ All source files live under `src/` at repository root per plan.md:
 ### Implementation for User Story 7
 
 - [ ] T055 [P] [US7] Create FAQ page with semantic structure, meta tags, OG tags, JSON-LD FAQPage, breadcrumb, and CDN includes in `src/faq.html`
-- [ ] T056 [US7] Build FAQ content with 3 categories (Getting Started: 4 items, Lessons & Teachers: 4 items, Pricing & Payments: 4 items) using data-accordion attributes, realistic premium Q&A content in `src/faq.html`
+- [ ] T056 [US7] Build FAQ content with 3 categories (Getting Started: 4 items, Lessons & Teachers: 4 items, Pricing & Payments: 4 items) using data-accordion attributes, realistic Sana Q&A content in `src/faq.html`
 - [ ] T057 [US7] Build FAQ page header with search-like text (decorative, non-functional) and bottom CTA section ("Still have questions? Contact us") in `src/faq.html`
 - [ ] T058 [US7] Verify FAQ page responsive behavior at all 4 breakpoints: accordion touch targets minimum 48px, category spacing adjusts, text remains readable
 
@@ -321,13 +321,13 @@ Task T027: "Create teacher profile page skeleton in src/teacher-profile.html"   
 1. Complete Phase 1: Setup (Tailwind config, custom CSS, directory structure)
 2. Complete Phase 2: Foundational (header/footer injection, mobile menu, sticky header, accordion)
 3. Complete Phase 3: User Story 1 — Homepage
-4. **STOP and VALIDATE**: Open `src/index.html` — homepage should be a fully functional premium landing page with all 10 sections, working mobile menu, dismissible announcement bar, FAQ accordion, and responsive layout
+4. **STOP and VALIDATE**: Open `src/index.html` — homepage should be a fully functional Sana landing page with all 10 sections, working mobile menu, dismissible announcement bar, FAQ accordion, and responsive layout
 5. This alone is a deliverable, demonstrable increment
 
 ### Incremental Delivery
 
 1. **Setup + Foundational** → Shared infrastructure ready
-2. **+ US1 (Homepage)** → MVP deliverable: complete premium landing page
+2. **+ US1 (Homepage)** → MVP deliverable: complete Sana landing page
 3. **+ US2 (Teachers)** → Core marketplace UX: teacher listing + profile
 4. **+ US3 (Programs)** → Structured offerings: course listing + detail
 5. **+ US4 (How It Works)** → Process clarity page
@@ -348,6 +348,6 @@ Execute phases sequentially in priority order: 1 → 2 → 3 → 4 → 5 → 6 �
 - [Story] label maps every page-building task to its user story for traceability
 - Each user story produces viewable, navigable pages that work independently
 - All pages share the same header/footer/mobile-menu from main.js — changes propagate automatically
-- Realistic premium demo content is required for every section (no lorem ipsum, no "placeholder text here")
+- Realistic Sana demo content is required for every section (no lorem ipsum, no "placeholder text here")
 - Commit after each completed phase for clean git history
 - All interactive behaviors must be keyboard-accessible (Tab, Enter, Escape)

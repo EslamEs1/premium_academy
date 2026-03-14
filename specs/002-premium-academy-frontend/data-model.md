@@ -1,6 +1,6 @@
-# Data Model: Premium Academy Frontend Website
+# Data Model: Sana Academy Frontend Website
 
-**Branch**: `002-premium-academy-frontend` | **Date**: 2026-03-14
+**Branch**: `002-Sana-academy-frontend` | **Date**: 2026-03-14
 
 ## Context
 
@@ -136,7 +136,7 @@ Represents educational content for the blog.
 | excerpt | text | Yes | Card body text | 1-2 sentence summary |
 | body | HTML content | Yes | Article page body | Full article HTML |
 | featuredImage | URL | Yes | Card image, article hero | Image URL |
-| author | string | Yes | Card meta, article byline | `Premium Academy Team` |
+| author | string | Yes | Card meta, article byline | `Sana Academy Team` |
 | authorPhoto | URL | No | Article byline avatar | Author photo URL |
 | publishDate | string | Yes | Card meta, article date | `March 10, 2026` |
 | category | string | Yes | Card tag, listing filter | `Study Tips` |

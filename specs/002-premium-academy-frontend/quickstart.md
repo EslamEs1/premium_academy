@@ -1,6 +1,6 @@
-# Quickstart: Premium Academy Frontend Website
+# Quickstart: Sana Academy Frontend Website
 
-**Branch**: `002-premium-academy-frontend` | **Date**: 2026-03-14
+**Branch**: `002-Sana-academy-frontend` | **Date**: 2026-03-14
 
 ## Prerequisites
 

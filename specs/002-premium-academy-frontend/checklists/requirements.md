@@ -1,4 +1,4 @@
-# Specification Quality Checklist: Premium Academy Frontend Website
+# Specification Quality Checklist: Sana Academy Frontend Website
 
 **Purpose**: Validate specification completeness and quality before proceeding to planning  
 **Created**: 2026-03-13  

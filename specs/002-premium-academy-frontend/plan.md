@@ -1,11 +1,11 @@
-# Implementation Plan: Premium Academy Frontend Website
+# Implementation Plan: Sana Academy Frontend Website
 
-**Branch**: `002-premium-academy-frontend` | **Date**: 2026-03-14 | **Spec**: [spec.md](./spec.md)
-**Input**: Feature specification from `/specs/002-premium-academy-frontend/spec.md`
+**Branch**: `002-Sana-academy-frontend` | **Date**: 2026-03-14 | **Spec**: [spec.md](./spec.md)
+**Input**: Feature specification from `/specs/002-Sana-academy-frontend/spec.md`
 
 ## Summary
 
-Build a premium, conversion-oriented public website for an educational academy using only HTML, CSS, Tailwind CSS, and native JavaScript. The website comprises 13 static pages (Homepage, About, Teachers Listing, Teacher Profile, Programs Listing, Program Detail, How It Works, Contact, FAQ, Blog Listing, Blog Detail, Privacy Policy, Terms of Service) with a consistent visual design system, interactive components (accordion, mobile menu, sticky header, form validation, announcement bar dismiss), responsive layouts across 4 breakpoints, and realistic premium demo content. No backend, no frameworks, no SPA patterns.
+Build a Sana, conversion-oriented public website for an educational academy using only HTML, CSS, Tailwind CSS, and native JavaScript. The website comprises 13 static pages (Homepage, About, Teachers Listing, Teacher Profile, Programs Listing, Program Detail, How It Works, Contact, FAQ, Blog Listing, Blog Detail, Privacy Policy, Terms of Service) with a consistent visual design system, interactive components (accordion, mobile menu, sticky header, form validation, announcement bar dismiss), responsive layouts across 4 breakpoints, and realistic Sana demo content. No backend, no frameworks, no SPA patterns.
 
 ## Technical Context
 
@@ -25,8 +25,8 @@ Build a premium, conversion-oriented public website for an educational academy u
 
 | # | Principle | Status | Evidence |
 |---|-----------|--------|----------|
-| I | Premium Over Decorative | PASS | Design system uses clean typography (Inter + Playfair Display), restrained color palette, generous spacing, no gradients/shadows abuse, no Bootstrap feel. Constitution prohibitions (crowded grids, random typography, cheap stock photos) addressed in visual system design. |
-| II | Conversion-First UX | PASS | Homepage specified with full conversion structure: hero + CTA, featured teachers, categories, how-it-works, testimonials, trust metrics, FAQ preview, final CTA band. All pages guide toward business actions. Realistic premium demo content required (no lorem ipsum). |
+| I | Sana Over Decorative | PASS | Design system uses clean typography (Inter + Playfair Display), restrained color palette, generous spacing, no gradients/shadows abuse, no Bootstrap feel. Constitution prohibitions (crowded grids, random typography, cheap stock photos) addressed in visual system design. |
+| II | Conversion-First UX | PASS | Homepage specified with full conversion structure: hero + CTA, featured teachers, categories, how-it-works, testimonials, trust metrics, FAQ preview, final CTA band. All pages guide toward business actions. Realistic Sana demo content required (no lorem ipsum). |
 | III | Clear Visual Hierarchy | PASS | Consistent spacing scale, typography hierarchy (H1-H4, body, small), button hierarchy (primary/secondary/tertiary), card system, consistent section rhythm enforced across all pages via Tailwind config. |
 | IV | Strong Trust Signals | PASS | Trust metrics section, testimonials, teacher ratings/reviews, student counts, quality messaging, process explanation, FAQ all specified. Teacher cards include all marketplace-ready fields. |
 | V | Mobile-First and Responsive | PASS | Four explicit breakpoints defined (320px+, 768px+, 1024px+, 1280px+). Deliberate mobile menu, collapsible filters, card stacking, fixed mobile CTAs all specified. |
@@ -43,7 +43,7 @@ Build a premium, conversion-oriented public website for an educational academy u
 ### Documentation (this feature)
 
 ```text
-specs/002-premium-academy-frontend/
+specs/002-Sana-academy-frontend/
 ├── plan.md              # This file
 ├── research.md          # Phase 0 output
 ├── data-model.md        # Phase 1 output

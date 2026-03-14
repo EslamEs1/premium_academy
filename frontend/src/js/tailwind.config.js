@@ -3,7 +3,7 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        // Core Brand Colors - Premium Academy
+        // Core Brand Colors - Sana Academy
         primary: {
           50: "#fcfaf6",
           100: "#f8f4eb",
@@ -29,7 +29,7 @@ tailwind.config = {
           700: "#536074",
           800: "#465061",
           900: "#3d4554", // Base body color for dark text
-          950: "#0f172a", // Oxford Navy / Premium Dark
+          950: "#0f172a", // Oxford Navy / Sana Dark
         },
         accent: {
           light: "#e8f0fe",
@@ -79,7 +79,7 @@ tailwind.config = {
           "0 4px 6px -1px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.03)",
         floating:
           "0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04)",
-        premium:
+        Sana:
           "0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.05)",
         "inner-light": "inset 0 2px 4px 0 rgba(255, 255, 255, 0.3)",
         focus: "0 0 0 3px rgba(194, 151, 107, 0.4)", // Primary-500 alpha
@@ -109,7 +109,7 @@ tailwind.config = {
           md: "768px",
           lg: "1024px",
           xl: "1280px",
-          "2xl": "1440px", // Slightly wider for premium majestic layouts
+          "2xl": "1440px", // Slightly wider for Sana majestic layouts
         },
       },
       animation: {

@@ -1,15 +1,15 @@
-# Feature Specification: Premium Academy Frontend Website
+# Feature Specification: Sana Academy Frontend Website
 
-**Feature Branch**: `002-premium-academy-frontend`  
+**Feature Branch**: `002-Sana-academy-frontend`  
 **Created**: 2026-03-13  
 **Status**: Draft  
-**Input**: User description: "Design and implement a highly professional public-facing frontend website for a premium educational academy using only HTML, CSS, Tailwind CSS, and native JavaScript. The website must be original, conversion-oriented, future-ready for marketplace expansion, and benchmarked against leading tutoring platforms like Preply."
+**Input**: User description: "Design and implement a highly professional public-facing frontend website for a Sana educational academy using only HTML, CSS, Tailwind CSS, and native JavaScript. The website must be original, conversion-oriented, future-ready for marketplace expansion, and benchmarked against leading tutoring platforms like Preply."
 
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Prospective Student Discovers the Academy (Priority: P1)
 
-A prospective student or parent visits the homepage for the first time. They immediately understand what the academy offers, perceive it as premium and trustworthy, and are guided toward a clear next step (booking a trial or exploring teachers). The homepage communicates value within seconds through strong visual hierarchy, trust signals, and compelling CTAs.
+A prospective student or parent visits the homepage for the first time. They immediately understand what the academy offers, perceive it as Sana and trustworthy, and are guided toward a clear next step (booking a trial or exploring teachers). The homepage communicates value within seconds through strong visual hierarchy, trust signals, and compelling CTAs.
 
 **Why this priority**: The homepage is the single most important page for conversion. If a first-time visitor cannot quickly understand the value proposition and take action, no other page matters. This is the foundation of the entire website.
 
@@ -47,7 +47,7 @@ A student navigates to the teachers listing page to find the right instructor. T
 
 A student or parent visits the programs/courses listing to understand the academy's structured offerings. They see categorized course cards with clear descriptions, and can click through to a detailed course page that explains what is included, who it is for, expected outcomes, and the instructor.
 
-**Why this priority**: Programs represent the academy's structured educational offerings, which differentiate it from a pure marketplace. This supports the business's positioning as a premium academy, not just a tutor directory.
+**Why this priority**: Programs represent the academy's structured educational offerings, which differentiate it from a pure marketplace. This supports the business's positioning as a Sana academy, not just a tutor directory.
 
 **Independent Test**: Can be fully tested by navigating to the programs listing, viewing course cards across categories, clicking a course card, and verifying the detail page includes all required sections (overview, audience, inclusions, outcomes, instructor, CTA, FAQ).
 
@@ -81,7 +81,7 @@ A visitor who is evaluating the academy's credibility navigates to the About pag
 
 **Why this priority**: The About page builds deeper trust for visitors who are seriously evaluating the academy. It is important but typically viewed by a smaller, more committed audience.
 
-**Independent Test**: Can be fully tested by loading the About page and verifying all sections are present, content tone is premium, and the CTA is visible.
+**Independent Test**: Can be fully tested by loading the About page and verifying all sections are present, content tone is Sana, and the CTA is visible.
 
 **Acceptance Scenarios**:
 
@@ -92,7 +92,7 @@ A visitor who is evaluating the academy's credibility navigates to the About pag
 
 ### User Story 6 - Visitor Contacts the Academy (Priority: P3)
 
-A visitor with questions or a specific inquiry navigates to the Contact page. They see a premium contact form, alternative contact methods (email, phone, address), an FAQ prompt for common questions, and professional business presentation.
+A visitor with questions or a specific inquiry navigates to the Contact page. They see a Sana contact form, alternative contact methods (email, phone, address), an FAQ prompt for common questions, and professional business presentation.
 
 **Why this priority**: Contact is essential for lead generation and converting hesitant visitors. It supports the business directly but is lower priority than the core discovery pages.
 
@@ -258,17 +258,17 @@ A visitor checks the academy's legal pages (Privacy Policy, Terms of Service) to
 - **SC-005**: The website is fully usable on screens as small as 320px wide with no horizontal scrolling, no overlapping elements, and all CTAs tappable.
 - **SC-006**: Every interactive element (accordion, menu, form) is operable using keyboard-only navigation (Tab, Enter, Escape).
 - **SC-007**: A visitor can complete the contact form submission flow (fill fields, submit, see confirmation) in under 60 seconds.
-- **SC-008**: All 13 required pages are implemented with complete section structure and demo content that reads as premium and professional.
+- **SC-008**: All 13 required pages are implemented with complete section structure and demo content that reads as Sana and professional.
 - **SC-009**: The visual design is consistent across all pages: same color palette, typography scale, spacing rhythm, card styles, and button hierarchy with zero visual inconsistencies.
-- **SC-010**: A non-technical reviewer assesses the website as "premium and commercially credible" suitable for a real academy business launch.
+- **SC-010**: A non-technical reviewer assesses the website as "Sana and commercially credible" suitable for a real academy business launch.
 - **SC-011**: The codebase contains zero dependencies on JavaScript frameworks, CSS frameworks other than Tailwind, or SPA patterns; all files are plain HTML, CSS, Tailwind CSS, and vanilla JavaScript.
 - **SC-012**: Teacher listing page displays at least 8 teacher cards with all required information fields populated with realistic demo data.
 - **SC-013**: All pages pass W3C HTML validation with no errors (warnings acceptable for Tailwind utility classes).
 
 ## Assumptions
 
-- **Academy Brand**: The academy brand name is "Premium Academy" or a placeholder to be replaced. Color palette and logo will use premium placeholder values that can be swapped.
-- **Demo Content**: All content (teacher bios, course descriptions, blog articles, testimonials) will use realistic, high-quality placeholder text that reflects the premium tone, not lorem ipsum.
+- **Academy Brand**: The academy brand name is "Sana Academy" or a placeholder to be replaced. Color palette and logo will use Sana placeholder values that can be swapped.
+- **Demo Content**: All content (teacher bios, course descriptions, blog articles, testimonials) will use realistic, high-quality placeholder text that reflects the Sana tone, not lorem ipsum.
 - **Images**: Placeholder images will use professional stock photo services (referenced via URL) or solid-color placeholder blocks with appropriate dimensions.
 - **No Backend**: No server-side logic, API calls, or data persistence exists. All data is hardcoded in the HTML. Filter/sort interactions provide visual feedback only.
 - **Future CTAs**: CTAs like "Book a Free Trial" or "Enroll Now" will link to the Contact page or display a lightweight modal explaining the feature is coming soon, since no booking system exists yet.
@@ -289,7 +289,7 @@ A visitor checks the academy's legal pages (Privacy Policy, Terms of Service) to
 - Consistent visual design system (typography, colors, spacing, components)
 - SEO-ready semantic HTML structure
 - Accessibility fundamentals (focus states, semantic markup, alt text, form labels)
-- Realistic premium demo content
+- Realistic Sana demo content
 
 ### Out of Scope
 - Backend logic, APIs, or server-side rendering
@@ -316,4 +316,4 @@ Per the constitution's SEO-Aware Frontend Structure principle, the following pag
 - **Tailwind CSS CDN**: Requires access to the Tailwind CSS CDN for styling
 - **Placeholder Images**: Requires access to a placeholder image service or pre-selected stock image URLs
 - **Icon Library**: Requires access to an icon set (Heroicons CDN or inline SVGs)
-- **Web Fonts**: Requires access to Google Fonts or equivalent for premium typography (e.g., Inter for body, a serif or display font for headings)
+- **Web Fonts**: Requires access to Google Fonts or equivalent for Sana typography (e.g., Inter for body, a serif or display font for headings)
