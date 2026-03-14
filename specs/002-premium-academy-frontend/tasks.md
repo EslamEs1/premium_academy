@@ -27,9 +27,9 @@ All source files live under `src/` at repository root per plan.md:
 
 **Purpose**: Create project skeleton, configure Tailwind design system, and establish shared conventions
 
-- [ ] T001 Create directory structure: `src/css/`, `src/js/`, `src/images/` per plan.md project structure
-- [ ] T002 Create Tailwind config file with complete design system (colors, typography, spacing, shadows, radii) from research.md in `src/js/tailwind-config.js`
-- [ ] T003 [P] Create custom CSS file with base styles, transitions, animations, scroll-behavior, focus styles, and reserved header/footer placeholder heights in `src/css/custom.css`
+- [X] T001 Create directory structure: `src/css/`, `src/js/`, `src/images/` per plan.md project structure
+- [X] T002 Create Tailwind config file with complete design system (colors, typography, spacing, shadows, radii) from research.md in `src/js/tailwind-config.js`
+- [X] T003 [P] Create custom CSS file with base styles, transitions, animations, scroll-behavior, focus styles, and reserved header/footer placeholder heights in `src/css/custom.css`
 
 ---
 
@@ -39,12 +39,12 @@ All source files live under `src/` at repository root per plan.md:
 
 **CRITICAL**: Every HTML page depends on the header/footer JS injection and the shared Tailwind config from Phase 1.
 
-- [ ] T004 Implement global header injection with desktop navigation (7 nav links + CTA button), logo placeholder, and active page highlighting via JS in `src/js/main.js`
-- [ ] T005 Implement mobile menu (full-screen overlay with nav links + CTA, close on button/outside click/Escape, prevent background scroll, smooth animation) in `src/js/main.js`
-- [ ] T006 Implement sticky header behavior (fixed on scroll, reduced height, shadow enhancement, hide-on-scroll-down/show-on-scroll-up) in `src/js/main.js`
-- [ ] T007 Implement global footer injection with 4 navigation groups (Explore, Learn, Support, Legal), contact details, newsletter signup form, social links, copyright, and legal links in `src/js/main.js`
-- [ ] T008 Implement announcement bar component (dismissible, session-persistent via sessionStorage, close button) in `src/js/main.js`
-- [ ] T009 Implement FAQ accordion behavior (expand/collapse with smooth CSS transitions, single-item-open per category, data-attribute driven, keyboard accessible) in `src/js/accordion.js`
+- [X] T004 Implement global header injection with desktop navigation (7 nav links + CTA button), logo placeholder, and active page highlighting via JS in `src/js/main.js`
+- [X] T005 Implement mobile menu (full-screen overlay with nav links + CTA, close on button/outside click/Escape, prevent background scroll, smooth animation) in `src/js/main.js`
+- [X] T006 Implement sticky header behavior (fixed on scroll, reduced height, shadow enhancement, hide-on-scroll-down/show-on-scroll-up) in `src/js/main.js`
+- [X] T007 Implement global footer injection with 4 navigation groups (Explore, Learn, Support, Legal), contact details, newsletter signup form, social links, copyright, and legal links in `src/js/main.js`
+- [X] T008 Implement announcement bar component (dismissible, session-persistent via sessionStorage, close button) in `src/js/main.js`
+- [X] T009 Implement FAQ accordion behavior (expand/collapse with smooth CSS transitions, single-item-open per category, data-attribute driven, keyboard accessible) in `src/js/accordion.js`
 
 **Checkpoint**: Shared infrastructure ready. Opening any HTML page that includes `main.js` will render a consistent header, footer, mobile menu, and sticky behavior. The accordion module is ready for any page that needs it.
 
@@ -58,17 +58,17 @@ All source files live under `src/` at repository root per plan.md:
 
 ### Implementation for User Story 1
 
-- [ ] T010 [US1] Create homepage HTML skeleton with semantic structure (announcement bar, header placeholder, main with 10 sections, footer placeholder), meta tags, OG tags, JSON-LD EducationalOrganization, and CDN includes in `src/index.html`
-- [ ] T011 [US1] Build hero section with display heading, supporting paragraph, primary CTA button ("Book a Free Trial"), secondary CTA link ("Browse Teachers"), and hero image/visual in `src/index.html`
-- [ ] T012 [US1] Build trust metrics section with 4 metric cards (15,000+ Students, 200+ Teachers, 98% Satisfaction, 500,000+ Lessons) using inline SVG icons in `src/index.html`
-- [ ] T013 [US1] Build featured teachers section with 4 teacher cards (photo from randomuser.me, name, headline, subjects as pills, star rating with review count, price indicator, "View Profile" CTA linking to teacher-profile.html) in `src/index.html`
-- [ ] T014 [US1] Build subjects/categories section with 8+ subject cards (Mathematics, Science, English, Business, Technology, Music, Languages, Test Prep) each with inline SVG icon, name, teacher count, and link in `src/index.html`
-- [ ] T015 [US1] Build "How It Works" preview section with 4 numbered steps (Browse Teachers, Book a Trial, Start Learning, Track Progress) with icons and descriptions in `src/index.html`
-- [ ] T016 [US1] Build value proposition section with 3 benefit blocks for students/parents (Expert Teachers, Flexible Learning, Proven Results) with icons, headings, and descriptions in `src/index.html`
-- [ ] T017 [US1] Build testimonials section with 3 review cards (reviewer photo, name, role, star rating, review text, date) using carousel or grid layout in `src/index.html`
-- [ ] T018 [US1] Build FAQ preview section with 4-5 accordion items using data-accordion attributes (wired to accordion.js) with realistic Q&A content in `src/index.html`
-- [ ] T019 [US1] Build final CTA band section with compelling heading, supporting text, and primary + secondary CTA buttons in `src/index.html`
-- [ ] T020 [US1] Verify homepage responsive behavior at all 4 breakpoints (320px, 768px, 1024px, 1280px): card stacking, section spacing adjustments, hero layout changes, category grid reflow, mobile-appropriate font sizes
+- [x] T010 [US1] Create homepage HTML skeleton with semantic structure (announcement bar, header placeholder, main with 10 sections, footer placeholder), meta tags, OG tags, JSON-LD EducationalOrganization, and CDN includes in `src/index.html`
+- [x] T011 [US1] Build hero section with display heading, supporting paragraph, primary CTA button ("Book a Free Trial"), secondary CTA link ("Browse Teachers"), and hero image/visual in `src/index.html`
+- [x] T012 [US1] Build trust metrics section with 4 metric cards (15,000+ Students, 200+ Teachers, 98% Satisfaction, 500,000+ Lessons) using inline SVG icons in `src/index.html`
+- [x] T013 [US1] Build featured teachers section with 4 teacher cards (photo from randomuser.me, name, headline, subjects as pills, star rating with review count, price indicator, "View Profile" CTA linking to teacher-profile.html) in `src/index.html`
+- [x] T014 [US1] Build subjects/categories section with 8+ subject cards (Mathematics, Science, English, Business, Technology, Music, Languages, Test Prep) each with inline SVG icon, name, teacher count, and link in `src/index.html`
+- [x] T015 [US1] Build "How It Works" preview section with 4 numbered steps (Browse Teachers, Book a Trial, Start Learning, Track Progress) with icons and descriptions in `src/index.html`
+- [x] T016 [US1] Build value proposition section with 3 benefit blocks for students/parents (Expert Teachers, Flexible Learning, Proven Results) with icons, headings, and descriptions in `src/index.html`
+- [x] T017 [US1] Build testimonials section with 3 review cards (reviewer photo, name, role, star rating, review text, date) using carousel or grid layout in `src/index.html`
+- [x] T018 [US1] Build FAQ preview section with 4-5 accordion items using data-accordion attributes (wired to accordion.js) with realistic Q&A content in `src/index.html`
+- [x] T019 [US1] Build final CTA band section with compelling heading, supporting text, and primary + secondary CTA buttons in `src/index.html`
+- [x] T020 [US1] Verify homepage responsive behavior at all 4 breakpoints (320px, 768px, 1024px, 1280px): card stacking, section spacing adjustments, hero layout changes, category grid reflow, mobile-appropriate font sizes
 
 **Checkpoint**: Homepage is fully functional and viewable. A visitor can see the complete premium landing experience, interact with mobile menu, dismiss announcement bar, expand FAQ items, and navigate to other pages (which will be empty shells until their phases complete).
 

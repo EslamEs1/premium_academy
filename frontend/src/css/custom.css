@@ -1,0 +1,230 @@
+/* =========================================================================
+   Premium Academy - Core Custom Styles
+   ========================================================================= */
+
+/* 1. Base Variables & Utility Enhancements */
+:root {
+  --scrollbar-bg: #f8f4eb; /* Primary 100 */
+  --scrollbar-thumb: #d1b18c; /* Primary 400 */
+  --scrollbar-thumb-hover: #b48154; /* Primary 600 */
+  --selection-bg: #efe8d5; /* Primary 200 */
+  --selection-color: #372318; /* Primary 950 */
+}
+
+/* Base resets & typography rendering */
+html,
+body {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: #f7f8f9; /* Slate 50 */
+  color: #3d4554; /* Slate 900 */
+}
+
+/* 2. Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+  border: 2px solid var(--scrollbar-bg); /* Padding effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
+}
+
+/* 3. Selection Styling */
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-color);
+}
+
+::-moz-selection {
+  background: var(--selection-bg);
+  color: var(--selection-color);
+}
+
+/* 4. Focus Styles */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #b48154; /* Primary 600 */
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(180, 129, 84, 0.15); /* Soft premium focus glow */
+  transition:
+    outline-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* 5. Placeholder Handling */
+::placeholder {
+  color: #9baabf; /* Slate 400 */
+  opacity: 1; /* Override Firefox */
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  opacity: 0.5;
+  transform: translateX(4px);
+}
+
+/* 6. Base Element Styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #0f172a; /* Slate 950 */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 7. Reusable Premium Utilities */
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.85); /* Slate 950 */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Text Gradients */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #b48154 0%, #7e563e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Premium Button Transitions */
+.btn-transition {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-transition:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 15px -3px rgba(15, 23, 42, 0.08),
+    0 4px 6px -4px rgba(15, 23, 42, 0.04);
+}
+
+.btn-transition:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.03);
+}
+
+/* 8. Utility Interactions */
+.scale-on-hover {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scale-on-hover:hover {
+  transform: scale(1.02);
+}
+
+.hover-lift {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 25px -5px rgba(15, 23, 42, 0.1),
+    0 8px 10px -6px rgba(15, 23, 42, 0.05); /* shadow-premium */
+}
+
+/* Smooth opacity reveal utilities */
+.reveal,
+.reveal-up {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.reveal-up.is-visible {
+  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Delay modifiers */
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-400 {
+  animation-delay: 400ms;
+}
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* 9. Layout Reserved Heights (Header/Footer placeholders) */
+:root {
+  --header-height: 80px;
+  --header-height-scrolled: 64px;
+  --footer-min-height: 400px;
+}
+
+.header-placeholder {
+  height: var(--header-height);
+  width: 100%;
+}
+
+.footer-placeholder {
+  min-height: var(--footer-min-height);
+  width: 100%;
+}
