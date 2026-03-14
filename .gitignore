@@ -1,0 +1,22 @@
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+
+# Editor directories
+.vscode/
+.idea/
+
+# Node (if Tailwind build is added later)
+node_modules/
+dist/
+build/
+*.log
+
+# Environment
+.env*
+
+# Compiled output
+*.min.js
+*.min.css
