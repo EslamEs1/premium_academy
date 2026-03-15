@@ -11,22 +11,35 @@ function initAccordions() {
   // Find all accordion containers
   const accordionContainers = document.querySelectorAll("[data-accordion]");
 
-  accordionContainers.forEach((container) => {
+  accordionContainers.forEach((container, containerIndex) => {
     // Find all accordion items within this specific container
     const items = container.querySelectorAll("[data-accordion-item]");
 
-    items.forEach((item) => {
+    items.forEach((item, itemIndex) => {
       const trigger = item.querySelector("[data-accordion-trigger]");
       const content = item.querySelector("[data-accordion-content]");
+      if (!trigger || !content) return;
+
       const icon = trigger.querySelector(".accordion-icon"); // Expected to have a rotating SVG
 
-      if (!trigger || !content) return;
+      const triggerId =
+        trigger.id ||
+        `accordion-trigger-${containerIndex + 1}-${itemIndex + 1}`;
+      const contentId =
+        content.id || `accordion-panel-${containerIndex + 1}-${itemIndex + 1}`;
+      trigger.id = triggerId;
+      content.id = contentId;
+      trigger.setAttribute("aria-controls", contentId);
+      content.setAttribute("role", "region");
+      content.setAttribute("aria-labelledby", triggerId);
 
       // Set initial state
       // If the item doesn't have the active attribute, collapse its height initially
       const isOpen = item.hasAttribute("data-accordion-active");
 
       if (!isOpen) {
+        content.hidden = true;
+        content.setAttribute("aria-hidden", "true");
         content.style.height = "0px";
         content.style.opacity = "0";
         content.style.overflow = "hidden";
@@ -35,6 +48,8 @@ function initAccordions() {
         }
       } else {
         // To display an open one by default
+        content.hidden = false;
+        content.setAttribute("aria-hidden", "false");
         content.style.height = "auto"; // Will be measured dynamically
         content.style.opacity = "1";
         content.style.overflow = "hidden"; // Keep hidden for safety during open transitions
@@ -84,6 +99,9 @@ function openAccordion(item, content, trigger, icon) {
   trigger.setAttribute("aria-expanded", "true");
   trigger.classList.add("text-primary-600");
   trigger.classList.remove("text-slate-800");
+  content.hidden = false;
+  content.setAttribute("aria-hidden", "false");
+  window.clearTimeout(content.closeTimerId);
 
   // Calculate full height needed
   const scrollHeight = content.scrollHeight;
@@ -127,4 +145,11 @@ function closeAccordion(item) {
   if (icon) {
     icon.classList.remove("rotate-180");
   }
+
+  content.closeTimerId = window.setTimeout(() => {
+    if (!item.hasAttribute("data-accordion-active")) {
+      content.hidden = true;
+      content.setAttribute("aria-hidden", "true");
+    }
+  }, 300);
 }

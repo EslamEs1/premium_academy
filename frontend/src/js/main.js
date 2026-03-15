@@ -12,10 +12,52 @@ function initFoundation() {
   injectHeader();
   injectMobileMenu();
   injectFooter();
+  injectComingSoonModal();
 
   initStickyHeader();
   initMobileMenuState();
+  initComingSoonModal();
+  initNewsletterForm();
+  initShareActions();
+  enhanceImages();
   highlightActiveLink();
+}
+
+function getFocusableElements(container) {
+  if (!container) {
+    return [];
+  }
+
+  return Array.from(
+    container.querySelectorAll(
+      'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ),
+  ).filter(
+    (element) =>
+      !element.hasAttribute("hidden") &&
+      element.getAttribute("aria-hidden") !== "true",
+  );
+}
+
+function trapFocusWithin(event, container) {
+  const focusableElements = getFocusableElements(container);
+
+  if (focusableElements.length === 0) {
+    event.preventDefault();
+    container?.focus();
+    return;
+  }
+
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  if (event.shiftKey && document.activeElement === firstElement) {
+    event.preventDefault();
+    lastElement.focus();
+  } else if (!event.shiftKey && document.activeElement === lastElement) {
+    event.preventDefault();
+    firstElement.focus();
+  }
 }
 
 /**
@@ -38,7 +80,7 @@ function injectAnnouncementBar() {
                     </span>
                     <p>
                         <span class="hidden sm:inline">Enrollment for the Fall 2026 Semester is now open! </span>
-                        <a href="/programs.html" class="inline-block underline underline-offset-4 decoration-primary-500 hover:text-primary-300 transition-colors">
+                        <a href="programs.html" class="inline-block underline underline-offset-4 decoration-primary-500 hover:text-primary-300 transition-colors">
                             Explore our new curriculum &rarr;
                         </a>
                     </p>
@@ -119,7 +161,7 @@ function injectHeader() {
                     </a>
                     
                     <!-- Mobile Toggle -->
-                    <button id="mobile-menu-toggle" type="button" class="lg:hidden p-2 -mr-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="Toggle menu" aria-expanded="false">
+                    <button id="mobile-menu-toggle" type="button" class="lg:hidden p-2 -mr-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu-panel">
                         <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path class="menu-open-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             <path class="menu-close-icon hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -167,9 +209,9 @@ function injectMobileMenu() {
 
   const html = `
         <div id="mobile-menu-overlay" class="fixed inset-0 z-[50] bg-slate-950/20 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
-        <div id="mobile-menu-panel" class="fixed top-0 right-0 bottom-0 z-[55] w-[85%] max-w-sm bg-white shadow-Sana transform translate-x-full transition-transform duration-500 ease-smooth flex flex-col overflow-y-auto" aria-hidden="true" tabindex="-1">
+        <div id="mobile-menu-panel" class="fixed top-0 right-0 bottom-0 z-[55] w-[85%] max-w-sm bg-white shadow-Sana transform translate-x-full transition-transform duration-500 ease-smooth flex flex-col overflow-y-auto" aria-hidden="true" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title">
             <div class="p-6 flex items-center justify-between border-b border-slate-100">
-                <span class="font-serif text-xl font-bold text-slate-900">Menu</span>
+                <span id="mobile-menu-title" class="font-serif text-xl font-bold text-slate-900">Menu</span>
                 <button id="mobile-menu-close" type="button" class="p-2 -mr-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="Close menu">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -213,6 +255,7 @@ function initMobileMenuState() {
   const openMenu = () => {
     isOpen = true;
     toggle.setAttribute("aria-expanded", "true");
+    overlay?.setAttribute("aria-hidden", "false");
 
     // Remove structural hiding
     overlay.classList.remove("pointer-events-none");
@@ -230,12 +273,14 @@ function initMobileMenuState() {
     body.style.overflow = "hidden";
 
     // Focus management
-    panel.focus();
+    const focusableElements = getFocusableElements(panel);
+    (focusableElements[0] || panel).focus();
   };
 
-  const closeMenu = () => {
+  const closeMenu = (restoreFocus = true) => {
     isOpen = false;
     toggle.setAttribute("aria-expanded", "false");
+    overlay?.setAttribute("aria-hidden", "true");
 
     // Reverse animations
     overlay.classList.remove("opacity-100");
@@ -249,6 +294,10 @@ function initMobileMenuState() {
       overlay.classList.add("pointer-events-none");
       body.style.overflow = "";
     }, 300); // Matches duration-300
+
+    if (restoreFocus) {
+      toggle.focus();
+    }
   };
 
   toggle.addEventListener("click", () => (isOpen ? closeMenu() : openMenu()));
@@ -259,7 +308,10 @@ function initMobileMenuState() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && isOpen) {
       closeMenu();
-      toggle.focus(); // Return focus to toggle
+    }
+
+    if (e.key === "Tab" && isOpen) {
+      trapFocusWithin(e, panel);
     }
   });
 }
@@ -366,7 +418,7 @@ function injectFooter() {
                             Empowering students globally with world-class education. Discover experts in mathematics, languages, technology and more through personalized learning formats.
                         </p>
                         
-                        <form class="flex flex-col sm:flex-row gap-2" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                        <form class="flex flex-col sm:flex-row gap-2" data-newsletter-form novalidate>
                             <label for="newsletter-email" class="sr-only">Email address</label>
                             <input id="newsletter-email" type="email" required placeholder="Enter your email" 
                                 class="w-full bg-slate-900 border border-slate-800 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors placeholder-slate-500">
@@ -374,6 +426,7 @@ function injectFooter() {
                                 Subscribe
                             </button>
                         </form>
+                        <p class="mt-3 hidden text-sm text-emerald-300" data-newsletter-status role="status" aria-live="polite"></p>
                     </div>
 
                     <!-- Fast Links Grid -->
@@ -394,7 +447,7 @@ function injectFooter() {
                                 <li><a href="how-it-works.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">How It Works</a></li>
                                 <li><a href="blog.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Blog</a></li>
                                 <li><a href="faq.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">FAQ</a></li>
-                                <li><a href="#" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Student Success</a></li>
+                                <li><button type="button" data-coming-soon data-feature-name="Student Success stories" data-coming-soon-copy="Our student outcomes library is being curated with stronger case studies and family stories. Contact Sana Academy if you want a relevant example now." class="text-left text-sm text-slate-400 hover:text-primary-400 transition-colors">Student Success</button></li>
                             </ul>
                         </div>
 
@@ -402,15 +455,15 @@ function injectFooter() {
                             <h3 class="text-white font-serif font-semibold mb-4 text-base">Support</h3>
                             <ul class="space-y-3">
                                 <li><a href="contact.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Contact Us</a></li>
-                                <li><a href="#" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Help Center</a></li>
-                                <li><a href="#" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">For Teachers</a></li>
+                                <li><button type="button" data-coming-soon data-feature-name="Help Center" data-coming-soon-copy="The self-serve help center is coming soon. For scheduling, enrollment, or teacher questions, contact the academy team directly." class="text-left text-sm text-slate-400 hover:text-primary-400 transition-colors">Help Center</button></li>
+                                <li><button type="button" data-coming-soon data-feature-name="For Teachers" data-coming-soon-copy="The teacher application portal is not published in this phase. Contact Sana Academy if you are an educator who wants to be considered." class="text-left text-sm text-slate-400 hover:text-primary-400 transition-colors">For Teachers</button></li>
                                 <li>
-                                    <span class="flex items-center text-sm text-slate-400">
+                                    <a href="mailto:hello@sana.edu" class="flex items-center text-sm text-slate-400 hover:text-primary-400 transition-colors">
                                         <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                         </svg>
-                                        hello@Sana.edu
-                                    </span>
+                                        hello@sana.edu
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -420,7 +473,7 @@ function injectFooter() {
                             <ul class="space-y-3">
                                 <li><a href="privacy-policy.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Privacy Policy</a></li>
                                 <li><a href="terms-of-service.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Terms of Service</a></li>
-                                <li><a href="#" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Cookie Settings</a></li>
+                                <li><button type="button" data-coming-soon data-feature-name="Cookie Settings" data-coming-soon-copy="Granular cookie controls are planned for a later release. For questions about data handling, review the privacy policy or contact the academy." class="text-left text-sm text-slate-400 hover:text-primary-400 transition-colors">Cookie Settings</button></li>
                             </ul>
                         </div>
                     </div>
@@ -434,18 +487,18 @@ function injectFooter() {
                     
                     <!-- Social Links -->
                     <div class="flex items-center gap-4">
-                        <a href="#" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="Twitter">
+                        <button type="button" data-coming-soon data-feature-name="Sana Academy social profile" data-coming-soon-copy="Official social profiles are being finalized. Contact Sana Academy directly for updates, articles, and enrollment announcements." class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="Twitter">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
-                        </a>
-                        <a href="#" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="Facebook">
+                        </button>
+                        <button type="button" data-coming-soon data-feature-name="Sana Academy social profile" data-coming-soon-copy="Official social profiles are being finalized. Contact Sana Academy directly for updates, articles, and enrollment announcements." class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="Facebook">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/></svg>
-                        </a>
-                        <a href="#" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="Instagram">
+                        </button>
+                        <button type="button" data-coming-soon data-feature-name="Sana Academy social profile" data-coming-soon-copy="Official social profiles are being finalized. Contact Sana Academy directly for updates, articles, and enrollment announcements." class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="Instagram">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/></svg>
-                        </a>
-                        <a href="#" class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="LinkedIn">
+                        </button>
+                        <button type="button" data-coming-soon data-feature-name="Sana Academy social profile" data-coming-soon-copy="Official social profiles are being finalized. Contact Sana Academy directly for updates, articles, and enrollment announcements." class="w-8 h-8 rounded bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="LinkedIn">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
-                        </a>
+                        </button>
                     </div>
                 </div>
 
@@ -453,7 +506,213 @@ function injectFooter() {
         </footer>
     `;
 
+  const placeholder = document.querySelector(".footer-placeholder");
+  if (placeholder) {
+    placeholder.outerHTML = html;
+  } else {
+    document.body.insertAdjacentHTML("beforeend", html);
+  }
+}
+
+function injectComingSoonModal() {
+  const html = `
+        <div id="coming-soon-modal" class="fixed inset-0 z-[90] hidden items-end justify-center bg-slate-950/55 px-4 py-6 sm:items-center" aria-hidden="true">
+            <div id="coming-soon-dialog" class="w-full max-w-xl rounded-[2rem] bg-white p-6 shadow-Sana sm:p-8" role="dialog" aria-modal="true" aria-labelledby="coming-soon-title" aria-describedby="coming-soon-copy" tabindex="-1">
+                <div class="flex items-start justify-between gap-6">
+                    <div>
+                        <p class="text-sm font-semibold uppercase tracking-[0.22em] text-primary-700">Planned Feature</p>
+                        <h2 id="coming-soon-title" class="mt-3 text-3xl font-bold text-slate-950">Coming soon</h2>
+                    </div>
+                    <button id="coming-soon-close" type="button" class="rounded-full border border-slate-200 p-2 text-slate-500 transition-colors hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-primary-500" aria-label="Close coming soon message">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <p id="coming-soon-copy" class="mt-5 text-base leading-8 text-slate-600">
+                    This area is being prepared for a later release. If you need help right now, contact Sana Academy directly and the team will guide you.
+                </p>
+                <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                    <a href="contact.html" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white shadow-elevated transition-colors hover:bg-slate-800">Contact the academy</a>
+                    <button id="coming-soon-dismiss" type="button" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
   document.body.insertAdjacentHTML("beforeend", html);
+}
+
+function initComingSoonModal() {
+  const modal = document.getElementById("coming-soon-modal");
+  const dialog = document.getElementById("coming-soon-dialog");
+  const closeButton = document.getElementById("coming-soon-close");
+  const dismissButton = document.getElementById("coming-soon-dismiss");
+  const title = document.getElementById("coming-soon-title");
+  const copy = document.getElementById("coming-soon-copy");
+
+  if (!modal || !dialog || !closeButton || !title || !copy) {
+    return;
+  }
+
+  let isOpen = false;
+  let lastTrigger = null;
+
+  const openModal = (trigger) => {
+    lastTrigger = trigger;
+    isOpen = true;
+    title.textContent =
+      trigger.dataset.featureName ||
+      trigger.textContent.trim() ||
+      "Coming soon";
+    copy.textContent =
+      trigger.dataset.comingSoonCopy ||
+      "This area is being prepared for a later release. If you need help right now, contact Sana Academy directly and the team will guide you.";
+
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    const focusableElements = getFocusableElements(dialog);
+    (focusableElements[0] || dialog).focus();
+  };
+
+  const closeModal = () => {
+    isOpen = false;
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    lastTrigger?.focus();
+  };
+
+  document.addEventListener("click", (event) => {
+    const trigger = event.target.closest("[data-coming-soon]");
+    if (!trigger) {
+      return;
+    }
+
+    event.preventDefault();
+    openModal(trigger);
+  });
+
+  closeButton.addEventListener("click", closeModal);
+  dismissButton?.addEventListener("click", closeModal);
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!isOpen) {
+      return;
+    }
+
+    if (event.key === "Escape") {
+      closeModal();
+    }
+
+    if (event.key === "Tab") {
+      trapFocusWithin(event, dialog);
+    }
+  });
+}
+
+function initNewsletterForm() {
+  const newsletterForms = document.querySelectorAll("[data-newsletter-form]");
+
+  newsletterForms.forEach((form) => {
+    const input = form.querySelector('input[type="email"]');
+    const status = form.parentElement?.querySelector(
+      "[data-newsletter-status]",
+    );
+
+    if (!input || !status) {
+      return;
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!input.checkValidity()) {
+        input.setAttribute("aria-invalid", "true");
+        status.textContent = "Enter a valid email address to subscribe.";
+        status.classList.remove("hidden", "text-emerald-300");
+        status.classList.add("text-rose-300");
+        input.focus();
+        return;
+      }
+
+      input.setAttribute("aria-invalid", "false");
+      status.textContent =
+        "Subscribed. You will receive academy updates and article highlights.";
+      status.classList.remove("hidden", "text-rose-300");
+      status.classList.add("text-emerald-300");
+      form.reset();
+    });
+
+    input.addEventListener("input", () => {
+      input.setAttribute("aria-invalid", "false");
+      status.classList.add("hidden");
+    });
+  });
+}
+
+async function copyText(value) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(value);
+    return true;
+  }
+
+  const helper = document.createElement("textarea");
+  helper.value = value;
+  helper.setAttribute("readonly", "");
+  helper.style.position = "absolute";
+  helper.style.left = "-9999px";
+  document.body.appendChild(helper);
+  helper.select();
+  const didCopy = document.execCommand("copy");
+  helper.remove();
+  return didCopy;
+}
+
+function initShareActions() {
+  const copyButtons = document.querySelectorAll("[data-copy-link]");
+
+  copyButtons.forEach((button) => {
+    const originalText = button.textContent.trim();
+    const copyValue =
+      button.dataset.copyLink || window.location.href.split("#")[0];
+
+    button.addEventListener("click", async (event) => {
+      event.preventDefault();
+
+      const copied = await copyText(copyValue);
+      button.textContent = copied ? "Link copied" : "Copy unavailable";
+
+      window.setTimeout(() => {
+        button.textContent = originalText;
+      }, 1800);
+    });
+  });
+}
+
+function enhanceImages() {
+  const images = Array.from(document.querySelectorAll("img"));
+
+  images.forEach((image, index) => {
+    if (!image.hasAttribute("decoding")) {
+      image.setAttribute("decoding", "async");
+    }
+
+    if (!image.hasAttribute("loading") && index > 1) {
+      image.setAttribute("loading", "lazy");
+    }
+  });
 }
 
 /**

@@ -16,6 +16,7 @@
 ## Path Conventions
 
 All source files live under `src/` at repository root per plan.md:
+
 - HTML pages: `src/*.html`
 - CSS: `src/css/custom.css`
 - JavaScript: `src/js/*.js`
@@ -27,9 +28,9 @@ All source files live under `src/` at repository root per plan.md:
 
 **Purpose**: Create project skeleton, configure Tailwind design system, and establish shared conventions
 
-- [X] T001 Create directory structure: `src/css/`, `src/js/`, `src/images/` per plan.md project structure
-- [X] T002 Create Tailwind config file with complete design system (colors, typography, spacing, shadows, radii) from research.md in `src/js/tailwind-config.js`
-- [X] T003 [P] Create custom CSS file with base styles, transitions, animations, scroll-behavior, focus styles, and reserved header/footer placeholder heights in `src/css/custom.css`
+- [x] T001 Create directory structure: `src/css/`, `src/js/`, `src/images/` per plan.md project structure
+- [x] T002 Create Tailwind config file with complete design system (colors, typography, spacing, shadows, radii) from research.md in `src/js/tailwind-config.js`
+- [x] T003 [P] Create custom CSS file with base styles, transitions, animations, scroll-behavior, focus styles, and reserved header/footer placeholder heights in `src/css/custom.css`
 
 ---
 
@@ -39,12 +40,12 @@ All source files live under `src/` at repository root per plan.md:
 
 **CRITICAL**: Every HTML page depends on the header/footer JS injection and the shared Tailwind config from Phase 1.
 
-- [X] T004 Implement global header injection with desktop navigation (7 nav links + CTA button), logo placeholder, and active page highlighting via JS in `src/js/main.js`
-- [X] T005 Implement mobile menu (full-screen overlay with nav links + CTA, close on button/outside click/Escape, prevent background scroll, smooth animation) in `src/js/main.js`
-- [X] T006 Implement sticky header behavior (fixed on scroll, reduced height, shadow enhancement, hide-on-scroll-down/show-on-scroll-up) in `src/js/main.js`
-- [X] T007 Implement global footer injection with 4 navigation groups (Explore, Learn, Support, Legal), contact details, newsletter signup form, social links, copyright, and legal links in `src/js/main.js`
-- [X] T008 Implement announcement bar component (dismissible, session-persistent via sessionStorage, close button) in `src/js/main.js`
-- [X] T009 Implement FAQ accordion behavior (expand/collapse with smooth CSS transitions, single-item-open per category, data-attribute driven, keyboard accessible) in `src/js/accordion.js`
+- [x] T004 Implement global header injection with desktop navigation (7 nav links + CTA button), logo placeholder, and active page highlighting via JS in `src/js/main.js`
+- [x] T005 Implement mobile menu (full-screen overlay with nav links + CTA, close on button/outside click/Escape, prevent background scroll, smooth animation) in `src/js/main.js`
+- [x] T006 Implement sticky header behavior (fixed on scroll, reduced height, shadow enhancement, hide-on-scroll-down/show-on-scroll-up) in `src/js/main.js`
+- [x] T007 Implement global footer injection with 4 navigation groups (Explore, Learn, Support, Legal), contact details, newsletter signup form, social links, copyright, and legal links in `src/js/main.js`
+- [x] T008 Implement announcement bar component (dismissible, session-persistent via sessionStorage, close button) in `src/js/main.js`
+- [x] T009 Implement FAQ accordion behavior (expand/collapse with smooth CSS transitions, single-item-open per category, data-attribute driven, keyboard accessible) in `src/js/accordion.js`
 
 **Checkpoint**: Shared infrastructure ready. Opening any HTML page that includes `main.js` will render a consistent header, footer, mobile menu, and sticky behavior. The accordion module is ready for any page that needs it.
 
@@ -82,18 +83,18 @@ All source files live under `src/` at repository root per plan.md:
 
 ### Implementation for User Story 2
 
-- [ ] T021 [US2] Implement filter/sort UI interaction logic (checkbox active states, dropdown selection visual feedback, collapsible filter panel on mobile, clear filters button) in `src/js/filters.js`
-- [ ] T022 [US2] Create teachers listing page with semantic structure, meta tags, OG tags, breadcrumb, and CDN includes in `src/teachers.html`
-- [ ] T023 [US2] Build filter sidebar with subject checkboxes (8 subjects), format radio buttons (Online/In-Person/Both), experience level checkboxes (Senior/Experienced/New), and "Clear All" reset in `src/teachers.html`
-- [ ] T024 [US2] Build sorting bar with results count, sort dropdown (Recommended, Highest Rated, Price Low-High, Price High-Low), and grid/list view toggle in `src/teachers.html`
-- [ ] T025 [US2] Build 8 teacher cards with data from data-model.md Teacher entity (photo from randomuser.me, name, headline, subject pills, star rating with count, experience badge, price indicator, "View Profile" CTA button) in responsive grid layout in `src/teachers.html`
-- [ ] T026 [US2] Build collapsible mobile filter panel (slide-down with toggle button, overlay, apply/clear buttons) for teachers listing mobile view in `src/teachers.html`
-- [ ] T027 [US2] Create teacher profile page with semantic structure, meta tags, OG tags, JSON-LD Person, breadcrumb, and CDN includes in `src/teacher-profile.html`
-- [ ] T028 [US2] Build teacher profile hero/intro section with large photo, name, headline, subject pills, star rating, key stats (Students, Lessons, Experience, Response Time), and availability badge in `src/teacher-profile.html`
-- [ ] T029 [US2] Build teacher profile content sections: About Me (biography), Qualifications (credential list), Subjects Taught (with descriptions), Teaching Style, Available Lesson Formats (1-on-1, Group, In-Person with pricing per format) in `src/teacher-profile.html`
-- [ ] T030 [US2] Build teacher profile reviews section with 4+ individual review cards (reviewer name, photo, rating, date, review text), overall rating summary, and "Show More" truncation pattern in `src/teacher-profile.html`
-- [ ] T031 [US2] Build sticky sidebar on desktop (position: sticky with booking CTA, price summary, "Book a Free Trial" button, availability indicator) and fixed bottom CTA bar on mobile in `src/teacher-profile.html`
-- [ ] T032 [US2] Verify teachers listing and profile responsive behavior at all 4 breakpoints: filter sidebar collapses on mobile, card grid reflows (4→2→1 columns), profile layout switches from 2-column to single-column, sticky sidebar becomes fixed bottom bar
+- [x] T021 [US2] Implement filter/sort UI interaction logic (checkbox active states, dropdown selection visual feedback, collapsible filter panel on mobile, clear filters button) in `src/js/filters.js`
+- [x] T022 [US2] Create teachers listing page with semantic structure, meta tags, OG tags, breadcrumb, and CDN includes in `src/teachers.html`
+- [x] T023 [US2] Build filter sidebar with subject checkboxes (8 subjects), format radio buttons (Online/In-Person/Both), experience level checkboxes (Senior/Experienced/New), and "Clear All" reset in `src/teachers.html`
+- [x] T024 [US2] Build sorting bar with results count, sort dropdown (Recommended, Highest Rated, Price Low-High, Price High-Low), and grid/list view toggle in `src/teachers.html`
+- [x] T025 [US2] Build 8 teacher cards with data from data-model.md Teacher entity (photo from randomuser.me, name, headline, subject pills, star rating with count, experience badge, price indicator, "View Profile" CTA button) in responsive grid layout in `src/teachers.html`
+- [x] T026 [US2] Build collapsible mobile filter panel (slide-down with toggle button, overlay, apply/clear buttons) for teachers listing mobile view in `src/teachers.html`
+- [x] T027 [US2] Create teacher profile page with semantic structure, meta tags, OG tags, JSON-LD Person, breadcrumb, and CDN includes in `src/teacher-profile.html`
+- [x] T028 [US2] Build teacher profile hero/intro section with large photo, name, headline, subject pills, star rating, key stats (Students, Lessons, Experience, Response Time), and availability badge in `src/teacher-profile.html`
+- [x] T029 [US2] Build teacher profile content sections: About Me (biography), Qualifications (credential list), Subjects Taught (with descriptions), Teaching Style, Available Lesson Formats (1-on-1, Group, In-Person with pricing per format) in `src/teacher-profile.html`
+- [x] T030 [US2] Build teacher profile reviews section with 4+ individual review cards (reviewer name, photo, rating, date, review text), overall rating summary, and "Show More" truncation pattern in `src/teacher-profile.html`
+- [x] T031 [US2] Build sticky sidebar on desktop (position: sticky with booking CTA, price summary, "Book a Free Trial" button, availability indicator) and fixed bottom CTA bar on mobile in `src/teacher-profile.html`
+- [x] T032 [US2] Verify teachers listing and profile responsive behavior at all 4 breakpoints: filter sidebar collapses on mobile, card grid reflows (4→2→1 columns), profile layout switches from 2-column to single-column, sticky sidebar becomes fixed bottom bar
 
 **Checkpoint**: Teacher discovery flow is complete. Visitor can browse, filter (visually), sort, view cards, and explore a detailed teacher profile with booking CTA — the core marketplace UX.
 
@@ -107,14 +108,14 @@ All source files live under `src/` at repository root per plan.md:
 
 ### Implementation for User Story 3
 
-- [ ] T033 [P] [US3] Create programs listing page with semantic structure, meta tags, OG tags, breadcrumb, and CDN includes in `src/programs.html`
-- [ ] T034 [US3] Build category filter tabs (All, Mathematics, Science, Languages, Business, Test Prep) with active state styling and visual filtering in `src/programs.html`
-- [ ] T035 [US3] Build 6+ course cards with data from data-model.md Program entity (title, description excerpt, category badge, level indicator, duration, price indicator, "Learn More" CTA) in responsive grid in `src/programs.html`
-- [ ] T036 [P] [US3] Create program detail page with semantic structure, meta tags, OG tags, JSON-LD Course, breadcrumb, and CDN includes in `src/program-detail.html`
-- [ ] T037 [US3] Build program detail hero section with title, category badge, level, duration, price indicator, and hero image in `src/program-detail.html`
-- [ ] T038 [US3] Build program detail content sections: Overview, Who It's For (target audience), What's Included (inclusions checklist with checkmark icons), Learning Outcomes (numbered list), and Instructor summary card (referencing a Teacher entity) in `src/program-detail.html`
-- [ ] T039 [US3] Build program detail enrollment CTA block (prominent button, price, "Contact Us" alternative, trust messaging) and FAQ section with 3-4 accordion items in `src/program-detail.html`
-- [ ] T040 [US3] Verify programs listing and detail responsive behavior at all 4 breakpoints: category tabs scroll horizontally on mobile, card grid reflows, detail page sections stack vertically
+- [x] T033 [P] [US3] Create programs listing page with semantic structure, meta tags, OG tags, breadcrumb, and CDN includes in `src/programs.html`
+- [x] T034 [US3] Build category filter tabs (All, Mathematics, Science, Languages, Business, Test Prep) with active state styling and visual filtering in `src/programs.html`
+- [x] T035 [US3] Build 6+ course cards with data from data-model.md Program entity (title, description excerpt, category badge, level indicator, duration, price indicator, "Learn More" CTA) in responsive grid in `src/programs.html`
+- [x] T036 [P] [US3] Create program detail page with semantic structure, meta tags, OG tags, JSON-LD Course, breadcrumb, and CDN includes in `src/program-detail.html`
+- [x] T037 [US3] Build program detail hero section with title, category badge, level, duration, price indicator, and hero image in `src/program-detail.html`
+- [x] T038 [US3] Build program detail content sections: Overview, Who It's For (target audience), What's Included (inclusions checklist with checkmark icons), Learning Outcomes (numbered list), and Instructor summary card (referencing a Teacher entity) in `src/program-detail.html`
+- [x] T039 [US3] Build program detail enrollment CTA block (prominent button, price, "Contact Us" alternative, trust messaging) and FAQ section with 3-4 accordion items in `src/program-detail.html`
+- [x] T040 [US3] Verify programs listing and detail responsive behavior at all 4 breakpoints: category tabs scroll horizontally on mobile, card grid reflows, detail page sections stack vertically
 
 **Checkpoint**: Program discovery flow is complete. Visitor can browse courses by category and view detailed information to support enrollment decisions.
 
@@ -128,11 +129,11 @@ All source files live under `src/` at repository root per plan.md:
 
 ### Implementation for User Story 4
 
-- [ ] T041 [US4] Create How It Works page with semantic structure, meta tags, OG tags, breadcrumb, and CDN includes in `src/how-it-works.html`
-- [ ] T042 [US4] Build step-by-step process section with 4 numbered steps (1. Browse & Discover, 2. Book a Trial, 3. Start Learning, 4. Track & Grow) each with large icon, heading, description, and connecting visual line/arrow in `src/how-it-works.html`
-- [ ] T043 [US4] Build trust and support messaging section (Personal guidance, Satisfaction guarantee, Flexible scheduling, 24/7 support) with icons and descriptions in `src/how-it-works.html`
-- [ ] T044 [US4] Build bottom CTA section with heading, supporting text, and "Find Your Teacher" / "Browse Programs" buttons in `src/how-it-works.html`
-- [ ] T045 [US4] Verify How It Works responsive behavior: steps layout switches from horizontal timeline to vertical on mobile, icons resize, CTA remains prominent
+- [x] T041 [US4] Create How It Works page with semantic structure, meta tags, OG tags, breadcrumb, and CDN includes in `src/how-it-works.html`
+- [x] T042 [US4] Build step-by-step process section with 4 numbered steps (1. Browse & Discover, 2. Book a Trial, 3. Start Learning, 4. Track & Grow) each with large icon, heading, description, and connecting visual line/arrow in `src/how-it-works.html`
+- [x] T043 [US4] Build trust and support messaging section (Personal guidance, Satisfaction guarantee, Flexible scheduling, 24/7 support) with icons and descriptions in `src/how-it-works.html`
+- [x] T044 [US4] Build bottom CTA section with heading, supporting text, and "Find Your Teacher" / "Browse Programs" buttons in `src/how-it-works.html`
+- [x] T045 [US4] Verify How It Works responsive behavior: steps layout switches from horizontal timeline to vertical on mobile, icons resize, CTA remains prominent
 
 **Checkpoint**: Process explanation page is complete. Visitor understands the journey from discovery to first lesson.
 
@@ -146,9 +147,9 @@ All source files live under `src/` at repository root per plan.md:
 
 ### Implementation for User Story 5
 
-- [ ] T046 [P] [US5] Create About page with semantic structure, meta tags, OG tags, breadcrumb, and CDN includes in `src/about.html`
-- [ ] T047 [US5] Build About page sections: Academy Story (with image), Mission & Vision (with highlight block), Teaching Philosophy (with 3 philosophy pillars), Why Choose Us (4 benefit cards with icons), Trust Indicators (partner logos or credential badges), and bottom CTA in `src/about.html`
-- [ ] T048 [US5] Verify About page responsive behavior at all 4 breakpoints: image/text layout switches, philosophy pillars stack, benefit cards reflow
+- [x] T046 [P] [US5] Create About page with semantic structure, meta tags, OG tags, breadcrumb, and CDN includes in `src/about.html`
+- [x] T047 [US5] Build About page sections: Academy Story (with image), Mission & Vision (with highlight block), Teaching Philosophy (with 3 philosophy pillars), Why Choose Us (4 benefit cards with icons), Trust Indicators (partner logos or credential badges), and bottom CTA in `src/about.html`
+- [x] T048 [US5] Verify About page responsive behavior at all 4 breakpoints: image/text layout switches, philosophy pillars stack, benefit cards reflow
 
 **Checkpoint**: About page builds deep trust for evaluating visitors.
 
@@ -162,12 +163,12 @@ All source files live under `src/` at repository root per plan.md:
 
 ### Implementation for User Story 6
 
-- [ ] T049 [US6] Implement contact form validation logic (required fields, email format, inline error display, success message on valid submit) with data-validate attribute pattern in `src/js/forms.js`
-- [ ] T050 [P] [US6] Create Contact page with semantic structure, meta tags, OG tags, breadcrumb, and CDN includes in `src/contact.html`
-- [ ] T051 [US6] Build contact form section with name, email, subject dropdown, and message textarea fields, each with labels, placeholder text, and validation attributes, plus "Send Message" primary button in `src/contact.html`
-- [ ] T052 [US6] Build contact information section with email address, phone number, business hours, and office address, plus "Check our FAQ" prompt linking to faq.html in `src/contact.html`
-- [ ] T053 [US6] Build form success state (client-side only: hide form, show confirmation message with checkmark icon and "We'll get back to you within 24 hours" text) in `src/contact.html`
-- [ ] T054 [US6] Verify Contact page responsive behavior at all 4 breakpoints: form and contact info stack vertically on mobile, form fields full-width on small screens
+- [x] T049 [US6] Implement contact form validation logic (required fields, email format, inline error display, success message on valid submit) with data-validate attribute pattern in `src/js/forms.js`
+- [x] T050 [P] [US6] Create Contact page with semantic structure, meta tags, OG tags, breadcrumb, and CDN includes in `src/contact.html`
+- [x] T051 [US6] Build contact form section with name, email, subject dropdown, and message textarea fields, each with labels, placeholder text, and validation attributes, plus "Send Message" primary button in `src/contact.html`
+- [x] T052 [US6] Build contact information section with email address, phone number, business hours, and office address, plus "Check our FAQ" prompt linking to faq.html in `src/contact.html`
+- [x] T053 [US6] Build form success state (client-side only: hide form, show confirmation message with checkmark icon and "We'll get back to you within 24 hours" text) in `src/contact.html`
+- [x] T054 [US6] Verify Contact page responsive behavior at all 4 breakpoints: form and contact info stack vertically on mobile, form fields full-width on small screens
 
 **Checkpoint**: Contact/lead generation flow is complete with form validation and success feedback.
 
@@ -181,10 +182,10 @@ All source files live under `src/` at repository root per plan.md:
 
 ### Implementation for User Story 7
 
-- [ ] T055 [P] [US7] Create FAQ page with semantic structure, meta tags, OG tags, JSON-LD FAQPage, breadcrumb, and CDN includes in `src/faq.html`
-- [ ] T056 [US7] Build FAQ content with 3 categories (Getting Started: 4 items, Lessons & Teachers: 4 items, Pricing & Payments: 4 items) using data-accordion attributes, realistic Sana Q&A content in `src/faq.html`
-- [ ] T057 [US7] Build FAQ page header with search-like text (decorative, non-functional) and bottom CTA section ("Still have questions? Contact us") in `src/faq.html`
-- [ ] T058 [US7] Verify FAQ page responsive behavior at all 4 breakpoints: accordion touch targets minimum 48px, category spacing adjusts, text remains readable
+- [x] T055 [P] [US7] Create FAQ page with semantic structure, meta tags, OG tags, JSON-LD FAQPage, breadcrumb, and CDN includes in `src/faq.html`
+- [x] T056 [US7] Build FAQ content with 3 categories (Getting Started: 4 items, Lessons & Teachers: 4 items, Pricing & Payments: 4 items) using data-accordion attributes, realistic Sana Q&A content in `src/faq.html`
+- [x] T057 [US7] Build FAQ page header with search-like text (decorative, non-functional) and bottom CTA section ("Still have questions? Contact us") in `src/faq.html`
+- [x] T058 [US7] Verify FAQ page responsive behavior at all 4 breakpoints: accordion touch targets minimum 48px, category spacing adjusts, text remains readable
 
 **Checkpoint**: FAQ page answers visitor objections and reduces support burden.
 
@@ -198,15 +199,15 @@ All source files live under `src/` at repository root per plan.md:
 
 ### Implementation for User Story 8
 
-- [ ] T059 [P] [US8] Create blog listing page with semantic structure, meta tags, OG tags, breadcrumb, and CDN includes in `src/blog.html`
-- [ ] T060 [US8] Build 6+ article cards with data from data-model.md Blog Article entity (featured image from Unsplash, title, excerpt, author, date, category tag, read time) in responsive grid with featured article highlight in `src/blog.html`
-- [ ] T061 [US8] Build blog listing sidebar or category filter bar with category tags (Study Tips, Teaching Methods, Student Success, Education News, Exam Prep) in `src/blog.html`
-- [ ] T062 [P] [US8] Create blog detail page with semantic structure, meta tags, OG tags, JSON-LD Article, breadcrumb, and CDN includes in `src/blog-post.html`
-- [ ] T063 [US8] Build blog article header with title, author byline (photo, name, date), category tag, read time, and featured image in `src/blog-post.html`
-- [ ] T064 [US8] Build blog article body with Tailwind Typography `prose` class styling, proper heading hierarchy (H2, H3), paragraphs, lists, blockquotes, and inline images in `src/blog-post.html`
-- [ ] T065 [US8] Build blog article footer with share buttons (Twitter, Facebook, LinkedIn, Copy Link), author bio card, and "Read Next" related articles section (3 cards) in `src/blog-post.html`
-- [ ] T066 [US8] Build blog article engagement CTA band ("Ready to start learning? Book a Free Trial") between article body and footer in `src/blog-post.html`
-- [ ] T067 [US8] Verify blog listing and detail responsive behavior at all 4 breakpoints: article grid reflows, sidebar becomes horizontal on mobile, prose max-width controls line length, share buttons reposition
+- [x] T059 [P] [US8] Create blog listing page with semantic structure, meta tags, OG tags, breadcrumb, and CDN includes in `src/blog.html`
+- [x] T060 [US8] Build 6+ article cards with data from data-model.md Blog Article entity (featured image from Unsplash, title, excerpt, author, date, category tag, read time) in responsive grid with featured article highlight in `src/blog.html`
+- [x] T061 [US8] Build blog listing sidebar or category filter bar with category tags (Study Tips, Teaching Methods, Student Success, Education News, Exam Prep) in `src/blog.html`
+- [x] T062 [P] [US8] Create blog detail page with semantic structure, meta tags, OG tags, JSON-LD Article, breadcrumb, and CDN includes in `src/blog-post.html`
+- [x] T063 [US8] Build blog article header with title, author byline (photo, name, date), category tag, read time, and featured image in `src/blog-post.html`
+- [x] T064 [US8] Build blog article body with Tailwind Typography `prose` class styling, proper heading hierarchy (H2, H3), paragraphs, lists, blockquotes, and inline images in `src/blog-post.html`
+- [x] T065 [US8] Build blog article footer with share buttons (Twitter, Facebook, LinkedIn, Copy Link), author bio card, and "Read Next" related articles section (3 cards) in `src/blog-post.html`
+- [x] T066 [US8] Build blog article engagement CTA band ("Ready to start learning? Book a Free Trial") between article body and footer in `src/blog-post.html`
+- [x] T067 [US8] Verify blog listing and detail responsive behavior at all 4 breakpoints: article grid reflows, sidebar becomes horizontal on mobile, prose max-width controls line length, share buttons reposition
 
 **Checkpoint**: Blog content system is complete, supporting SEO and thought leadership positioning.
 
@@ -220,8 +221,8 @@ All source files live under `src/` at repository root per plan.md:
 
 ### Implementation for User Story 9
 
-- [ ] T068 [P] [US9] Create Privacy Policy page with semantic structure, meta tags, breadcrumb, structured legal content (10+ sections: Information Collection, Data Usage, Cookies, Third Parties, Data Security, Children's Privacy, User Rights, Data Retention, Changes, Contact), and last-updated date in `src/privacy-policy.html`
-- [ ] T069 [P] [US9] Create Terms of Service page with semantic structure, meta tags, breadcrumb, structured legal content (10+ sections: Acceptance, Services, Accounts, Payments, Intellectual Property, User Conduct, Disclaimers, Limitation of Liability, Termination, Governing Law, Contact), and last-updated date in `src/terms-of-service.html`
+- [x] T068 [P] [US9] Create Privacy Policy page with semantic structure, meta tags, breadcrumb, structured legal content (10+ sections: Information Collection, Data Usage, Cookies, Third Parties, Data Security, Children's Privacy, User Rights, Data Retention, Changes, Contact), and last-updated date in `src/privacy-policy.html`
+- [x] T069 [P] [US9] Create Terms of Service page with semantic structure, meta tags, breadcrumb, structured legal content (10+ sections: Acceptance, Services, Accounts, Payments, Intellectual Property, User Conduct, Disclaimers, Limitation of Liability, Termination, Governing Law, Contact), and last-updated date in `src/terms-of-service.html`
 
 **Checkpoint**: Legal pages complete. All required pages are now implemented.
 
@@ -231,11 +232,11 @@ All source files live under `src/` at repository root per plan.md:
 
 **Purpose**: Final quality pass across all pages for consistency, accessibility, SEO, and edge cases
 
-- [ ] T070 Audit all 13 pages for visual consistency: verify same color palette, typography scale, spacing rhythm, card styles, button hierarchy, section padding, and container widths across every page
-- [ ] T071 Audit all 13 pages for accessibility: verify focus states on all interactive elements, alt text on all images, form labels, ARIA attributes on accordion/menu, sufficient color contrast, keyboard operability (Tab/Enter/Escape)
-- [ ] T072 [P] Audit all 13 pages for SEO: verify unique title tags, unique meta descriptions, OG tags, canonical links, heading hierarchy (one H1 per page), descriptive anchor text, JSON-LD structured data on applicable pages
-- [ ] T073 [P] Implement edge case handling: image fallback backgrounds (CSS background-color on image containers), "Coming Soon" modal for future-feature CTAs, graceful JS-disabled degradation (noscript content for mobile menu, visible nav links without JS)
-- [ ] T074 Verify cross-page navigation: test every internal link from header, footer, and in-page CTAs across all 13 pages to confirm correct href targets and no broken links
+- [x] T070 Audit all 13 pages for visual consistency: verify same color palette, typography scale, spacing rhythm, card styles, button hierarchy, section padding, and container widths across every page
+- [x] T071 Audit all 13 pages for accessibility: verify focus states on all interactive elements, alt text on all images, form labels, ARIA attributes on accordion/menu, sufficient color contrast, keyboard operability (Tab/Enter/Escape)
+- [x] T072 [P] Audit all 13 pages for SEO: verify unique title tags, unique meta descriptions, OG tags, canonical links, heading hierarchy (one H1 per page), descriptive anchor text, JSON-LD structured data on applicable pages
+- [x] T073 [P] Implement edge case handling: image fallback backgrounds (CSS background-color on image containers), "Coming Soon" modal for future-feature CTAs, graceful JS-disabled degradation (noscript content for mobile menu, visible nav links without JS)
+- [x] T074 Verify cross-page navigation: test every internal link from header, footer, and in-page CTAs across all 13 pages to confirm correct href targets and no broken links
 - [ ] T075 Final responsive audit: test all 13 pages at 320px, 375px, 768px, 1024px, 1280px, and 1440px viewports — verify no horizontal scroll, no overlapping elements, all CTAs tappable, readable typography at every size
 - [ ] T076 Run W3C HTML validation on all 13 pages, fix any errors (warnings acceptable for Tailwind utility classes)
 - [ ] T077 [P] Run Lighthouse audits on all 13 pages: verify accessibility score >= 90 (SC-004), test homepage above-the-fold render < 4 seconds on simulated 3G throttling (SC-003), and confirm total page weight < 2MB per page (plan.md constraint). Document results and fix any critical failures.
