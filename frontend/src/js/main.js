@@ -7,6 +7,18 @@ document.addEventListener("DOMContentLoaded", () => {
   initFoundation();
 });
 
+function isFrontendSourcePage() {
+  return window.location.pathname.includes("/frontend/src/");
+}
+
+function getPageHref(pageName) {
+  if (isFrontendSourcePage()) {
+    return pageName === "index.html" ? "../../index.html" : pageName;
+  }
+
+  return pageName === "index.html" ? "index.html" : `frontend/src/${pageName}`;
+}
+
 function initFoundation() {
   injectAnnouncementBar();
   injectHeader();
@@ -80,7 +92,7 @@ function injectAnnouncementBar() {
                     </span>
                     <p>
                         <span class="hidden sm:inline">Enrollment for the Fall 2026 Semester is now open! </span>
-                        <a href="programs.html" class="inline-block underline underline-offset-4 decoration-primary-500 hover:text-primary-300 transition-colors">
+                        <a href="${getPageHref("programs.html")}" class="inline-block underline underline-offset-4 decoration-primary-500 hover:text-primary-300 transition-colors">
                             Explore our new curriculum &rarr;
                         </a>
                     </p>
@@ -126,7 +138,7 @@ function injectHeader() {
     navLinks
       .map(
         (link) => `
-        <a href="${link.href}" class="nav-link text-slate-600 hover:text-slate-950 font-medium text-[15px] transition-colors relative py-2">
+        <a href="${getPageHref(link.href)}" class="nav-link text-slate-600 hover:text-slate-950 font-medium text-[15px] transition-colors relative py-2">
             ${link.name}
             <span class="absolute bottom-0 left-0 w-full h-[2px] bg-primary-500 scale-x-0 transition-transform duration-300 origin-right hover:origin-left nav-link-underline"></span>
         </a>
@@ -138,7 +150,7 @@ function injectHeader() {
         <header id="global-header" class="fixed w-full z-[40] transition-all duration-300 bg-white/80 backdrop-blur-xl border-b border-white/10 top-0">
             <div id="header-container" class="container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between transition-all duration-300 ease-smooth">
                 <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg p-1 -ml-1">
+                <a href="${getPageHref("index.html")}" class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg p-1 -ml-1">
                     <div class="w-10 h-10 bg-slate-950 rounded-lg flex items-center justify-center text-primary-400 transition-transform duration-300 group-hover:scale-105 group-hover:rotate-3 shadow-elegant">
                         <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -156,7 +168,7 @@ function injectHeader() {
 
                 <!-- Actions -->
                 <div class="flex items-center gap-4 lg:gap-6">
-                    <a href="contact.html" class="hidden lg:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-slate-950 rounded-full btn-transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 shadow-elevated hover:shadow-floating">
+                    <a href="${getPageHref("contact.html")}" class="hidden lg:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-slate-950 rounded-full btn-transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 shadow-elevated hover:shadow-floating">
                         Book a Free Trial
                     </a>
                     
@@ -200,7 +212,7 @@ function injectMobileMenu() {
     navLinks
       .map(
         (link) => `
-        <a href="${link.href}" class="mobile-nav-link block px-6 py-4 text-xl font-serif text-slate-800 hover:text-primary-600 hover:bg-slate-50 border-b border-slate-100 transition-colors">
+        <a href="${getPageHref(link.href)}" class="mobile-nav-link block px-6 py-4 text-xl font-serif text-slate-800 hover:text-primary-600 hover:bg-slate-50 border-b border-slate-100 transition-colors">
             ${link.name}
         </a>
     `,
@@ -224,7 +236,7 @@ function injectMobileMenu() {
             </nav>
             
             <div class="p-6 border-t border-slate-100 bg-slate-50">
-                <a href="contact.html" class="flex items-center justify-center w-full px-6 py-3.5 text-base font-semibold text-white bg-slate-950 rounded-xl hover:bg-slate-800 transition-colors shadow-elevated">
+                <a href="${getPageHref("contact.html")}" class="flex items-center justify-center w-full px-6 py-3.5 text-base font-semibold text-white bg-slate-950 rounded-xl hover:bg-slate-800 transition-colors shadow-elevated">
                     Book a Free Trial
                 </a>
                 <p class="mt-4 text-center text-xs text-slate-500">
@@ -405,7 +417,7 @@ function injectFooter() {
                     
                     <!-- Brand & Newsletter -->
                     <div class="lg:col-span-4 max-w-sm">
-                        <a href="index.html" class="flex items-center gap-2 mb-6 focus:outline-none">
+                        <a href="${getPageHref("index.html")}" class="flex items-center gap-2 mb-6 focus:outline-none">
                             <div class="w-8 h-8 bg-slate-800 rounded flex items-center justify-center text-primary-400">
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -434,19 +446,19 @@ function injectFooter() {
                         <div>
                             <h3 class="text-white font-serif font-semibold mb-4 text-base">Explore</h3>
                             <ul class="space-y-3">
-                                <li><a href="index.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Home</a></li>
-                                <li><a href="about.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">About Us</a></li>
-                                <li><a href="teachers.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Find a Teacher</a></li>
-                                <li><a href="programs.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Programs</a></li>
+                                <li><a href="${getPageHref("index.html")}" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Home</a></li>
+                                <li><a href="${getPageHref("about.html")}" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">About Us</a></li>
+                                <li><a href="${getPageHref("teachers.html")}" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Find a Teacher</a></li>
+                                <li><a href="${getPageHref("programs.html")}" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Programs</a></li>
                             </ul>
                         </div>
                         
                         <div>
                             <h3 class="text-white font-serif font-semibold mb-4 text-base">Learn</h3>
                             <ul class="space-y-3">
-                                <li><a href="how-it-works.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">How It Works</a></li>
-                                <li><a href="blog.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Blog</a></li>
-                                <li><a href="faq.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">FAQ</a></li>
+                                <li><a href="${getPageHref("how-it-works.html")}" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">How It Works</a></li>
+                                <li><a href="${getPageHref("blog.html")}" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Blog</a></li>
+                                <li><a href="${getPageHref("faq.html")}" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">FAQ</a></li>
                                 <li><button type="button" data-coming-soon data-feature-name="Student Success stories" data-coming-soon-copy="Our student outcomes library is being curated with stronger case studies and family stories. Contact Sana Academy if you want a relevant example now." class="text-left text-sm text-slate-400 hover:text-primary-400 transition-colors">Student Success</button></li>
                             </ul>
                         </div>
@@ -454,7 +466,7 @@ function injectFooter() {
                         <div>
                             <h3 class="text-white font-serif font-semibold mb-4 text-base">Support</h3>
                             <ul class="space-y-3">
-                                <li><a href="contact.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Contact Us</a></li>
+                                <li><a href="${getPageHref("contact.html")}" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Contact Us</a></li>
                                 <li><button type="button" data-coming-soon data-feature-name="Help Center" data-coming-soon-copy="The self-serve help center is coming soon. For scheduling, enrollment, or teacher questions, contact the academy team directly." class="text-left text-sm text-slate-400 hover:text-primary-400 transition-colors">Help Center</button></li>
                                 <li><button type="button" data-coming-soon data-feature-name="For Teachers" data-coming-soon-copy="The teacher application portal is not published in this phase. Contact Sana Academy if you are an educator who wants to be considered." class="text-left text-sm text-slate-400 hover:text-primary-400 transition-colors">For Teachers</button></li>
                                 <li>
@@ -471,8 +483,8 @@ function injectFooter() {
                         <div>
                             <h3 class="text-white font-serif font-semibold mb-4 text-base">Legal</h3>
                             <ul class="space-y-3">
-                                <li><a href="privacy-policy.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Privacy Policy</a></li>
-                                <li><a href="terms-of-service.html" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Terms of Service</a></li>
+                                <li><a href="${getPageHref("privacy-policy.html")}" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Privacy Policy</a></li>
+                                <li><a href="${getPageHref("terms-of-service.html")}" class="text-sm text-slate-400 hover:text-primary-400 transition-colors">Terms of Service</a></li>
                                 <li><button type="button" data-coming-soon data-feature-name="Cookie Settings" data-coming-soon-copy="Granular cookie controls are planned for a later release. For questions about data handling, review the privacy policy or contact the academy." class="text-left text-sm text-slate-400 hover:text-primary-400 transition-colors">Cookie Settings</button></li>
                             </ul>
                         </div>
@@ -533,7 +545,7 @@ function injectComingSoonModal() {
                     This area is being prepared for a later release. If you need help right now, contact Sana Academy directly and the team will guide you.
                 </p>
                 <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-                    <a href="contact.html" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white shadow-elevated transition-colors hover:bg-slate-800">Contact the academy</a>
+                    <a href="${getPageHref("contact.html")}" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white shadow-elevated transition-colors hover:bg-slate-800">Contact the academy</a>
                     <button id="coming-soon-dismiss" type="button" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950">
                         Close
                     </button>
@@ -726,7 +738,11 @@ function highlightActiveLink() {
   const links = document.querySelectorAll(".nav-link, .mobile-nav-link");
   links.forEach((link) => {
     const linkHref = link.getAttribute("href");
-    if (linkHref === currentName) {
+    const resolvedPath = new URL(linkHref, window.location.href).pathname;
+    const resolvedName =
+      resolvedPath.substring(resolvedPath.lastIndexOf("/") + 1) || "index.html";
+
+    if (resolvedName === currentName) {
       // Desktop logic
       if (link.classList.contains("nav-link")) {
         link.classList.add("text-primary-600");
