@@ -1,1911 +1,305 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
-  <head>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Find Premium Teachers | Sana Academy</title>
-    <meta
-      name="description"
-      content="Browse verified premium teachers at Sana Academy. Filter by subject, format, and experience to find the right tutor for languages, STEM, music, coding, and exam preparation."
-    />
-
-    <meta property="og:title" content="Find Premium Teachers | Sana Academy" />
-    <meta
-      property="og:description"
-      content="Explore a polished marketplace of trusted Sana Academy teachers with pricing, reviews, formats, and experience details."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sana-academy.edu/teachers.html" />
-    <link rel="canonical" href="https://sana-academy.edu/teachers.html" />
-    <meta
-      property="og:image"
-      content="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1200&q=80"
-    />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="js/tailwind.config.js"></script>
-    <link rel="stylesheet" href="css/custom.css" />
-  </head>
-  <body
-    data-page="teachers-marketplace"
-    class="flex min-h-screen flex-col overflow-x-hidden bg-slate-50 font-sans text-slate-900 antialiased"
-  >
-    <noscript>
-      <style>
-        .header-placeholder,
-        .footer-placeholder {
-          display: none;
+    <title>المعلمون | أبواب</title>
+    <meta name="description" content="أبواب هي منصة تعلم إلكترونية تسمح للطلاب الدراسة من خلال سلسلة حصص قصيرة قائمة على مفاهيم الدروس." />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Tailwind CSS (Local Build) -->
+    <link href="css/output.css" rel="stylesheet">
+    <!-- Global JS modules -->
+    <script defer src="../js/navigation.js"></script>
+    <script defer src="../js/animations.js"></script>
+    <script defer src="../js/carousel.js"></script>
+    <script defer src="../js/accordion.js"></script>
+    <script defer src="../js/main.js"></script>
+    <script>
+        function filterTeachers(subject) {
+            const cards = document.querySelectorAll('.teacher-card');
+            cards.forEach(card => {
+                if (subject === 'all' || card.dataset.subject === subject) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            const filters = document.querySelectorAll('.subject-filter');
+            filters.forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-slate-50', 'text-slate-700');
+            });
+            document.getElementById('filter-' + subject).classList.remove('bg-slate-50', 'text-slate-700');
+            document.getElementById('filter-' + subject).classList.add('bg-blue-600', 'text-white');
         }
-      </style>
-      <div class="noscript-shell">
-        <div class="container">
-          <p class="noscript-copy">
-            JavaScript is disabled. Use the direct links below to navigate Sana
-            Academy.
-          </p>
-          <nav class="noscript-nav" aria-label="Primary">
-            <a href="index.html">Home</a>
-            <a href="teachers.html">Teachers</a>
-            <a href="programs.html">Programs</a>
-            <a href="how-it-works.html">How It Works</a>
-            <a href="about.html">About</a>
-            <a href="faq.html">FAQ</a>
-            <a href="blog.html">Blog</a>
-            <a href="contact.html">Contact</a>
-          </nav>
-        </div>
-      </div>
-    </noscript>
-    <div class="header-placeholder"></div>
+    </script>
+</head>
+<body class="bg-gray-50 text-abwaab-blue antialiased overflow-x-hidden font-arabic leading-relaxed">
 
-    <main class="flex-grow">
-      <section
-        class="relative overflow-hidden border-b border-slate-200/80 marketplace-noise"
-      >
-        <div class="absolute inset-0 marketplace-grid opacity-40"></div>
-        <div class="container relative z-10 py-14 lg:py-20">
-          <nav aria-label="Breadcrumb" class="mb-8">
-            <ol
-              class="flex flex-wrap items-center gap-2 text-sm text-slate-500"
-            >
-              <li>
-                <a href="index.html" class="hover:text-primary-600">Home</a>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li class="font-semibold text-slate-700">Teachers</li>
-            </ol>
-          </nav>
-
-          <div
-            class="grid gap-10 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-center"
-          >
-            <div class="max-w-3xl">
-              <span
-                class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary-200 bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary-700 shadow-subtle"
-              >
-                <span class="h-2 w-2 rounded-full bg-primary-500"></span>
-                Teachers Discovery Experience
-              </span>
-              <h1
-                class="max-w-2xl text-4xl font-bold leading-tight text-slate-950 sm:text-5xl lg:text-6xl"
-              >
-                Find a serious teacher for serious progress.
-              </h1>
-              <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                Every Sana Academy profile is built for decision-making, not
-                browsing theater. Compare subject expertise, student outcomes,
-                teaching formats, pricing transparency, and response speed in
-                one place.
-              </p>
-
-              <div class="mt-8 flex flex-wrap gap-3">
-                <span
-                  class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-subtle"
-                >
-                  <span class="text-emerald-500">●</span>
-                  214 verified teachers
-                </span>
-                <span
-                  class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-subtle"
-                >
-                  Median reply time: 28 min
-                </span>
-                <span
-                  class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-subtle"
-                >
-                  92% trial-to-enrollment satisfaction
-                </span>
-              </div>
-            </div>
-
-            <div
-              class="marketplace-surface rounded-[2rem] border border-white/70 bg-white/95 p-8 shadow-Sana"
-            >
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <p
-                    class="text-sm font-semibold uppercase tracking-[0.22em] text-primary-700"
-                  >
-                    Advisor Match
-                  </p>
-                  <h2 class="mt-3 text-3xl font-bold text-slate-950">
-                    Need help narrowing the list?
-                  </h2>
+    <!-- Header (T011) -->
+    <header class="fixed w-full z-50 bg-white shadow-sm border-b border-gray-100 transition-all max-w-[1500px] left-1/2 -translate-x-1/2">
+        <div class="px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex flex-shrink-0 items-center cursor-pointer text-3xl font-bold text-abwaab-ocean gap-2">
+                    <img src="../assets/logos/brand-logo.svg" alt="Premium Academy" class="h-10">
                 </div>
-                <span
-                  class="inline-flex rounded-full bg-primary-100 px-3 py-1 text-xs font-semibold text-primary-700"
-                >
-                  Complimentary
-                </span>
-              </div>
-              <p class="mt-4 text-base leading-7 text-slate-600">
-                Tell us the subject, target outcome, and preferred schedule. Our
-                academic team will shortlist 3 teachers with the closest fit.
-              </p>
-              <div class="mt-6 grid gap-4 sm:grid-cols-2">
-                <div class="rounded-2xl bg-slate-950 px-5 py-4 text-white">
-                  <p class="text-sm text-primary-300">Response window</p>
-                  <p class="mt-1 text-2xl font-bold">Within 30 min</p>
+                <nav class="hidden md:flex space-x-8 space-x-reverse items-center">
+                    <a href="index.html" class="text-gray-600 hover:text-abwaab-ocean font-medium transition">الرئيسية</a>
+                    <a href="how-it-works.html" class="text-gray-600 hover:text-abwaab-ocean font-medium transition">كيف يعمل</a>
+                    <a href="pricing.html" class="text-gray-600 hover:text-abwaab-ocean font-medium transition">الباقات</a>
+                    <a href="teachers.html" class="text-abwaab-ocean font-bold font-medium transition">المعلمين</a>
+                    <a href="about.html" class="text-gray-600 hover:text-abwaab-ocean font-medium transition">من نحن</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-abwaab-ocean font-medium transition">تواصل معنا</a>
+                </nav>
+                <div class="hidden md:flex items-center space-x-4 space-x-reverse">
+                    <a href="#" class="text-abwaab-ocean font-semibold hover:bg-blue-50 px-4 py-2 rounded-lg transition">عندي حساب</a>
+                    <a href="#" class="bg-blue-600 text-white font-bold px-6 py-2.5 rounded-full hover:bg-blue-700 transition shadow">سجّل الآن</a>
                 </div>
-                <div
-                  class="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4"
-                >
-                  <p class="text-sm text-slate-500">Best for</p>
-                  <p class="mt-1 text-xl font-bold text-slate-950">
-                    Parents, exam prep, subject switching
-                  </p>
-                </div>
-              </div>
-              <a
-                href="contact.html"
-                class="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-slate-950 px-6 py-4 text-base font-semibold text-white shadow-elevated transition-colors hover:bg-slate-800"
-              >
-                Request an advisor shortlist
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="py-10 lg:py-14">
-        <div class="container">
-          <div
-            class="mb-8 rounded-[2rem] border border-slate-200 bg-white/90 p-5 shadow-subtle lg:p-6"
-          >
-            <div
-              class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between"
-            >
-              <div>
-                <p
-                  class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500"
-                >
-                  Marketplace Controls
-                </p>
-                <h2 class="mt-2 text-2xl font-bold text-slate-950">
-                  Compare teachers the way real families actually choose.
-                </h2>
-              </div>
-              <div class="flex flex-wrap gap-3">
-                <button
-                  id="open-filters"
-                  type="button"
-                  class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-subtle transition-colors hover:border-primary-300 hover:text-primary-700 lg:hidden"
-                  aria-controls="filters-panel"
-                  aria-expanded="false"
-                >
-                  <svg
-                    class="h-5 w-5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.8"
-                      d="M4 6h16M7 12h10M10 18h4"
-                    />
-                  </svg>
-                  Filters
-                </button>
-                <a
-                  href="contact.html"
-                  class="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-elevated transition-colors hover:bg-slate-800"
-                >
-                  Talk to an advisor
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="grid gap-8 lg:grid-cols-[290px_minmax(0,1fr)] xl:gap-10">
-            <div
-              id="filters-overlay"
-              class="fixed inset-0 z-[65] hidden bg-slate-950/40 opacity-0 transition-opacity duration-300 lg:hidden"
-              aria-hidden="true"
-            ></div>
-
-            <aside
-              id="filters-panel"
-              class="fixed inset-y-0 left-0 z-[70] flex w-full max-w-sm -translate-x-full flex-col bg-slate-50 transition-transform duration-500 ease-smooth lg:static lg:z-auto lg:max-w-none lg:translate-x-0 lg:bg-transparent"
-              aria-label="Teacher filters"
-              aria-hidden="true"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="filters-panel-title"
-              tabindex="-1"
-            >
-              <div
-                class="flex items-center justify-between border-b border-slate-200 bg-white px-6 py-5 lg:hidden"
-              >
-                <div>
-                  <p
-                    class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500"
-                  >
-                    Filters
-                  </p>
-                  <h3
-                    id="filters-panel-title"
-                    class="mt-1 text-2xl font-bold text-slate-950"
-                  >
-                    Refine teachers
-                  </h3>
-                </div>
-                <button
-                  id="close-filters"
-                  type="button"
-                  class="rounded-full border border-slate-200 p-2 text-slate-500 transition-colors hover:text-slate-900"
-                  aria-label="Close filters"
-                >
-                  <svg
-                    class="h-5 w-5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.8"
-                      d="M6 18 18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
-
-              <div class="flex-1 overflow-y-auto px-4 py-4 lg:px-0 lg:py-0">
-                <div
-                  class="marketplace-surface rounded-[2rem] border border-slate-200 bg-white p-6 shadow-subtle lg:sticky lg:top-24"
-                >
-                  <div class="flex items-center justify-between gap-3">
-                    <div>
-                      <p
-                        class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500"
-                      >
-                        Filter teachers
-                      </p>
-                      <h3 class="mt-2 text-2xl font-bold text-slate-950">
-                        Narrow by fit
-                      </h3>
-                    </div>
-                    <button
-                      type="button"
-                      data-clear-filters
-                      class="text-sm font-semibold text-primary-700 transition-colors hover:text-primary-900"
-                    >
-                      Clear all
+                <div class="flex md:hidden items-center">
+                    <button data-menu-toggle class="text-gray-500 hover:text-abwaab-blue">
+                        <img src="../assets/icons/menu-hamburger.svg" class="w-8 h-8" alt="Menu">
                     </button>
-                  </div>
-
-                  <form id="teacher-filters-form" class="mt-8 space-y-8">
-                    <section>
-                      <div class="mb-4">
-                        <h4 class="text-lg font-bold text-slate-950">
-                          Subject
-                        </h4>
-                        <p class="mt-1 text-sm text-slate-500">
-                          Choose one or more learning areas.
-                        </p>
-                      </div>
-                      <div class="space-y-3">
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="Mathematics"
-                            name="subject"
-                            value="mathematics"
-                            type="checkbox"
-                            class="mt-1 h-4 w-4 rounded border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >Mathematics</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >19 teachers, IB to calculus</span
-                            >
-                          </span>
-                        </label>
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="Science"
-                            name="subject"
-                            value="science"
-                            type="checkbox"
-                            class="mt-1 h-4 w-4 rounded border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >Science</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >Chemistry, biology, physics</span
-                            >
-                          </span>
-                        </label>
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="English"
-                            name="subject"
-                            value="english"
-                            type="checkbox"
-                            class="mt-1 h-4 w-4 rounded border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >English</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >Writing, speaking, literature</span
-                            >
-                          </span>
-                        </label>
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="Languages"
-                            name="subject"
-                            value="languages"
-                            type="checkbox"
-                            class="mt-1 h-4 w-4 rounded border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >Languages</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >Arabic, French, Spanish and more</span
-                            >
-                          </span>
-                        </label>
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="Business"
-                            name="subject"
-                            value="business"
-                            type="checkbox"
-                            class="mt-1 h-4 w-4 rounded border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >Business</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >Professional English and leadership</span
-                            >
-                          </span>
-                        </label>
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="Technology"
-                            name="subject"
-                            value="technology"
-                            type="checkbox"
-                            class="mt-1 h-4 w-4 rounded border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >Technology</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >Coding, robotics, creative tech</span
-                            >
-                          </span>
-                        </label>
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="Music"
-                            name="subject"
-                            value="music"
-                            type="checkbox"
-                            class="mt-1 h-4 w-4 rounded border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >Music</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >Piano, theory, performance</span
-                            >
-                          </span>
-                        </label>
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="Test Prep"
-                            name="subject"
-                            value="test-prep"
-                            type="checkbox"
-                            class="mt-1 h-4 w-4 rounded border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >Test Prep</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >SAT, IELTS, UCAT, admissions</span
-                            >
-                          </span>
-                        </label>
-                      </div>
-                    </section>
-
-                    <section>
-                      <div class="mb-4">
-                        <h4 class="text-lg font-bold text-slate-950">
-                          Lesson format
-                        </h4>
-                        <p class="mt-1 text-sm text-slate-500">
-                          Visual demo controls mirror marketplace behavior.
-                        </p>
-                      </div>
-                      <div class="space-y-3">
-                        <label
-                          class="filter-option is-active flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="Any format"
-                            name="format"
-                            value="all"
-                            type="radio"
-                            checked
-                            class="mt-1 h-4 w-4 border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >Any format</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >Show all teachers</span
-                            >
-                          </span>
-                        </label>
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="Online"
-                            name="format"
-                            value="online"
-                            type="radio"
-                            class="mt-1 h-4 w-4 border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >Online</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >Remote lessons and virtual classrooms</span
-                            >
-                          </span>
-                        </label>
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="In-person"
-                            name="format"
-                            value="in-person"
-                            type="radio"
-                            class="mt-1 h-4 w-4 border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >In-person</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >Selected cities and campus intensives</span
-                            >
-                          </span>
-                        </label>
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="Both online and in-person"
-                            name="format"
-                            value="both"
-                            type="radio"
-                            class="mt-1 h-4 w-4 border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >Both</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >Flexible teachers who do both delivery
-                              modes</span
-                            >
-                          </span>
-                        </label>
-                      </div>
-                    </section>
-
-                    <section>
-                      <div class="mb-4">
-                        <h4 class="text-lg font-bold text-slate-950">
-                          Experience level
-                        </h4>
-                        <p class="mt-1 text-sm text-slate-500">
-                          Match the right level of depth and seniority.
-                        </p>
-                      </div>
-                      <div class="space-y-3">
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="Senior teacher"
-                            name="experience"
-                            value="senior"
-                            type="checkbox"
-                            class="mt-1 h-4 w-4 rounded border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >Senior</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >12+ years, exam and executive cases</span
-                            >
-                          </span>
-                        </label>
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="Experienced teacher"
-                            name="experience"
-                            value="experienced"
-                            type="checkbox"
-                            class="mt-1 h-4 w-4 rounded border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >Experienced</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >5-11 years, proven across cohorts</span
-                            >
-                          </span>
-                        </label>
-                        <label
-                          class="filter-option flex cursor-pointer items-start gap-3 rounded-2xl px-4 py-3"
-                        >
-                          <input
-                            data-label="New generation teacher"
-                            name="experience"
-                            value="new"
-                            type="checkbox"
-                            class="mt-1 h-4 w-4 rounded border-slate-300"
-                          />
-                          <span class="min-w-0">
-                            <span class="block font-semibold text-slate-900"
-                              >New</span
-                            >
-                            <span class="text-sm text-slate-500"
-                              >Rising specialists with fresh delivery
-                              style</span
-                            >
-                          </span>
-                        </label>
-                      </div>
-                    </section>
-                  </form>
                 </div>
-              </div>
-
-              <div class="border-t border-slate-200 bg-white p-4 lg:hidden">
-                <div class="flex gap-3">
-                  <button
-                    type="button"
-                    data-clear-filters
-                    class="inline-flex flex-1 items-center justify-center rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700"
-                  >
-                    Clear
-                  </button>
-                  <button
-                    id="apply-filters"
-                    type="button"
-                    class="inline-flex flex-1 items-center justify-center rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-elevated"
-                  >
-                    Apply filters
-                  </button>
-                </div>
-              </div>
-            </aside>
-
-            <div class="min-w-0">
-              <div class="space-y-5">
-                <div
-                  class="marketplace-surface rounded-[2rem] border border-slate-200 bg-white p-5 shadow-subtle lg:p-6"
-                >
-                  <div
-                    class="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between"
-                  >
-                    <div>
-                      <p
-                        class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500"
-                      >
-                        Results
-                      </p>
-                      <h3 class="mt-2 text-2xl font-bold text-slate-950">
-                        <span id="visible-result-count" aria-live="polite"
-                          >8</span
-                        >
-                        premium teachers available
-                      </h3>
-                      <p class="mt-2 text-sm text-slate-500">
-                        Sorted to surface trust, outcome history, and booking
-                        readiness.
-                      </p>
-                    </div>
-
-                    <div
-                      class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end"
-                    >
-                      <div
-                        id="sort-shell"
-                        class="sort-shell flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3"
-                      >
-                        <div class="min-w-0">
-                          <p
-                            class="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500"
-                          >
-                            Sort by
-                          </p>
-                          <p
-                            id="current-sort-label"
-                            class="truncate text-sm font-semibold text-slate-900"
-                          >
-                            Recommended
-                          </p>
-                        </div>
-                        <label for="teacher-sort" class="sr-only"
-                          >Sort teachers</label
-                        >
-                        <select
-                          id="teacher-sort"
-                          class="min-w-[180px] rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 focus:border-primary-400 focus:ring-2 focus:ring-primary-200"
-                        >
-                          <option value="recommended">Recommended</option>
-                          <option value="highest-rated">Highest Rated</option>
-                          <option value="price-low-high">
-                            Price: Low to High
-                          </option>
-                          <option value="price-high-low">
-                            Price: High to Low
-                          </option>
-                        </select>
-                      </div>
-
-                      <div
-                        class="flex items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-1.5"
-                      >
-                        <button
-                          type="button"
-                          data-view-target="grid"
-                          class="view-toggle-btn is-active inline-flex items-center gap-2 rounded-xl border border-transparent px-4 py-2 text-sm font-semibold text-slate-700"
-                          aria-pressed="true"
-                        >
-                          <svg
-                            class="h-4 w-4"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              d="M3 3h6v6H3V3Zm8 0h6v6h-6V3ZM3 11h6v6H3v-6Zm8 0h6v6h-6v-6Z"
-                            />
-                          </svg>
-                          Grid
-                        </button>
-                        <button
-                          type="button"
-                          data-view-target="list"
-                          class="view-toggle-btn inline-flex items-center gap-2 rounded-xl border border-transparent px-4 py-2 text-sm font-semibold text-slate-700"
-                          aria-pressed="false"
-                        >
-                          <svg
-                            class="h-4 w-4"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              d="M3 4.75A.75.75 0 0 1 3.75 4h1.5a.75.75 0 0 1 0 1.5h-1.5A.75.75 0 0 1 3 4.75Zm0 5A.75.75 0 0 1 3.75 9h1.5a.75.75 0 0 1 0 1.5h-1.5A.75.75 0 0 1 3 9.75Zm0 5A.75.75 0 0 1 3.75 14h1.5a.75.75 0 0 1 0 1.5h-1.5A.75.75 0 0 1 3 14.75ZM7.5 4A.5.5 0 0 1 8 3.5h8a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H8A.5.5 0 0 1 7.5 5V4Zm0 5A.5.5 0 0 1 8 8.5h8a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H8a.5.5 0 0 1-.5-.5V9Zm0 5A.5.5 0 0 1 8 13.5h8a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H8a.5.5 0 0 1-.5-.5v-1Z"
-                            />
-                          </svg>
-                          List
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    id="active-filters"
-                    class="mt-4 flex flex-wrap gap-2"
-                  ></div>
-                </div>
-
-                <div
-                  class="marketplace-surface rounded-[2rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-Sana lg:p-6"
-                >
-                  <div
-                    class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between"
-                  >
-                    <div>
-                      <p
-                        class="text-sm font-semibold uppercase tracking-[0.2em] text-primary-300"
-                      >
-                        Marketplace note
-                      </p>
-                      <p
-                        class="mt-2 max-w-2xl text-base leading-7 text-slate-300"
-                      >
-                        Profiles surface transparent pricing, verified
-                        credentials, student proof, and the teaching formats
-                        that actually match your household logistics.
-                      </p>
-                    </div>
-                    <a
-                      href="teacher-profile.html"
-                      class="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-primary-100"
-                    >
-                      Preview full profile anatomy
-                    </a>
-                  </div>
-                </div>
-
-                <div
-                  id="teachers-results"
-                  data-view="grid"
-                  class="teacher-results grid gap-6 md:grid-cols-2 2xl:grid-cols-4"
-                >
-                  <article
-                    data-teacher-card
-                    data-subjects="languages|english|test-prep"
-                    data-format="both"
-                    data-experience="senior"
-                    data-rating="5"
-                    data-price="48"
-                    data-recommended="1"
-                    class="teacher-card-premium overflow-hidden rounded-[2rem] border border-slate-200 shadow-subtle"
-                  >
-                    <div
-                      class="teacher-card-media relative h-72 overflow-hidden bg-slate-100"
-                    >
-                      <img
-                        src="https://randomuser.me/api/portraits/women/44.jpg"
-                        alt="Dr. Leila Farouk"
-                        class="h-full w-full object-cover"
-                      />
-                      <div
-                        class="absolute inset-x-0 top-0 flex items-center justify-between p-4"
-                      >
-                        <span
-                          class="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-emerald-700 shadow-subtle"
-                          >Accepting trials</span
-                        >
-                        <span
-                          class="rounded-full bg-slate-950/85 px-3 py-1 text-xs font-medium text-white"
-                          >Replies in 18 min</span
-                        >
-                      </div>
-                      <div
-                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 to-transparent p-5 text-white"
-                      >
-                        <p
-                          class="text-xs uppercase tracking-[0.22em] text-primary-200"
-                        >
-                          Senior teacher
-                        </p>
-                        <p class="mt-2 text-sm text-slate-200">
-                          Arabic fluency, IELTS strategy, executive
-                          communication
-                        </p>
-                      </div>
-                    </div>
-                    <div class="teacher-card-body flex h-full flex-col p-6">
-                      <div>
-                        <div class="flex items-start justify-between gap-4">
-                          <div>
-                            <h3 class="text-2xl font-bold text-slate-950">
-                              Dr. Leila Farouk
-                            </h3>
-                            <p class="mt-2 text-sm leading-6 text-slate-600">
-                              Arabic and IELTS specialist trusted by diplomats,
-                              expatriate families, and ambitious adult learners.
-                            </p>
-                          </div>
-                          <span
-                            class="rounded-full bg-primary-100 px-3 py-1 text-xs font-semibold text-primary-700"
-                            >Verified</span
-                          >
-                        </div>
-                        <div
-                          class="mt-4 flex items-center gap-2 text-sm font-medium text-slate-700"
-                        >
-                          <svg
-                            class="h-4 w-4 text-amber-500"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81H7.03a1 1 0 0 0 .951-.69l1.07-3.292Z"
-                            />
-                          </svg>
-                          5.0
-                          <span class="text-slate-400">|</span>
-                          214 reviews
-                        </div>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Languages</span
-                          >
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >English</span
-                          >
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Test Prep</span
-                          >
-                        </div>
-                      </div>
-                      <div
-                        class="mt-5 grid gap-3 text-sm text-slate-600 sm:grid-cols-2"
-                      >
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Best for
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            Fast speaking gains with structure
-                          </p>
-                        </div>
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Formats
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            Online and in-person intensives
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        class="teacher-card-actions mt-6 flex items-center justify-between gap-4 border-t border-slate-200 pt-5"
-                      >
-                        <div>
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            From
-                          </p>
-                          <p class="mt-1 text-2xl font-bold text-slate-950">
-                            $48<span class="text-base text-slate-500">/hr</span>
-                          </p>
-                        </div>
-                        <a
-                          href="teacher-profile.html"
-                          class="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
-                          >View profile</a
-                        >
-                      </div>
-                    </div>
-                  </article>
-
-                  <article
-                    data-teacher-card
-                    data-subjects="mathematics|science|test-prep"
-                    data-format="both"
-                    data-experience="senior"
-                    data-rating="4.9"
-                    data-price="52"
-                    data-recommended="2"
-                    class="teacher-card-premium overflow-hidden rounded-[2rem] border border-slate-200 shadow-subtle"
-                  >
-                    <div
-                      class="teacher-card-media relative h-72 overflow-hidden bg-slate-100"
-                    >
-                      <img
-                        src="https://randomuser.me/api/portraits/men/32.jpg"
-                        alt="Marcus Bennett"
-                        class="h-full w-full object-cover"
-                      />
-                      <div
-                        class="absolute inset-x-0 top-0 flex items-center justify-between p-4"
-                      >
-                        <span
-                          class="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-amber-700 shadow-subtle"
-                          >Limited availability</span
-                        >
-                        <span
-                          class="rounded-full bg-slate-950/85 px-3 py-1 text-xs font-medium text-white"
-                          >Replies in 31 min</span
-                        >
-                      </div>
-                      <div
-                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 to-transparent p-5 text-white"
-                      >
-                        <p
-                          class="text-xs uppercase tracking-[0.22em] text-primary-200"
-                        >
-                          Senior teacher
-                        </p>
-                        <p class="mt-2 text-sm text-slate-200">
-                          IB Maths AA, AP Physics, Olympiad extension
-                        </p>
-                      </div>
-                    </div>
-                    <div class="teacher-card-body flex h-full flex-col p-6">
-                      <div>
-                        <div class="flex items-start justify-between gap-4">
-                          <div>
-                            <h3 class="text-2xl font-bold text-slate-950">
-                              Marcus Bennett
-                            </h3>
-                            <p class="mt-2 text-sm leading-6 text-slate-600">
-                              Cambridge-trained STEM tutor known for turning
-                              anxious high-achievers into calm exam performers.
-                            </p>
-                          </div>
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Top-rated</span
-                          >
-                        </div>
-                        <div
-                          class="mt-4 flex items-center gap-2 text-sm font-medium text-slate-700"
-                        >
-                          <svg
-                            class="h-4 w-4 text-amber-500"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81H7.03a1 1 0 0 0 .951-.69l1.07-3.292Z"
-                            />
-                          </svg>
-                          4.9
-                          <span class="text-slate-400">|</span>
-                          186 reviews
-                        </div>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Mathematics</span
-                          >
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Science</span
-                          >
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Test Prep</span
-                          >
-                        </div>
-                      </div>
-                      <div
-                        class="mt-5 grid gap-3 text-sm text-slate-600 sm:grid-cols-2"
-                      >
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Best for
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            IB, A-Level, AP score jumps
-                          </p>
-                        </div>
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Formats
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            Hybrid weekly plans
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        class="teacher-card-actions mt-6 flex items-center justify-between gap-4 border-t border-slate-200 pt-5"
-                      >
-                        <div>
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            From
-                          </p>
-                          <p class="mt-1 text-2xl font-bold text-slate-950">
-                            $52<span class="text-base text-slate-500">/hr</span>
-                          </p>
-                        </div>
-                        <a
-                          href="teacher-profile.html"
-                          class="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
-                          >View profile</a
-                        >
-                      </div>
-                    </div>
-                  </article>
-
-                  <article
-                    data-teacher-card
-                    data-subjects="languages|business"
-                    data-format="online"
-                    data-experience="experienced"
-                    data-rating="4.9"
-                    data-price="41"
-                    data-recommended="3"
-                    class="teacher-card-premium overflow-hidden rounded-[2rem] border border-slate-200 shadow-subtle"
-                  >
-                    <div
-                      class="teacher-card-media relative h-72 overflow-hidden bg-slate-100"
-                    >
-                      <img
-                        src="https://randomuser.me/api/portraits/women/68.jpg"
-                        alt="Sofia Alvarez"
-                        class="h-full w-full object-cover"
-                      />
-                      <div
-                        class="absolute inset-x-0 top-0 flex items-center justify-between p-4"
-                      >
-                        <span
-                          class="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-emerald-700 shadow-subtle"
-                          >Open this week</span
-                        >
-                        <span
-                          class="rounded-full bg-slate-950/85 px-3 py-1 text-xs font-medium text-white"
-                          >Replies in 22 min</span
-                        >
-                      </div>
-                      <div
-                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 to-transparent p-5 text-white"
-                      >
-                        <p
-                          class="text-xs uppercase tracking-[0.22em] text-primary-200"
-                        >
-                          Experienced teacher
-                        </p>
-                        <p class="mt-2 text-sm text-slate-200">
-                          Spanish conversation, business fluency, confidence
-                          building
-                        </p>
-                      </div>
-                    </div>
-                    <div class="teacher-card-body flex h-full flex-col p-6">
-                      <div>
-                        <div class="flex items-start justify-between gap-4">
-                          <div>
-                            <h3 class="text-2xl font-bold text-slate-950">
-                              Sofia Alvarez
-                            </h3>
-                            <p class="mt-2 text-sm leading-6 text-slate-600">
-                              Energetic language coach who combines live drills,
-                              cultural immersion, and practical conversation
-                              sprints.
-                            </p>
-                          </div>
-                          <span
-                            class="rounded-full bg-primary-100 px-3 py-1 text-xs font-semibold text-primary-700"
-                            >Popular</span
-                          >
-                        </div>
-                        <div
-                          class="mt-4 flex items-center gap-2 text-sm font-medium text-slate-700"
-                        >
-                          <svg
-                            class="h-4 w-4 text-amber-500"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81H7.03a1 1 0 0 0 .951-.69l1.07-3.292Z"
-                            />
-                          </svg>
-                          4.9
-                          <span class="text-slate-400">|</span>
-                          143 reviews
-                        </div>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Languages</span
-                          >
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Business</span
-                          >
-                        </div>
-                      </div>
-                      <div
-                        class="mt-5 grid gap-3 text-sm text-slate-600 sm:grid-cols-2"
-                      >
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Best for
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            Professionals preparing for relocation
-                          </p>
-                        </div>
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Formats
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            Online 1:1 and speaking labs
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        class="teacher-card-actions mt-6 flex items-center justify-between gap-4 border-t border-slate-200 pt-5"
-                      >
-                        <div>
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            From
-                          </p>
-                          <p class="mt-1 text-2xl font-bold text-slate-950">
-                            $41<span class="text-base text-slate-500">/hr</span>
-                          </p>
-                        </div>
-                        <a
-                          href="teacher-profile.html"
-                          class="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
-                          >View profile</a
-                        >
-                      </div>
-                    </div>
-                  </article>
-
-                  <article
-                    data-teacher-card
-                    data-subjects="science|test-prep"
-                    data-format="both"
-                    data-experience="senior"
-                    data-rating="4.8"
-                    data-price="46"
-                    data-recommended="4"
-                    class="teacher-card-premium overflow-hidden rounded-[2rem] border border-slate-200 shadow-subtle"
-                  >
-                    <div
-                      class="teacher-card-media relative h-72 overflow-hidden bg-slate-100"
-                    >
-                      <img
-                        src="https://randomuser.me/api/portraits/women/22.jpg"
-                        alt="Dr. Amina Rahman"
-                        class="h-full w-full object-cover"
-                      />
-                      <div
-                        class="absolute inset-x-0 top-0 flex items-center justify-between p-4"
-                      >
-                        <span
-                          class="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-emerald-700 shadow-subtle"
-                          >Accepting trials</span
-                        >
-                        <span
-                          class="rounded-full bg-slate-950/85 px-3 py-1 text-xs font-medium text-white"
-                          >Replies in 27 min</span
-                        >
-                      </div>
-                      <div
-                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 to-transparent p-5 text-white"
-                      >
-                        <p
-                          class="text-xs uppercase tracking-[0.22em] text-primary-200"
-                        >
-                          Senior teacher
-                        </p>
-                        <p class="mt-2 text-sm text-slate-200">
-                          AP Biology, chemistry mastery, lab-report confidence
-                        </p>
-                      </div>
-                    </div>
-                    <div class="teacher-card-body flex h-full flex-col p-6">
-                      <div>
-                        <div class="flex items-start justify-between gap-4">
-                          <div>
-                            <h3 class="text-2xl font-bold text-slate-950">
-                              Dr. Amina Rahman
-                            </h3>
-                            <p class="mt-2 text-sm leading-6 text-slate-600">
-                              Former school department head with a calm,
-                              diagnostic style that helps students keep up and
-                              then surge ahead.
-                            </p>
-                          </div>
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Dept. head</span
-                          >
-                        </div>
-                        <div
-                          class="mt-4 flex items-center gap-2 text-sm font-medium text-slate-700"
-                        >
-                          <svg
-                            class="h-4 w-4 text-amber-500"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81H7.03a1 1 0 0 0 .951-.69l1.07-3.292Z"
-                            />
-                          </svg>
-                          4.8
-                          <span class="text-slate-400">|</span>
-                          167 reviews
-                        </div>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Science</span
-                          >
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Test Prep</span
-                          >
-                        </div>
-                      </div>
-                      <div
-                        class="mt-5 grid gap-3 text-sm text-slate-600 sm:grid-cols-2"
-                      >
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Best for
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            Students needing clarity and discipline
-                          </p>
-                        </div>
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Formats
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            Online, parent review sessions
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        class="teacher-card-actions mt-6 flex items-center justify-between gap-4 border-t border-slate-200 pt-5"
-                      >
-                        <div>
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            From
-                          </p>
-                          <p class="mt-1 text-2xl font-bold text-slate-950">
-                            $46<span class="text-base text-slate-500">/hr</span>
-                          </p>
-                        </div>
-                        <a
-                          href="teacher-profile.html"
-                          class="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
-                          >View profile</a
-                        >
-                      </div>
-                    </div>
-                  </article>
-
-                  <article
-                    data-teacher-card
-                    data-subjects="languages|english"
-                    data-format="both"
-                    data-experience="experienced"
-                    data-rating="4.9"
-                    data-price="39"
-                    data-recommended="5"
-                    class="teacher-card-premium overflow-hidden rounded-[2rem] border border-slate-200 shadow-subtle"
-                  >
-                    <div
-                      class="teacher-card-media relative h-72 overflow-hidden bg-slate-100"
-                    >
-                      <img
-                        src="https://randomuser.me/api/portraits/men/71.jpg"
-                        alt="Julien Moreau"
-                        class="h-full w-full object-cover"
-                      />
-                      <div
-                        class="absolute inset-x-0 top-0 flex items-center justify-between p-4"
-                      >
-                        <span
-                          class="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-emerald-700 shadow-subtle"
-                          >Open this week</span
-                        >
-                        <span
-                          class="rounded-full bg-slate-950/85 px-3 py-1 text-xs font-medium text-white"
-                          >Replies in 25 min</span
-                        >
-                      </div>
-                      <div
-                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 to-transparent p-5 text-white"
-                      >
-                        <p
-                          class="text-xs uppercase tracking-[0.22em] text-primary-200"
-                        >
-                          Experienced teacher
-                        </p>
-                        <p class="mt-2 text-sm text-slate-200">
-                          French immersion, DELF prep, bilingual family support
-                        </p>
-                      </div>
-                    </div>
-                    <div class="teacher-card-body flex h-full flex-col p-6">
-                      <div>
-                        <div class="flex items-start justify-between gap-4">
-                          <div>
-                            <h3 class="text-2xl font-bold text-slate-950">
-                              Julien Moreau
-                            </h3>
-                            <p class="mt-2 text-sm leading-6 text-slate-600">
-                              Warm, polished French mentor who balances
-                              pronunciation precision with momentum and
-                              confidence.
-                            </p>
-                          </div>
-                          <span
-                            class="rounded-full bg-primary-100 px-3 py-1 text-xs font-semibold text-primary-700"
-                            >Bilingual</span
-                          >
-                        </div>
-                        <div
-                          class="mt-4 flex items-center gap-2 text-sm font-medium text-slate-700"
-                        >
-                          <svg
-                            class="h-4 w-4 text-amber-500"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81H7.03a1 1 0 0 0 .951-.69l1.07-3.292Z"
-                            />
-                          </svg>
-                          4.9
-                          <span class="text-slate-400">|</span>
-                          119 reviews
-                        </div>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Languages</span
-                          >
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >English</span
-                          >
-                        </div>
-                      </div>
-                      <div
-                        class="mt-5 grid gap-3 text-sm text-slate-600 sm:grid-cols-2"
-                      >
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Best for
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            International school learners
-                          </p>
-                        </div>
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Formats
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            Hybrid private lessons
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        class="teacher-card-actions mt-6 flex items-center justify-between gap-4 border-t border-slate-200 pt-5"
-                      >
-                        <div>
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            From
-                          </p>
-                          <p class="mt-1 text-2xl font-bold text-slate-950">
-                            $39<span class="text-base text-slate-500">/hr</span>
-                          </p>
-                        </div>
-                        <a
-                          href="teacher-profile.html"
-                          class="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
-                          >View profile</a
-                        >
-                      </div>
-                    </div>
-                  </article>
-
-                  <article
-                    data-teacher-card
-                    data-subjects="technology|mathematics"
-                    data-format="online"
-                    data-experience="new"
-                    data-rating="4.8"
-                    data-price="34"
-                    data-recommended="6"
-                    class="teacher-card-premium overflow-hidden rounded-[2rem] border border-slate-200 shadow-subtle"
-                  >
-                    <div
-                      class="teacher-card-media relative h-72 overflow-hidden bg-slate-100"
-                    >
-                      <img
-                        src="https://randomuser.me/api/portraits/women/55.jpg"
-                        alt="Priya Nair"
-                        class="h-full w-full object-cover"
-                      />
-                      <div
-                        class="absolute inset-x-0 top-0 flex items-center justify-between p-4"
-                      >
-                        <span
-                          class="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-emerald-700 shadow-subtle"
-                          >Accepting trials</span
-                        >
-                        <span
-                          class="rounded-full bg-slate-950/85 px-3 py-1 text-xs font-medium text-white"
-                          >Replies in 16 min</span
-                        >
-                      </div>
-                      <div
-                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 to-transparent p-5 text-white"
-                      >
-                        <p
-                          class="text-xs uppercase tracking-[0.22em] text-primary-200"
-                        >
-                          New generation teacher
-                        </p>
-                        <p class="mt-2 text-sm text-slate-200">
-                          Python, robotics, confidence-first coding for teens
-                        </p>
-                      </div>
-                    </div>
-                    <div class="teacher-card-body flex h-full flex-col p-6">
-                      <div>
-                        <div class="flex items-start justify-between gap-4">
-                          <div>
-                            <h3 class="text-2xl font-bold text-slate-950">
-                              Priya Nair
-                            </h3>
-                            <p class="mt-2 text-sm leading-6 text-slate-600">
-                              Project-driven coding mentor who keeps technical
-                              learning practical, visual, and deeply engaging.
-                            </p>
-                          </div>
-                          <span
-                            class="rounded-full bg-primary-100 px-3 py-1 text-xs font-semibold text-primary-700"
-                            >Rising star</span
-                          >
-                        </div>
-                        <div
-                          class="mt-4 flex items-center gap-2 text-sm font-medium text-slate-700"
-                        >
-                          <svg
-                            class="h-4 w-4 text-amber-500"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81H7.03a1 1 0 0 0 .951-.69l1.07-3.292Z"
-                            />
-                          </svg>
-                          4.8
-                          <span class="text-slate-400">|</span>
-                          88 reviews
-                        </div>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Technology</span
-                          >
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Mathematics</span
-                          >
-                        </div>
-                      </div>
-                      <div
-                        class="mt-5 grid gap-3 text-sm text-slate-600 sm:grid-cols-2"
-                      >
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Best for
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            Teens who learn by building
-                          </p>
-                        </div>
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Formats
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            Online 1:1 and project labs
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        class="teacher-card-actions mt-6 flex items-center justify-between gap-4 border-t border-slate-200 pt-5"
-                      >
-                        <div>
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            From
-                          </p>
-                          <p class="mt-1 text-2xl font-bold text-slate-950">
-                            $34<span class="text-base text-slate-500">/hr</span>
-                          </p>
-                        </div>
-                        <a
-                          href="teacher-profile.html"
-                          class="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
-                          >View profile</a
-                        >
-                      </div>
-                    </div>
-                  </article>
-
-                  <article
-                    data-teacher-card
-                    data-subjects="english|test-prep"
-                    data-format="online"
-                    data-experience="senior"
-                    data-rating="5"
-                    data-price="57"
-                    data-recommended="7"
-                    class="teacher-card-premium overflow-hidden rounded-[2rem] border border-slate-200 shadow-subtle"
-                  >
-                    <div
-                      class="teacher-card-media relative h-72 overflow-hidden bg-slate-100"
-                    >
-                      <img
-                        src="https://randomuser.me/api/portraits/men/46.jpg"
-                        alt="Daniel Okafor"
-                        class="h-full w-full object-cover"
-                      />
-                      <div
-                        class="absolute inset-x-0 top-0 flex items-center justify-between p-4"
-                      >
-                        <span
-                          class="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-amber-700 shadow-subtle"
-                          >Booked 72%</span
-                        >
-                        <span
-                          class="rounded-full bg-slate-950/85 px-3 py-1 text-xs font-medium text-white"
-                          >Replies in 20 min</span
-                        >
-                      </div>
-                      <div
-                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 to-transparent p-5 text-white"
-                      >
-                        <p
-                          class="text-xs uppercase tracking-[0.22em] text-primary-200"
-                        >
-                          Senior teacher
-                        </p>
-                        <p class="mt-2 text-sm text-slate-200">
-                          SAT verbal, essays, admissions storytelling
-                        </p>
-                      </div>
-                    </div>
-                    <div class="teacher-card-body flex h-full flex-col p-6">
-                      <div>
-                        <div class="flex items-start justify-between gap-4">
-                          <div>
-                            <h3 class="text-2xl font-bold text-slate-950">
-                              Daniel Okafor
-                            </h3>
-                            <p class="mt-2 text-sm leading-6 text-slate-600">
-                              Admission-focused writing coach helping strong
-                              students package their thinking with polish and
-                              originality.
-                            </p>
-                          </div>
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Admissions</span
-                          >
-                        </div>
-                        <div
-                          class="mt-4 flex items-center gap-2 text-sm font-medium text-slate-700"
-                        >
-                          <svg
-                            class="h-4 w-4 text-amber-500"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81H7.03a1 1 0 0 0 .951-.69l1.07-3.292Z"
-                            />
-                          </svg>
-                          5.0
-                          <span class="text-slate-400">|</span>
-                          201 reviews
-                        </div>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >English</span
-                          >
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Test Prep</span
-                          >
-                        </div>
-                      </div>
-                      <div
-                        class="mt-5 grid gap-3 text-sm text-slate-600 sm:grid-cols-2"
-                      >
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Best for
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            SAT, essays, interview polish
-                          </p>
-                        </div>
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Formats
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            Online strategic coaching
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        class="teacher-card-actions mt-6 flex items-center justify-between gap-4 border-t border-slate-200 pt-5"
-                      >
-                        <div>
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            From
-                          </p>
-                          <p class="mt-1 text-2xl font-bold text-slate-950">
-                            $57<span class="text-base text-slate-500">/hr</span>
-                          </p>
-                        </div>
-                        <a
-                          href="teacher-profile.html"
-                          class="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
-                          >View profile</a
-                        >
-                      </div>
-                    </div>
-                  </article>
-
-                  <article
-                    data-teacher-card
-                    data-subjects="music"
-                    data-format="in-person"
-                    data-experience="experienced"
-                    data-rating="4.8"
-                    data-price="44"
-                    data-recommended="8"
-                    class="teacher-card-premium overflow-hidden rounded-[2rem] border border-slate-200 shadow-subtle"
-                  >
-                    <div
-                      class="teacher-card-media relative h-72 overflow-hidden bg-slate-100"
-                    >
-                      <img
-                        src="https://randomuser.me/api/portraits/women/29.jpg"
-                        alt="Hana Mori"
-                        class="h-full w-full object-cover"
-                      />
-                      <div
-                        class="absolute inset-x-0 top-0 flex items-center justify-between p-4"
-                      >
-                        <span
-                          class="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-emerald-700 shadow-subtle"
-                          >Open this week</span
-                        >
-                        <span
-                          class="rounded-full bg-slate-950/85 px-3 py-1 text-xs font-medium text-white"
-                          >Replies in 35 min</span
-                        >
-                      </div>
-                      <div
-                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 to-transparent p-5 text-white"
-                      >
-                        <p
-                          class="text-xs uppercase tracking-[0.22em] text-primary-200"
-                        >
-                          Experienced teacher
-                        </p>
-                        <p class="mt-2 text-sm text-slate-200">
-                          Piano technique, music theory, recital readiness
-                        </p>
-                      </div>
-                    </div>
-                    <div class="teacher-card-body flex h-full flex-col p-6">
-                      <div>
-                        <div class="flex items-start justify-between gap-4">
-                          <div>
-                            <h3 class="text-2xl font-bold text-slate-950">
-                              Hana Mori
-                            </h3>
-                            <p class="mt-2 text-sm leading-6 text-slate-600">
-                              Disciplined but warm music tutor helping students
-                              build both technical control and performance
-                              confidence.
-                            </p>
-                          </div>
-                          <span
-                            class="rounded-full bg-primary-100 px-3 py-1 text-xs font-semibold text-primary-700"
-                            >Performance</span
-                          >
-                        </div>
-                        <div
-                          class="mt-4 flex items-center gap-2 text-sm font-medium text-slate-700"
-                        >
-                          <svg
-                            class="h-4 w-4 text-amber-500"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81H7.03a1 1 0 0 0 .951-.69l1.07-3.292Z"
-                            />
-                          </svg>
-                          4.8
-                          <span class="text-slate-400">|</span>
-                          96 reviews
-                        </div>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                          <span
-                            class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
-                            >Music</span
-                          >
-                        </div>
-                      </div>
-                      <div
-                        class="mt-5 grid gap-3 text-sm text-slate-600 sm:grid-cols-2"
-                      >
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Best for
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            Recitals, ABRSM, consistency
-                          </p>
-                        </div>
-                        <div class="rounded-2xl bg-slate-50 px-4 py-3">
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            Formats
-                          </p>
-                          <p class="mt-2 font-semibold text-slate-800">
-                            In-person studio sessions
-                          </p>
-                        </div>
-                      </div>
-                      <div
-                        class="teacher-card-actions mt-6 flex items-center justify-between gap-4 border-t border-slate-200 pt-5"
-                      >
-                        <div>
-                          <p
-                            class="text-xs uppercase tracking-[0.18em] text-slate-400"
-                          >
-                            From
-                          </p>
-                          <p class="mt-1 text-2xl font-bold text-slate-950">
-                            $44<span class="text-base text-slate-500">/hr</span>
-                          </p>
-                        </div>
-                        <a
-                          href="teacher-profile.html"
-                          class="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
-                          >View profile</a
-                        >
-                      </div>
-                    </div>
-                  </article>
-                </div>
-
-                <div
-                  id="teachers-empty-state"
-                  class="hidden rounded-[2rem] border border-dashed border-slate-300 bg-white px-6 py-14 text-center shadow-subtle"
-                >
-                  <p
-                    class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500"
-                  >
-                    No direct matches
-                  </p>
-                  <h3 class="mt-3 text-3xl font-bold text-slate-950">
-                    Try clearing a filter or widening the format.
-                  </h3>
-                  <p
-                    class="mx-auto mt-4 max-w-xl text-base leading-7 text-slate-600"
-                  >
-                    In the live marketplace, advisor matching fills the gap when
-                    your criteria are highly specific. This demo keeps the
-                    interaction realistic.
-                  </p>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </section>
+    </header>
+
+    <main class="pt-[80px]">
+
+        <!-- S1: Hero -->
+        <section class="py-20 bg-white relative overflow-hidden animate-on-scroll border-b border-gray-100">
+            <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-gray-50 to-transparent"></div>
+            <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-blue-900 mb-6">المعلمون</h1>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">نخبة من المعلمين المعتمدين والمؤهلين لضمان تفوقك الدراسي</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="bg-blue-50 text-blue-700 px-4 py-2 rounded-full font-bold shadow-sm border border-blue-100">+٥٠٠ معلم معتمد</span>
+                    <span class="bg-yellow-50 text-yellow-700 px-4 py-2 rounded-full font-bold shadow-sm border border-yellow-100">٤.٨ تقييم متوسط</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- S2: Filter Bar -->
+        <section class="py-8 bg-gray-50 sticky top-20 z-40 border-b border-gray-100 shadow-sm animate-on-scroll flex overflow-x-auto px-4 gap-2 whitespace-nowrap justify-start lg:justify-center">
+            <button id="filter-all" onclick="filterTeachers('all')" class="subject-filter bg-blue-600 text-white px-6 py-2 rounded-full font-bold shadow-sm">الكل</button>
+            <button id="filter-math" onclick="filterTeachers('math')" class="subject-filter bg-slate-50 text-slate-700 hover:bg-blue-50 px-6 py-2 rounded-full font-bold shadow-sm">الرياضيات</button>
+            <button id="filter-physics" onclick="filterTeachers('physics')" class="subject-filter bg-slate-50 text-slate-700 hover:bg-blue-50 px-6 py-2 rounded-full font-bold shadow-sm">الفيزياء</button>
+            <button id="filter-chem" onclick="filterTeachers('chem')" class="subject-filter bg-slate-50 text-slate-700 hover:bg-blue-50 px-6 py-2 rounded-full font-bold shadow-sm">الكيمياء</button>
+            <button id="filter-eng" onclick="filterTeachers('eng')" class="subject-filter bg-slate-50 text-slate-700 hover:bg-blue-50 px-6 py-2 rounded-full font-bold shadow-sm">الإنجليزية</button>
+            <button id="filter-arabic" onclick="filterTeachers('arabic')" class="subject-filter bg-slate-50 text-slate-700 hover:bg-blue-50 px-6 py-2 rounded-full font-bold shadow-sm">العربية</button>
+            <button id="filter-bio" onclick="filterTeachers('bio')" class="subject-filter bg-slate-50 text-slate-700 hover:bg-blue-50 px-6 py-2 rounded-full font-bold shadow-sm">الأحياء</button>
+            <button id="filter-qadrat" onclick="filterTeachers('qadrat')" class="subject-filter bg-slate-50 text-slate-700 hover:bg-blue-50 px-6 py-2 rounded-full font-bold shadow-sm">القدرات</button>
+            <button id="filter-tahsili" onclick="filterTeachers('tahsili')" class="subject-filter bg-slate-50 text-slate-700 hover:bg-blue-50 px-6 py-2 rounded-full font-bold shadow-sm">التحصيلي</button>
+        </section>
+
+        <!-- S3: Teacher Grid -->
+        <section class="py-12 bg-gray-50 min-h-screen">
+            <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
+                
+                <!-- Teacher 1 -->
+                <div class="teacher-card rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100 group" data-subject="qadrat">
+                    <div class="h-40 bg-gradient-to-br from-[#F51140] to-pink-600 flex items-center justify-center text-white text-4xl font-bold">أ</div>
+                    <div class="p-4 relative">
+                        <div class="absolute -top-6 right-4 bg-yellow-400 text-slate-900 border-2 border-white rounded-full px-2 py-0.5 text-xs font-bold font-mono shadow-sm">★ 5.0</div>
+                        <h3 class="font-bold text-base md:text-lg group-hover:text-blue-600 transition truncate">أ. أحمد عبدالله</h3>
+                        <p class="text-slate-500 text-sm mb-2">قدرات كمي - تأسيس وتدريب</p>
+                        <div class="flex items-center gap-4 text-xs text-gray-400 mb-4">
+                            <span class="flex items-center gap-1"><img src="../assets/icons/user.svg" class="w-3 h-3">+٥٠٠ طالب</span>
+                            <span class="flex items-center gap-1"><img src="../assets/icons/clock.svg" class="w-3 h-3">٧ سنوات</span>
+                        </div>
+                        <a href="teacher-profile.html" class="block w-full text-center text-blue-600 bg-blue-50 py-2 rounded-lg font-bold text-sm hover:bg-blue-600 hover:text-white transition">عرض الملف</a>
+                    </div>
+                </div>
+
+                <!-- Teacher 2 -->
+                <div class="teacher-card rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100 group" data-subject="eng">
+                    <div class="h-40 bg-gradient-to-br from-[#14B8A6] to-teal-700 flex items-center justify-center text-white text-4xl font-bold">س</div>
+                    <div class="p-4 relative">
+                        <div class="absolute -top-6 right-4 bg-yellow-400 text-slate-900 border-2 border-white rounded-full px-2 py-0.5 text-xs font-bold font-mono shadow-sm">★ 4.9</div>
+                        <h3 class="font-bold text-base md:text-lg group-hover:text-blue-600 transition truncate">أ. سارة خالد</h3>
+                        <p class="text-slate-500 text-sm mb-2">لغة إنجليزية - كافة المراحل</p>
+                        <div class="flex items-center gap-4 text-xs text-gray-400 mb-4">
+                            <span class="flex items-center gap-1"><img src="../assets/icons/user.svg" class="w-3 h-3">+٢٠٠ طالب</span>
+                            <span class="flex items-center gap-1"><img src="../assets/icons/clock.svg" class="w-3 h-3">٥ سنوات</span>
+                        </div>
+                        <a href="teacher-profile.html" class="block w-full text-center text-blue-600 bg-blue-50 py-2 rounded-lg font-bold text-sm hover:bg-blue-600 hover:text-white transition">عرض الملف</a>
+                    </div>
+                </div>
+
+                <!-- Teacher 3 -->
+                <div class="teacher-card rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100 group" data-subject="qadrat">
+                    <div class="h-40 bg-gradient-to-br from-[#6366F1] to-indigo-800 flex items-center justify-center text-white text-4xl font-bold">أ</div>
+                    <div class="p-4 relative">
+                        <div class="absolute -top-6 right-4 bg-yellow-400 text-slate-900 border-2 border-white rounded-full px-2 py-0.5 text-xs font-bold font-mono shadow-sm">★ 4.8</div>
+                        <h3 class="font-bold text-base md:text-lg group-hover:text-blue-600 transition truncate">د. أيمن عبدالعظيم</h3>
+                        <p class="text-slate-500 text-sm mb-2">قدرات لفظي ومحوسب</p>
+                        <div class="flex items-center gap-4 text-xs text-gray-400 mb-4">
+                            <span class="flex items-center gap-1"><img src="../assets/icons/user.svg" class="w-3 h-3">+٨٠٠ طالب</span>
+                            <span class="flex items-center gap-1"><img src="../assets/icons/clock.svg" class="w-3 h-3">١٢ سنة</span>
+                        </div>
+                        <a href="teacher-profile.html" class="block w-full text-center text-blue-600 bg-blue-50 py-2 rounded-lg font-bold text-sm hover:bg-blue-600 hover:text-white transition">عرض الملف</a>
+                    </div>
+                </div>
+
+                <!-- Teacher 4 -->
+                <div class="teacher-card rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100 group" data-subject="math">
+                    <div class="h-40 bg-gradient-to-br from-[#FFDE05] to-yellow-500 flex items-center justify-center text-white text-4xl font-bold">م</div>
+                    <div class="p-4 relative">
+                        <div class="absolute -top-6 right-4 bg-yellow-400 text-slate-900 border-2 border-white rounded-full px-2 py-0.5 text-xs font-bold font-mono shadow-sm">★ 5.0</div>
+                        <h3 class="font-bold text-base md:text-lg group-hover:text-blue-600 transition truncate">أ. محمود المنصف</h3>
+                        <p class="text-slate-500 text-sm mb-2">رياضيات - ثانوي ومتوسط</p>
+                        <div class="flex items-center gap-4 text-xs text-gray-400 mb-4">
+                            <span class="flex items-center gap-1"><img src="../assets/icons/user.svg" class="w-3 h-3">+٤٥٠ طالب</span>
+                            <span class="flex items-center gap-1"><img src="../assets/icons/clock.svg" class="w-3 h-3">١٠ سنوات</span>
+                        </div>
+                        <a href="teacher-profile.html" class="block w-full text-center text-blue-600 bg-blue-50 py-2 rounded-lg font-bold text-sm hover:bg-blue-600 hover:text-white transition">عرض الملف</a>
+                    </div>
+                </div>
+
+                <!-- Teacher 5 -->
+                <div class="teacher-card rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100 group" data-subject="physics">
+                    <div class="h-40 bg-gradient-to-br from-[#3B82F6] to-blue-800 flex items-center justify-center text-white text-4xl font-bold">م</div>
+                    <div class="p-4 relative">
+                        <div class="absolute -top-6 right-4 bg-yellow-400 text-slate-900 border-2 border-white rounded-full px-2 py-0.5 text-xs font-bold font-mono shadow-sm">★ 4.9</div>
+                        <h3 class="font-bold text-base md:text-lg group-hover:text-blue-600 transition truncate">م. محمد علي</h3>
+                        <p class="text-slate-500 text-sm mb-2">الفيزياء وتحصيلي العملي</p>
+                        <div class="flex items-center gap-4 text-xs text-gray-400 mb-4">
+                            <span class="flex items-center gap-1"><img src="../assets/icons/user.svg" class="w-3 h-3">+٣٢٠ طالب</span>
+                            <span class="flex items-center gap-1"><img src="../assets/icons/clock.svg" class="w-3 h-3">٦ سنوات</span>
+                        </div>
+                        <a href="teacher-profile.html" class="block w-full text-center text-blue-600 bg-blue-50 py-2 rounded-lg font-bold text-sm hover:bg-blue-600 hover:text-white transition">عرض الملف</a>
+                    </div>
+                </div>
+
+                <!-- Teacher 6 -->
+                <div class="teacher-card rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100 group" data-subject="chem">
+                    <div class="h-40 bg-gradient-to-br from-[#EC4899] to-pink-700 flex items-center justify-center text-white text-4xl font-bold">هـ</div>
+                    <div class="p-4 relative">
+                        <div class="absolute -top-6 right-4 bg-yellow-400 text-slate-900 border-2 border-white rounded-full px-2 py-0.5 text-xs font-bold font-mono shadow-sm">★ 4.7</div>
+                        <h3 class="font-bold text-base md:text-lg group-hover:text-blue-600 transition truncate">أ. هدى حسين</h3>
+                        <p class="text-slate-500 text-sm mb-2">كيمياء - تحصيلي وتأسيس</p>
+                        <div class="flex items-center gap-4 text-xs text-gray-400 mb-4">
+                            <span class="flex items-center gap-1"><img src="../assets/icons/user.svg" class="w-3 h-3">+١٥٠ طالب</span>
+                            <span class="flex items-center gap-1"><img src="../assets/icons/clock.svg" class="w-3 h-3">٤ سنوات</span>
+                        </div>
+                        <a href="teacher-profile.html" class="block w-full text-center text-blue-600 bg-blue-50 py-2 rounded-lg font-bold text-sm hover:bg-blue-600 hover:text-white transition">عرض الملف</a>
+                    </div>
+                </div>
+
+                <!-- Teacher 7 -->
+                <div class="teacher-card rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100 group" data-subject="arabic">
+                    <div class="h-40 bg-gradient-to-br from-[#F59E0B] to-yellow-600 flex items-center justify-center text-white text-4xl font-bold">خ</div>
+                    <div class="p-4 relative">
+                        <div class="absolute -top-6 right-4 bg-yellow-400 text-slate-900 border-2 border-white rounded-full px-2 py-0.5 text-xs font-bold font-mono shadow-sm">★ 4.9</div>
+                        <h3 class="font-bold text-base md:text-lg group-hover:text-blue-600 transition truncate">أ. خالد عبدالرحمن</h3>
+                        <p class="text-slate-500 text-sm mb-2">لغة عربية وتأسيس إملائي</p>
+                        <div class="flex items-center gap-4 text-xs text-gray-400 mb-4">
+                            <span class="flex items-center gap-1"><img src="../assets/icons/user.svg" class="w-3 h-3">+٢٢٠ طالب</span>
+                            <span class="flex items-center gap-1"><img src="../assets/icons/clock.svg" class="w-3 h-3">٨ سنوات</span>
+                        </div>
+                        <a href="teacher-profile.html" class="block w-full text-center text-blue-600 bg-blue-50 py-2 rounded-lg font-bold text-sm hover:bg-blue-600 hover:text-white transition">عرض الملف</a>
+                    </div>
+                </div>
+
+                <!-- Teacher 8 -->
+                <div class="teacher-card rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100 group" data-subject="tahsili">
+                    <div class="h-40 bg-gradient-to-br from-[#FF8A2C] to-orange-600 flex items-center justify-center text-white text-4xl font-bold">ن</div>
+                    <div class="p-4 relative">
+                        <div class="absolute -top-6 right-4 bg-yellow-400 text-slate-900 border-2 border-white rounded-full px-2 py-0.5 text-xs font-bold font-mono shadow-sm">★ 5.0</div>
+                        <h3 class="font-bold text-base md:text-lg group-hover:text-blue-600 transition truncate">أ. نورة الغامدي</h3>
+                        <p class="text-slate-500 text-sm mb-2">تحصيلي علمي مكثف</p>
+                        <div class="flex items-center gap-4 text-xs text-gray-400 mb-4">
+                            <span class="flex items-center gap-1"><img src="../assets/icons/user.svg" class="w-3 h-3">+٦٠٠ طالب</span>
+                            <span class="flex items-center gap-1"><img src="../assets/icons/clock.svg" class="w-3 h-3">٩ سنوات</span>
+                        </div>
+                        <a href="teacher-profile.html" class="block w-full text-center text-blue-600 bg-blue-50 py-2 rounded-lg font-bold text-sm hover:bg-blue-600 hover:text-white transition">عرض الملف</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- S4: Trust Stats -->
+        <section class="py-16 bg-white animate-on-scroll">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x md:divide-x-reverse divide-gray-100">
+                    <div class="pt-6 md:pt-0"><div class="text-5xl font-extrabold text-blue-600 mb-2">+٥٠٠</div><div class="text-lg font-medium text-gray-500">معلم معتمد في مختلف المواد</div></div>
+                    <div class="pt-6 md:pt-0"><div class="text-5xl font-extrabold text-yellow-500 mb-2">٤.٨</div><div class="text-lg font-medium text-gray-500">متوسط تقييم المعلمين</div></div>
+                    <div class="pt-6 md:pt-0"><div class="text-5xl font-extrabold text-teal-500 mb-2">+٥٠,٠٠٠</div><div class="text-lg font-medium text-gray-500">حصة منجزة بنجاح</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- S5: Testimonials Grid -->
+        <section class="py-20 bg-blue-50 animate-on-scroll">
+            <h2 class="text-3xl font-bold text-center mb-10">من آراء الطلاب في معلمينا</h2>
+            <div class="flex flex-wrap justify-center gap-4 lg:gap-6 px-4 max-w-7xl mx-auto">
+                <div class="w-full md:w-[48%] lg:w-[31%] bg-white rounded-2xl shadow-sm p-6">
+                    <div class="flex gap-4 items-center mb-4"><div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#F51140] to-pink-600 text-white flex justify-center items-center font-bold">ب</div><div><div class="font-bold">بندر السعد</div><div class="text-sm text-slate-500">طالب عند أ. أحمد عبدالله</div></div></div>
+                    <p class="text-slate-700 leading-relaxed">أفضل شرح للقدرات في المملكة بلا منازع! الأستاذ بسط لي القوانين بشكل ما تخيلته.</p>
+                </div>
+                <div class="w-full md:w-[48%] lg:w-[31%] bg-white rounded-2xl shadow-sm p-6">
+                    <div class="flex gap-4 items-center mb-4"><div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#14B8A6] to-teal-700 text-white flex justify-center items-center font-bold">ر</div><div><div class="font-bold">ريم الفهد</div><div class="text-sm text-slate-500">طالبة في التحصيلي</div></div></div>
+                    <p class="text-slate-700 leading-relaxed">كنت خايفة من التحصيلي بس أستاذة نورة رتبت أفكاري المبعثرة وفعلًا الاختبار صار أسهل.</p>
+                </div>
+                <div class="w-full md:w-[48%] lg:w-[31%] bg-white rounded-2xl shadow-sm p-6">
+                    <div class="flex gap-4 items-center mb-4"><div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#6366F1] to-indigo-800 text-white flex justify-center items-center font-bold">س</div><div><div class="font-bold">سامي العتيبي</div><div class="text-sm text-slate-500">طالب رياضيات</div></div></div>
+                    <p class="text-slate-700 leading-relaxed">دكتور أيمن أسطورة.. جبت 100 في الرياضيات وشرحه مألوف وممتع جداً وما تحس بالوقت.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- S6: Registration CTA -->
+        <section class="py-20 bg-white animate-on-scroll border-t border-gray-100">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-[32px] md:text-4xl font-extrabold mb-6">هل أنت مستعد للتفوق؟</h2>
+                <p class="text-slate-600 mb-10 text-xl max-w-2xl mx-auto">انضم الآن وابدأ الدراسة مع نخبة المعلمين في المملكة العربية السعودية.</p>
+                <button class="bg-blue-600 text-white rounded-xl h-14 px-12 font-bold text-xl shadow hover:bg-blue-700 transform hover:scale-105 transition-transform">سجّل الآن</button>
+            </div>
+        </section>
+
     </main>
-
-    <div class="footer-placeholder"></div>
-
-    <script src="js/main.js?v=2"></script>
-    <script src="js/filters.js?v=1"></script>
-  </body>
+    <!-- Footer -->
+    <footer class="bg-blue-50 pt-16 pb-8 rounded-t-3xl max-w-[1500px] mx-auto">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center border-b border-blue-100 pb-8 mb-8">
+                <img src="../assets/logos/brand-logo.svg" alt="Premium Academy" class="h-8">
+                <div class="flex gap-4">
+                    <a href="#" class="bg-white p-2 rounded-full text-blue-600 hover:bg-blue-600 hover:text-white transition"><img src="../assets/icons/instagram.svg" class="w-5 h-5"></a>
+                    <a href="#" class="bg-white p-2 rounded-full text-blue-600 hover:bg-blue-600 hover:text-white transition"><img src="../assets/icons/twitter-x.svg" class="w-5 h-5"></a>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12 text-sm">
+                <div>
+                    <h4 class="font-bold text-lg mb-4">المزيد</h4>
+                    <ul class="space-y-3 text-slate-600">
+                        <li><a href="about.html" class="hover:text-blue-600">من نحن</a></li>
+                        <li><a href="how-it-works.html" class="hover:text-blue-600">كيف يعمل</a></li>
+                        <li><a href="pricing.html" class="hover:text-blue-600">الباقات</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">القانونية</h4>
+                    <ul class="space-y-3 text-slate-600">
+                        <li><a href="terms.html" class="hover:text-blue-600">الشروط والأحكام</a></li>
+                        <li><a href="privacy.html" class="hover:text-blue-600">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">الدعم</h4>
+                    <ul class="space-y-3 text-slate-600">
+                        <li><a href="faq.html" class="hover:text-blue-600">الأسئلة الشائعة</a></li>
+                        <li><a href="contact.html" class="hover:text-blue-600">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">الاعتماد</h4>
+                    <img src="../assets/logos/accreditation-badge.svg" class="h-12">
+                </div>
+            </div>
+            <div class="text-center text-slate-500 text-sm">جميع الحقوق محفوظة © 2026 أكاديمية سنا</div>
+        </div>
+    </footer>
+</body>
 </html>
