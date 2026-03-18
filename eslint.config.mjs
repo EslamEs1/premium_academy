@@ -2,6 +2,15 @@ import htmlPlugin from "eslint-plugin-html";
 
 export default [
   {
+    ignores: [
+      "node_modules/**",
+      "dist/**",
+      "build/**",
+      "coverage/**",
+      "**/*.min.js"
+    ]
+  },
+  {
     plugins: { html: htmlPlugin },
     languageOptions: {
       ecmaVersion: 2022,
