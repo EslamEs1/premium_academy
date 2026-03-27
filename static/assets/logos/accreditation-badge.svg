@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 132" width="132" height="132" role="img" aria-labelledby="accreditationTitle">
+  <title id="accreditationTitle">شارة اعتماد أكاديمية بريميوم</title>
+  <defs>
+    <linearGradient id="badgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#0F3AA9"/>
+    </linearGradient>
+  </defs>
+  <circle cx="66" cy="66" r="60" fill="#EFF6FF"/>
+  <circle cx="66" cy="66" r="50" fill="#ffffff" stroke="url(#badgeGradient)" stroke-width="8"/>
+  <path d="M43 62.5 58 77l31-32" fill="none" stroke="#2563EB" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M48 100 44 126l22-12 22 12-4-26" fill="#FACC15" opacity="0.95"/>
+  <text x="66" y="37" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="13" font-weight="600" fill="#0F3AA9" text-anchor="middle">شريك تعليمي</text>
+  <text x="66" y="98" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="20" font-weight="700" fill="#0F172A" text-anchor="middle">معتمد</text>
+</svg>
