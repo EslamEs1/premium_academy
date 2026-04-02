@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <main id="page-content" class="pt-[64px] md:pt-[80px]">
+    <section class="bg-slate-50 px-4 py-12 md:px-6 md:py-16">
+      <div class="mx-auto max-w-4xl">
+        <nav class="animate-on-scroll mb-6 flex items-center gap-2 text-sm text-slate-500">
+          <a href="{% url 'main:home' %}" class="transition hover:text-brand-500">الرئيسية</a>
+          <span>/</span>
+          <a href="{% url 'blogs:list' %}" class="transition hover:text-brand-500">المدونة</a>
+          <span>/</span>
+          <span class="text-slate-700">{{ post.title }}</span>
+        </nav>
+
+        <div class="animate-on-scroll">
+          <span class="inline-block rounded-full bg-brand-100 px-3 py-1 text-sm font-medium text-brand-700">{{ post.category.name }}</span>
+          <h1 class="mt-4 text-3xl font-bold leading-tight text-slate-950 md:text-4xl lg:text-5xl">
+            {{ post.title }}
+          </h1>
+
+          <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-slate-600">
+            <div class="flex items-center gap-2">
+              <div
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-emerald-400 text-sm font-bold text-white">
+                {{ author.initials }}
+              </div>
+              <div>
+                <p class="font-medium text-slate-950">{{ author.name }}</p>
+                <p class="text-xs text-slate-500">{{ author.title }}</p>
+              </div>
+            </div>
+            <span class="text-slate-300">|</span>
+            {% if post.published_date %}
+              <span>{{ post.published_date|date:"j F Y" }}</span>
+            {% endif %}
+            <span class="text-slate-300">|</span>
+            <span>{{ post.read_time_minutes }} دقائق قراءة</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-12 md:px-6 md:py-16">
+      <div class="mx-auto max-w-4xl">
+        <article
+          class="animate-on-scroll prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-950 prose-h2:text-2xl prose-h3:text-xl prose-p:leading-relaxed prose-a:text-brand-500 prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-950 prose-ul:list-disc prose-ol:list-decimal">
+          {{ post.content|linebreaks }}
+        </article>
+      </div>
+    </section>
+
+    <section class="bg-slate-50 px-4 py-12 md:px-6 md:py-16">
+      <div class="mx-auto max-w-4xl">
+        <div class="animate-on-scroll rounded-[28px] bg-white p-8 shadow-sm md:p-10">
+          <div class="flex flex-col items-center gap-6 sm:flex-row">
+            {% if author.photo %}
+              <img src="{{ author.photo.url }}" alt="{{ author.name }}"
+                class="h-20 w-20 shrink-0 rounded-full object-cover" />
+            {% else %}
+              <div
+                class="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-emerald-400 text-2xl font-bold text-white">
+                {{ author.initials }}
+              </div>
+            {% endif %}
+            <div class="text-center sm:text-right">
+              <h3 class="text-xl font-bold text-slate-950">
+                {{ author.name }}
+              </h3>
+              <p class="mt-1 text-brand-500">{{ author.title }}</p>
+              <p class="mt-3 text-slate-600">
+                {{ author.bio }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-12 md:px-6 md:py-16">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="animate-on-scroll mb-10">
+          <h2 class="text-2xl font-bold text-slate-950 md:text-3xl">
+            مقالات ذات صلة
+          </h2>
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {% for related in related_posts %}
+            <article
+              class="animate-on-scroll group overflow-hidden rounded-[24px] bg-white shadow-sm transition hover:shadow-md">
+              <a href="{{ related.get_absolute_url }}" class="block">
+                <div class="aspect-[16/10] bg-gradient-to-br from-brand-500 to-brand-700">
+                  <div class="flex h-full items-center justify-center">
+                    <span class="text-3xl font-bold text-white">{{ related.icon|default:'م'|slice:":1" }}</span>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <span
+                    class="inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-medium text-brand-700">{{ related.category.name }}</span>
+                  <h3 class="mt-3 text-lg font-bold text-slate-950 transition group-hover:text-brand-500">
+                    {{ related.title }}
+                  </h3>
+                  <p class="mt-2 line-clamp-2 text-sm text-slate-600">
+                    {{ related.excerpt }}
+                  </p>
+                  <div class="mt-4 flex items-center justify-between text-xs text-slate-500 gap-3">
+                    <span>{{ related.author.name }}</span>
+                    {% if related.published_date %}
+                      <span>{{ related.published_date|date:"j F Y" }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    {% if cta %}
+      <section class="bg-brand-gradient px-4 py-16 md:px-6 md:py-24">
+        <div class="mx-auto max-w-[1500px]">
+          <div class="animate-on-scroll mx-auto max-w-3xl text-center">
+            <h2 class="text-3xl font-bold text-white md:text-4xl">
+              {{ cta.heading }}
+            </h2>
+            {% if cta.body_text %}
+              <p class="mt-4 text-lg text-white/90">
+                {{ cta.body_text }}
+              </p>
+            {% endif %}
+            <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              {% if cta.primary_cta_text and cta.primary_cta_url %}
+                <a href="{{ cta.primary_cta_url }}"
+                  class="inline-flex h-14 items-center justify-center rounded-full bg-accent-400 px-8 text-lg font-semibold text-slate-900 transition hover:bg-accent-300">{{ cta.primary_cta_text }}</a>
+              {% endif %}
+              {% if cta.secondary_cta_text and cta.secondary_cta_url %}
+                <a href="{{ cta.secondary_cta_url }}"
+                  class="inline-flex h-14 items-center justify-center rounded-full border-2 border-white/30 bg-white/10 px-8 text-lg font-semibold text-white transition hover:bg-white/20">{{ cta.secondary_cta_text }}</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  </main>
+
+{% endblock content %}

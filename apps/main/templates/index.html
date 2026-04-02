@@ -1,0 +1,395 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <section class="relative overflow-hidden bg-[#f4f7fb] px-4 pb-16 pt-12 md:px-6 md:pb-24 md:pt-20 border-b border-blue-50">
+    <div class="absolute inset-0 z-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiNjYmQ1ZTEiLz48L3N2Zz4=')] opacity-60"></div>
+    <div class="relative z-10 mx-auto max-w-[1500px]">
+      <div class="grid min-h-[500px] items-center gap-12 lg:grid-cols-[1fr_1fr]">
+        <div class="animate-on-scroll order-2 text-center lg:order-1 lg:text-right" style="transition-delay: 100ms;">
+          {% if hero.subheading %}
+            <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-bold text-[#0f3aa9] shadow-sm border border-blue-50">
+              <div class="h-2 w-2 rounded-full bg-[#facc15]"></div>
+              {{ hero.subheading }}
+            </div>
+          {% endif %}
+          <h1 class="text-[38px] font-black leading-[1.3] text-[#0f172a] md:text-[54px] lg:text-[64px] tracking-tight">
+            {{ hero.headline|linebreaksbr }}
+            <div class="mt-3 h-2 w-[200px] rounded-full bg-[#facc15] mx-auto lg:mx-0"></div>
+          </h1>
+          <p class="mx-auto lg:mx-0 mt-6 max-w-xl text-[17px] font-medium leading-[2] text-slate-500">
+            {{ hero.description }}
+          </p>
+          <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
+            <a class="inline-flex h-12 items-center justify-center rounded-xl bg-white border border-slate-200 px-8 text-[15px] font-bold text-[#0f3aa9] transition hover:bg-slate-50 shadow-sm"
+              href="{{ hero.secondary_cta_url|default:'/pricing/' }}">
+              {{ hero.secondary_cta_text|default:'تصفح الدورات' }}
+            </a>
+            <a class="inline-flex h-12 items-center justify-center gap-3 rounded-xl bg-[#facc15] px-8 text-[15px] font-bold text-slate-900 transition hover:bg-yellow-400 shadow-md"
+              href="{{ hero.primary_cta_url|default:'/pricing/' }}">
+              {{ hero.primary_cta_text|default:'افتح حساب جديد' }}
+              <svg class="h-5 w-5 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="animate-on-scroll slide-left order-1 lg:order-2 relative mx-auto w-full max-w-[600px] mt-10 lg:mt-0" style="transition-delay: 300ms;">
+          <div class="absolute -inset-6 md:-inset-8 z-0 rounded-[40px] bg-[#e1eaf8]/80 transform -rotate-3 transition-transform duration-700 hover:rotate-0"></div>
+          <div class="relative z-10 aspect-[4/3] w-full overflow-hidden rounded-[32px] bg-slate-200 shadow-xl border border-white transition-transform duration-500 hover:scale-[1.02]">
+            <img
+              src="{% if hero.hero_image %}{{ hero.hero_image.url }}{% else %}{% static 'assets/images/hero_student_gulf.png' %}{% endif %}"
+              alt="{{ hero.headline }}"
+              class="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-6 md:px-6 md:py-8">
+    <div class="mx-auto max-w-[1500px]">
+      <div class="animate-on-scroll grid gap-4 rounded-[32px] border border-slate-200/80 bg-slate-50 px-5 py-6 shadow-[0_18px_44px_rgba(15,23,42,0.05)] sm:grid-cols-2 lg:grid-cols-4">
+        {% for stat in stats %}
+          <article class="rounded-[24px] bg-white px-5 py-5 shadow-sm">
+            <p class="text-sm text-slate-500">{{ stat.label }}</p>
+            <p class="mt-2 text-3xl font-bold text-brand-500">{{ stat.number }}</p>
+            <p class="mt-1 text-sm text-slate-600">{{ stat.description }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-10 md:px-6 md:py-16">
+    <div class="mx-auto max-w-[1500px]">
+      <div class="animate-on-scroll text-center">
+        <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">خدماتنا التعليمية</p>
+        <h2 class="mt-3 text-3xl font-bold text-slate-950 md:text-4xl">مسارات مصممة لتناسب احتياج الطالب السعودي</h2>
+        <p class="mx-auto mt-4 max-w-3xl text-base text-slate-600 md:text-lg">
+          اختر المسار المناسب ثم تابع تقدّمك عبر محتوى منظم ومعلمين موثوقين.
+        </p>
+      </div>
+      <div class="no-scrollbar mt-10 flex gap-5 overflow-x-auto pb-2 xl:justify-center">
+        {% for service in services %}
+          <article class="animate-on-scroll relative h-[364px] w-[310px] shrink-0 overflow-hidden rounded-3xl bg-brand-500 p-7 text-white shadow-card md:h-[389px] md:w-[370px] {% cycle '' 'bg-[#1658d7]' 'bg-[#0f3aa9]' %}">
+            <p class="text-sm font-semibold text-white/70">{{ forloop.counter|stringformat:'02d' }}</p>
+            <h3 class="mt-4 text-2xl font-bold">{{ service.title }}</h3>
+            <p class="mt-4 max-w-xs text-sm leading-7 text-white/85">{{ service.description }}</p>
+            <ul class="mt-4 space-y-2 text-sm text-white/80">
+              {% for feature in service.features.all|slice:':3' %}
+                <li class="flex items-start gap-2">
+                  <span class="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-xs">✓</span>
+                  <span>{{ feature.text }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+            <div class="absolute bottom-0 left-0 right-0 flex justify-center">
+              <img
+                src="{% if service.image %}{{ service.image.url }}{% else %}{% static 'assets/images/service_' %}{{ forloop.counter }}_gulf.png{% endif %}"
+                alt="{{ service.title }}"
+                class="w-[80%] rounded-t-3xl object-cover object-top h-[180px] shadow-2xl transition hover:-translate-y-2"
+              />
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-10 md:px-6 md:py-16">
+    <div class="mx-auto max-w-[1500px]">
+      <div class="animate-on-scroll text-center">
+        <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">شركاؤنا في النجاح</p>
+        <h2 class="mt-3 text-3xl font-bold text-slate-950 md:text-4xl">مؤسسات وجهات تعزز الثقة في تجربتنا</h2>
+      </div>
+      <div class="mt-10 grid gap-4 rounded-[32px] border border-slate-200/80 bg-white px-4 py-6 sm:grid-cols-2 lg:grid-cols-4">
+        {% for partner in partners %}
+          <div class="flex h-[88px] items-center justify-center rounded-2xl border border-slate-100 bg-slate-50 p-4">
+            <img
+              src="{% if partner.logo %}{{ partner.logo.url }}{% else %}{% static 'assets/logos/partner-' %}{{ forloop.counter }}.svg{% endif %}"
+              alt="{{ partner.name }}"
+              class="h-[60px] w-[150px] object-contain"
+            />
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% if tutoring_block %}
+    <section class="px-4 py-10 md:px-6 md:py-16">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="mb-7 text-center md:text-right">
+          <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">مسار متخصص</p>
+          <h2 class="mt-3 text-3xl font-bold text-slate-950 md:text-4xl">{{ tutoring_block.title }}</h2>
+          <p class="mt-4 max-w-3xl text-base text-slate-600">{{ tutoring_block.description }}</p>
+        </div>
+        <div class="slide-right overflow-hidden rounded-[20px] md:rounded-[40px] bg-brand-gradient p-6 text-white shadow-shell md:p-10">
+          <div class="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+            <div>
+              <ul class="mt-2 grid gap-4 text-sm leading-7 md:grid-cols-2 md:text-base">
+                {% for point in tutoring_block.points.all %}
+                  <li class="flex gap-3">
+                    <span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-accent-400 text-slate-900">✓</span>
+                    <span>{{ point.text }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="relative flex h-full min-h-[400px] items-end justify-center pt-10 pb-4">
+              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 h-[70%] w-[80%] bg-[#FF8A2C] rounded-t-[40px] z-0" style="clip-path: polygon(0 15%, 50% 30%, 100% 15%, 100% 100%, 0 100%);"></div>
+              <img
+                src="{% if tutoring_block.image %}{{ tutoring_block.image.url }}{% else %}{% static 'assets/images/tutor_gulf.png' %}{% endif %}"
+                alt="{{ tutoring_block.title }}"
+                class="relative z-10 w-[75%] object-cover object-top shadow-xl rounded-2xl border-4 border-white/20"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% if aptitude_block %}
+    <section class="px-4 py-10 md:px-6 md:py-16">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="slide-left overflow-hidden rounded-[20px] border border-slate-200 bg-white p-6 shadow-shell md:rounded-[40px] md:p-10">
+          <div class="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+            <div class="order-2 lg:order-1 relative flex h-full min-h-[400px] items-end justify-center pt-10 pb-4">
+              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 h-[75%] w-[80%] bg-[#84cc16] rounded-t-[40px] z-0" style="clip-path: polygon(0 0, 50% 20%, 100% 0, 100% 100%, 0 100%);"></div>
+              <img
+                src="{% if aptitude_block.image %}{{ aptitude_block.image.url }}{% else %}{% static 'assets/images/success_gulf.png' %}{% endif %}"
+                alt="{{ aptitude_block.title }}"
+                class="relative z-10 w-[80%] object-cover object-top shadow-xl rounded-2xl border-4 border-white/20"
+              />
+            </div>
+            <div class="order-1 lg:order-2">
+              <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">اختبارات القياس</p>
+              <h2 class="mt-3 text-3xl font-bold text-slate-950 md:text-4xl">{{ aptitude_block.title }}</h2>
+              <p class="mt-4 text-base text-slate-600">{{ aptitude_block.description }}</p>
+              <div class="mt-5 flex flex-wrap gap-3">
+                {% for tab in aptitude_block.tabs.all %}
+                  <span class="rounded-full bg-accent-400 px-4 py-2 text-sm font-semibold text-slate-900">{{ tab.title }}</span>
+                {% endfor %}
+              </div>
+              <div class="mt-7 grid gap-6 md:grid-cols-2">
+                {% for tab in aptitude_block.tabs.all %}
+                  <div class="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                    <h3 class="text-lg font-bold text-slate-950">{{ tab.title }}</h3>
+                    <ul class="mt-4 space-y-3 text-sm leading-7 text-slate-600">
+                      {% for point in tab.points.all %}
+                        <li class="flex gap-3">
+                          <span class="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-brand-500 text-xs text-white">✓</span>
+                          <span>{{ point.text }}</span>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="px-4 py-10 md:px-6 md:py-16">
+    <div class="mx-auto max-w-[1500px]">
+      <div class="animate-on-scroll text-center">
+        <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">استكشف المواد الدراسية</p>
+        <h2 class="mt-3 text-3xl font-bold text-slate-950 md:text-4xl">مواد أساسية واختبارية في مكان واحد</h2>
+      </div>
+      <div class="mt-10 grid gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        {% for subject in subjects %}
+          <article class="animate-on-scroll rounded-2xl bg-white p-5 shadow-card transition hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(15,23,42,0.12)]">
+            <img src="{% static 'assets/icons/' %}{{ subject.icon|default:'book' }}.svg" alt="" aria-hidden="true" class="h-8 w-8" />
+            <h3 class="mt-4 text-lg font-bold">{{ subject.name }}</h3>
+            <p class="mt-2 text-sm text-slate-500">{{ subject.description }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-10 md:px-6 md:py-16">
+    <div class="mx-auto max-w-[1500px]">
+      <div class="animate-on-scroll text-center">
+        <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">تعرّف على معلمينا</p>
+        <h2 class="mt-3 text-3xl font-bold text-slate-950 md:text-4xl">نخبة تعليمية تجمع الخبرة والأسلوب الواضح</h2>
+      </div>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {% for teacher in teachers %}
+          <article class="animate-on-scroll group overflow-hidden rounded-2xl bg-white shadow-card">
+            <div class="bg-gradient-to-br {{ teacher.gradient }} p-6 text-white">
+              <div class="flex h-24 w-24 items-center justify-center rounded-full border border-white/20 bg-white/10 text-3xl font-bold">{{ teacher.initials }}</div>
+              <p class="mt-4 text-sm text-white/75">{{ teacher.subject }}</p>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold transition group-hover:text-brand-500">{{ teacher.name }}</h3>
+              <p class="mt-2 text-sm text-slate-500">{{ teacher.experience }}</p>
+              <p class="mt-1 text-sm text-slate-500">{{ teacher.rating }} ★ | {{ teacher.student_count }}</p>
+              <a class="mt-4 inline-flex text-sm font-semibold text-brand-500" href="{{ teacher.profile_url }}">عرض الملف</a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+      <div class="mt-8 text-center">
+        <a class="inline-flex items-center justify-center rounded-full border border-brand-500/20 bg-white px-6 py-3 text-sm font-semibold text-brand-500 transition hover:bg-brand-50" href="/teachers/">عرض جميع المعلمين</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-10 md:px-6 md:py-16">
+    <div class="mx-auto max-w-[1500px]">
+      <div class="animate-on-scroll text-center">
+        <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">ماذا يقول طلابنا</p>
+        <h2 class="mt-3 text-3xl font-bold text-slate-950 md:text-4xl">نتائج ملموسة وتجارب تطمئن الأسرة</h2>
+      </div>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {% for testimonial in testimonials %}
+          <article class="animate-on-scroll rounded-[32px] bg-slate-900 p-6 text-white shadow-card">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold text-yellow-400">{{ testimonial.subject }} | {{ testimonial.level }}</p>
+                <h3 class="mt-2 text-xl font-bold">{{ testimonial.student_name }}</h3>
+              </div>
+              <div class="flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-lg font-bold">{{ testimonial.student_initials }}</div>
+            </div>
+            <p class="mt-5 text-sm leading-8 text-white/80">{{ testimonial.quote }}</p>
+            <p class="mt-6 text-sm font-semibold text-white/70">{{ testimonial.rating }} / 5</p>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-10 md:px-6 md:py-16">
+    <div class="mx-auto max-w-[1500px]">
+      <div class="animate-on-scroll text-center">
+        <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">كيف تبدأ رحلتك التعليمية</p>
+        <h2 class="mt-3 text-3xl font-bold text-slate-950 md:text-4xl">خطوات بسيطة وواضحة من أول زيارة</h2>
+      </div>
+      <div class="animate-on-scroll relative mt-12">
+        <div class="absolute right-[8%] left-[8%] top-6 hidden border-t-2 border-dashed border-brand-100 lg:block"></div>
+        <div class="grid gap-6 lg:grid-cols-4">
+          {% for step in steps %}
+            <article class="relative rounded-[28px] bg-white p-6 text-center shadow-card">
+              <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-500 text-lg font-bold text-white">{{ step.step_number }}</div>
+              <h3 class="mt-5 text-xl font-bold">{{ step.title }}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-500">{{ step.description }}</p>
+            </article>
+          {% endfor %}
+        </div>
+        <div class="mt-8 text-center">
+          <a class="inline-flex h-12 items-center justify-center rounded-full bg-brand-500 px-7 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(37,99,235,0.22)]" href="{{ cta.primary_cta_url|default:'/pricing/' }}">ابدأ الآن</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-10 md:px-6 md:py-16">
+    <div class="mx-auto max-w-[1500px]">
+      <div class="animate-on-scroll text-center">
+        <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">الأسئلة الشائعة</p>
+        <h2 class="mt-3 text-3xl font-bold text-slate-950 md:text-4xl">إجابات سريعة على أكثر ما يشغل الأسرة والطالب</h2>
+      </div>
+      <div data-accordion class="animate-on-scroll mx-auto mt-10 max-w-5xl">
+        {% for faq in faqs %}
+          <article data-accordion-item class="mt-3 overflow-hidden rounded-[20px] bg-slate-50">
+            <button type="button" data-accordion-button aria-expanded="false" class="flex w-full items-center justify-between gap-4 px-5 py-7 text-right">
+              <span class="text-base font-bold text-slate-950 lg:text-[22px]">{{ faq.question }}</span>
+              <span data-accordion-icon class="text-[40px] font-thin leading-none text-brand-500">+</span>
+            </button>
+            <div data-accordion-panel aria-hidden="true" class="faq-panel px-8 pb-8 text-base font-medium leading-8 text-slate-600">
+              {{ faq.answer }}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+      <div class="mt-8 text-center">
+        <a class="inline-flex items-center justify-center rounded-full border border-brand-500/20 bg-white px-6 py-3 text-sm font-semibold text-brand-500 transition hover:bg-brand-50" href="/faq/">عرض جميع الأسئلة</a>
+      </div>
+    </div>
+  </section>
+
+  {% if app_promo and app_promo.is_active %}
+    <section class="px-4 py-10 md:px-6 md:py-16">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="animate-on-scroll overflow-hidden rounded-[20px] md:rounded-[40px] bg-brand-gradient p-6 text-white shadow-shell md:p-10">
+          <div class="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+            <div>
+              {% if app_promo.subtitle %}
+                <p class="text-sm font-semibold tracking-[0.22em] text-white/70">{{ app_promo.subtitle }}</p>
+              {% endif %}
+              <h2 class="mt-3 text-[34px] font-bold leading-[1.4]">{{ app_promo.title }}</h2>
+              <p class="mt-4 max-w-2xl text-base leading-8 text-white/85">{{ app_promo.description }}</p>
+              <div dir="ltr" class="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href="{{ app_promo.google_play_url|default:'#' }}">
+                  <img src="{% static 'assets/images/google-play-badge.svg' %}" alt="شعار تحميل التطبيق من Google Play" class="w-[205px]" loading="lazy" />
+                </a>
+                <a href="{{ app_promo.app_store_url|default:'#' }}">
+                  <img src="{% static 'assets/images/app-store-badge.svg' %}" alt="شعار تحميل التطبيق من App Store" class="w-[205px]" loading="lazy" />
+                </a>
+              </div>
+            </div>
+            <div class="mx-auto w-full max-w-[380px]">
+              {% if app_promo.preview_image %}
+                <img src="{{ app_promo.preview_image.url }}" alt="{{ app_promo.title }}" class="w-full rounded-[40px] shadow-[0_28px_70px_rgba(15,23,42,0.28)]" />
+              {% else %}
+                <div class="mx-auto w-[280px] rounded-[40px] border border-white/20 bg-slate-950/30 p-4 shadow-[0_28px_70px_rgba(15,23,42,0.28)] backdrop-blur">
+                  <div class="rounded-[30px] bg-white p-4 text-slate-900">
+                    <div class="mx-auto h-1.5 w-20 rounded-full bg-slate-200"></div>
+                    <div class="mt-5 rounded-[24px] bg-brand-50 p-4">
+                      <p class="text-sm text-slate-500">الحصة القادمة</p>
+                      <p class="mt-1 text-lg font-bold">القدرات اللفظي | 7:30 م</p>
+                      <p class="mt-2 text-sm text-slate-600">واجهة معاينة افتراضية حتى يتم رفع صورة من لوحة التحكم</p>
+                    </div>
+                    <div class="mt-4 grid gap-3">
+                      <div class="rounded-2xl bg-slate-50 px-4 py-4">
+                        <p class="text-sm text-slate-500">نتيجة آخر اختبار</p>
+                        <p class="mt-1 text-xl font-bold text-brand-500">+14 نقطة</p>
+                      </div>
+                      <div class="rounded-2xl bg-slate-950 px-4 py-4 text-white">
+                        <p class="text-sm text-white/60">رسالة سريعة</p>
+                        <p class="mt-1 font-semibold">أداؤك ممتاز، ركّز هذا الأسبوع على السرعة في الجزء الكمي.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% if cta %}
+    <section class="bg-slate-50 px-4 py-20 md:px-6">
+      <div class="mx-auto max-w-[1000px] text-center">
+        <div class="animate-on-scroll">
+          <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">الخطوة التالية</p>
+          <h2 class="mt-3 text-[28px] font-bold text-slate-950 md:text-4xl">{{ cta.heading }}</h2>
+          <p class="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-600 md:text-lg">
+            {{ cta.body_text }}
+          </p>
+          <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <a class="inline-flex h-14 items-center justify-center rounded-xl bg-brand-500 px-8 text-xl font-semibold text-white shadow-[0_18px_40px_rgba(37,99,235,0.22)] transition hover:bg-brand-700" href="{{ cta.primary_cta_url }}">
+              {{ cta.primary_cta_text }}
+            </a>
+            {% if cta.secondary_cta_text and cta.secondary_cta_url %}
+              <a class="inline-flex h-14 items-center justify-center rounded-xl bg-[#25D366] px-8 text-xl font-semibold text-white transition hover:bg-[#1fb65a]" href="{{ cta.secondary_cta_url }}">
+                {{ cta.secondary_cta_text }}
+              </a>
+            {% endif %}
+          </div>
+          {% if cta.social_proof_text %}
+            <p class="mt-5 text-sm font-medium text-slate-500">{{ cta.social_proof_text }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+{% endblock content %}
