@@ -1,5 +1,5 @@
 [Unit]
-Description=Gunicorn socket for SNA Academy
+Description=gunicorn socket for Sana Academy
 
 [Socket]
 ListenStream=/run/gunicorn.sock
