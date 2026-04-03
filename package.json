@@ -5,8 +5,8 @@
   "scripts": {
     "test": "echo \"No tests defined, passing...\" && exit 0",
     "lint": "eslint --no-error-on-unmatched-pattern frontend/js frontend/src/js",
-    "build": "npx tailwindcss -i ./frontend/src/css/input.css -o ./var/www/snaacademy/static/css/output.css --minify",
-    "watch": "npx tailwindcss -i ./frontend/src/css/input.css -o ./var/www/snaacademy/static/css/output.css --watch"
+    "build": "npx tailwindcss -i ./frontend/src/css/input.css -o ./static/css/output.css --minify",
+    "watch": "npx tailwindcss -i ./frontend/src/css/input.css -o ./static/css/output.css --watch"
   },
   "keywords": [],
   "author": "",
