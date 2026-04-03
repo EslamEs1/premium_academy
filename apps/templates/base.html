@@ -22,18 +22,24 @@
     <header data-site-header class="fixed inset-x-0 top-0 z-50 border-b border-white/40 bg-white/70 backdrop-blur-2xl transition-all duration-500">
         <div class="mx-auto max-w-[1500px] px-4 md:px-8">
             <div class="flex h-[88px] items-center justify-between gap-6">
-                <a class="group relative flex items-center gap-3 transition-transform duration-300 hover:scale-[1.02]" href="{% url 'main:home' %}" aria-label="{{ site_settings.site_name|default:'Sana Academy' }}">
-                    <div class="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] bg-gradient-to-tr from-brand-700 via-brand-500 to-[#38bdf8] shadow-[0_12px_24px_-8px_rgba(37,99,235,0.6)]">
-                        <svg class="relative z-10 h-7 w-7 text-white drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                        </svg>
-                    </div>
-                    <div class="flex flex-col justify-center">
-                        <span class="text-[26px] font-black tracking-tight text-slate-900 drop-shadow-sm leading-none" style="font-family: &quot;Outfit&quot;, system-ui, sans-serif">
-                            {{ site_settings.site_name|default:'Sana' }}
-                        </span>
-                        <span class="mt-1 text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400">Premium Education</span>
-                    </div>
+                <a class="group relative flex items-center gap-3 transition-transform duration-300 hover:scale-[1.02]" href="{% url 'main:home' %}" aria-label="{{ site_settings.site_name|default:'أكاديمية سنا' }}">
+                    {% if site_settings.logo %}
+                        <img src="{{ site_settings.logo.url }}"
+                             alt="{{ site_settings.site_name|default:'أكاديمية سنا' }}"
+                             class="h-12 w-auto object-contain" />
+                    {% else %}
+                        <div class="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] bg-gradient-to-tr from-brand-700 via-brand-500 to-[#38bdf8] shadow-[0_12px_24px_-8px_rgba(37,99,235,0.6)]">
+                            <svg class="relative z-10 h-7 w-7 text-white drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <span class="text-[26px] font-black tracking-tight text-slate-900 drop-shadow-sm leading-none" style="font-family: &quot;Outfit&quot;, system-ui, sans-serif">
+                                {{ site_settings.site_name|default:'Sana' }}
+                            </span>
+                            <span class="mt-1 text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400">Premium Education</span>
+                        </div>
+                    {% endif %}
                 </a>
 
                 <nav class="hidden flex-1 items-center justify-center lg:flex">
