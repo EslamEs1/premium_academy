@@ -114,6 +114,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SECURE_SSL_REDIRECT = os.environ.get("SECURE_SSL_REDIRECT", "False") == "True"
+    SESSION_COOKIE_SECURE = os.environ.get("SESSION_COOKIE_SECURE", "True") == "True"
+    CSRF_COOKIE_SECURE = os.environ.get("CSRF_COOKIE_SECURE", "True") == "True"
+    SECURE_BROWSER_XSS_FILTER = (
+        os.environ.get("SECURE_BROWSER_XSS_FILTER", "True") == "True"
+    )
+    SECURE_CONTENT_TYPE_NOSNIFF = (
+        os.environ.get("SECURE_CONTENT_TYPE_NOSNIFF", "True") == "True"
+    )
 
 CSRF_TRUSTED_ORIGINS = [
     "https://snaacademy.com",
