@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" width="320" height="72" role="img" aria-labelledby="brandLogoWhiteTitle">
+  <title id="brandLogoWhiteTitle">شعار أكاديمية بريميوم باللون الأبيض</title>
+  <g transform="translate(18 10)">
+    <rect x="0" y="0" width="52" height="52" rx="18" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.34)"/>
+    <path d="M12 18.5c0-2.5 2-4.5 4.5-4.5H36c2.5 0 4.5 2 4.5 4.5S38.5 23 36 23H16.5C14 23 12 21 12 18.5Z" fill="#ffffff" opacity="0.96"/>
+    <path d="M12 27.5c0-2.5 2-4.5 4.5-4.5h16c2.5 0 4.5 2 4.5 4.5S35 32 32.5 32h-16C14 32 12 30 12 27.5Z" fill="rgba(255,255,255,0.72)"/>
+    <path d="M12 36.5c0-2.5 2-4.5 4.5-4.5H29c2.5 0 4.5 2 4.5 4.5S31.5 41 29 41H16.5C14 41 12 39 12 36.5Z" fill="#FACC15"/>
+    <circle cx="38.5" cy="37.5" r="5.5" fill="#ffffff"/>
+  </g>
+  <text x="292" y="27" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="16" font-weight="600" fill="rgba(255,255,255,0.86)" text-anchor="end" direction="rtl">منصة تعليمية سعودية متقدمة</text>
+  <text x="292" y="53" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="30" font-weight="700" fill="#ffffff" text-anchor="end" direction="rtl">أكاديمية بريميوم</text>
+</svg>
