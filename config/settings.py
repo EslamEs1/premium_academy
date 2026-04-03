@@ -126,3 +126,5 @@ if not DEBUG:
     SECURE_CONTENT_TYPE_NOSNIFF = (
         os.environ.get("SECURE_CONTENT_TYPE_NOSNIFF", "True") == "True"
     )
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    USE_X_FORWARDED_HOST = True
