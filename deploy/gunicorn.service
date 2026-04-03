@@ -3,10 +3,10 @@ Description=Gunicorn daemon for SNA Academy
 After=network.target
 
 [Service]
-User=snaacademy
+User=root
 Group=www-data
-WorkingDirectory=/home/snaacademy/premium_academy
-ExecStart=/home/snaacademy/premium_academy/venv/bin/gunicorn \
+WorkingDirectory=/var/www/premium_academy
+ExecStart=/var/www/premium_academy/venv/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
