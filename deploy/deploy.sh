@@ -7,7 +7,7 @@ set -euo pipefail
 #    sudo bash deploy/deploy.sh
 # ──────────────────────────────────────────────────────────────────────────────
 
-APP_DIR="/home/snaacademy/premium_academy"
+APP_DIR="/var/www/premium_academy"
 
 echo "[deploy] Pulling latest code..."
 sudo -u snaacademy git -C ${APP_DIR} pull origin main
