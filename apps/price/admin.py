@@ -8,13 +8,15 @@ class PlanFeatureInline(admin.TabularInline):
     model = PlanFeature
     extra = 0
     ordering = ('order', 'id')
+    verbose_name = 'ميزة الباقة'
+    verbose_name_plural = 'ميزات الباقة'
 
 
 @admin.register(PricingPageSettings)
 class PricingPageSettingsAdmin(SingletonAdminMixin):
     fieldsets = (
         (
-            None,
+            'محتوى صفحة الأسعار',
             {
                 'fields': (
                     'title',
@@ -24,7 +26,7 @@ class PricingPageSettingsAdmin(SingletonAdminMixin):
             },
         ),
         (
-            'SEO',
+            'تحسين محركات البحث (SEO)',
             {
                 'fields': (
                     'meta_title',
@@ -43,6 +45,34 @@ class PricingPlanAdmin(admin.ModelAdmin):
     search_fields = ('name', 'description')
     prepopulated_fields = {'slug': ('name',)}
     inlines = [PlanFeatureInline]
+    fieldsets = (
+        (
+            'تفاصيل الباقة',
+            {
+                'fields': (
+                    'name',
+                    'slug',
+                    'label',
+                    'description',
+                    'price',
+                    'period',
+                    'currency',
+                )
+            },
+        ),
+        (
+            'الإعدادات',
+            {
+                'fields': (
+                    'is_popular',
+                    'is_active',
+                    'order',
+                    'cta_text',
+                    'cta_url',
+                )
+            },
+        ),
+    )
 
 
 @admin.register(ComparisonFeature)

@@ -19,7 +19,7 @@ class PageContentAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (
         (
-            'Hero',
+            'قسم الهيرو',
             {
                 'fields': (
                     'slug',
@@ -31,7 +31,7 @@ class PageContentAdmin(admin.ModelAdmin):
             },
         ),
         (
-            'Hero CTAs',
+            'أزرار الدعوة للتصرف',
             {
                 'fields': (
                     'primary_cta_text',
@@ -42,7 +42,7 @@ class PageContentAdmin(admin.ModelAdmin):
             },
         ),
         (
-            'SEO',
+            'تحسين محركات البحث (SEO)',
             {
                 'fields': (
                     'meta_title',

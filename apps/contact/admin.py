@@ -8,7 +8,7 @@ from apps.main.admin import SingletonAdminMixin
 class ContactPageSettingsAdmin(SingletonAdminMixin):
     fieldsets = (
         (
-            None,
+            'محتوى صفحة التواصل',
             {
                 'fields': (
                     'hero_title',
@@ -17,7 +17,7 @@ class ContactPageSettingsAdmin(SingletonAdminMixin):
             },
         ),
         (
-            'SEO',
+            'تحسين محركات البحث (SEO)',
             {
                 'fields': (
                     'meta_title',
@@ -59,7 +59,36 @@ class ContactSubmissionAdmin(admin.ModelAdmin):
     list_editable = ('is_read',)
     readonly_fields = ('full_name', 'email', 'phone', 'subject', 'message', 'created_at')
     search_fields = ('full_name', 'email', 'phone', 'message')
+    fieldsets = (
+        (
+            'بيانات المرسل',
+            {
+                'fields': (
+                    'full_name',
+                    'email',
+                    'phone',
+                )
+            },
+        ),
+        (
+            'تفاصيل الرسالة',
+            {
+                'fields': (
+                    'subject',
+                    'message',
+                    'created_at',
+                )
+            },
+        ),
+        (
+            'الإدارة',
+            {
+                'fields': (
+                    'is_read',
+                )
+            },
+        ),
+    )
 
     def has_add_permission(self, request):
         return False
-
