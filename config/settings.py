@@ -14,12 +14,12 @@ SECRET_KEY = os.getenv(
 
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
-if DEBUG:
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]"]
-else:
-    ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
-    if not ALLOWED_HOSTS or ALLOWED_HOSTS == [""]:
-        raise ValueError("ALLOWED_HOSTS must be set in production (.env file)")
+ALLOWED_HOSTS = [
+    "snaacademy.com",
+    "www.snaacademy.com",
+    "127.0.0.1",
+    "localhost",
+]
 
 
 
