@@ -85,12 +85,9 @@ GUNICORN_BIND=127.0.0.1:8000
 STATIC_ROOT=${STATIC_DIR}
 MEDIA_ROOT=${MEDIA_DIR}
 
-SECURE_SSL_REDIRECT=True
+SECURE_SSL_REDIRECT=False
 SESSION_COOKIE_SECURE=True
 CSRF_COOKIE_SECURE=True
-SECURE_HSTS_SECONDS=31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS=True
-SECURE_HSTS_PRELOAD=True
 SECURE_BROWSER_XSS_FILTER=True
 SECURE_CONTENT_TYPE_NOSNIFF=True
 ENVFILE
@@ -150,7 +147,7 @@ echo "  Media:      ${MEDIA_DIR}"
 echo ""
 echo "  Next steps:"
 echo "    1. Add your domain DNS A record to this server's IP"
-echo "    2. Set up SSL with:  sudo certbot --nginx -d ${DOMAIN} -d www.${DOMAIN}"
+echo "    2. Set up Cloudflare SSL mode to 'Full' (Dashboard → SSL/TLS → Full)"
 echo "    3. Create a superuser:"
 echo "       sudo -u snaacademy ${APP_DIR}/venv/bin/python ${APP_DIR}/manage.py createsuperuser"
 echo ""
