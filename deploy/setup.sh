@@ -7,7 +7,7 @@ set -euo pipefail
 # ──────────────────────────────────────────────────────────────────────────────
 
 DOMAIN="snaacademy.com"
-APP_DIR="/home/snaacademy/premium_academy"
+APP_DIR="/var/www/premium_academy"
 DB_NAME="snaacademy"
 DB_USER="snaacademy_user"
 STATIC_DIR="/var/www/snaacademy/static"
