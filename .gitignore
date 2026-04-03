@@ -29,7 +29,7 @@ venv/
 *.egg-info/
 db.sqlite3
 media/
-staticfiles/
+
 
 # Compiled output
 *.min.js
