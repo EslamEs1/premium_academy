@@ -15,7 +15,21 @@ build/
 *.log
 
 # Environment
-.env*
+.env
+.env.production
+.env.local
+
+# Python / Django
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+db.sqlite3
+media/
+staticfiles/
 
 # Compiled output
 *.min.js

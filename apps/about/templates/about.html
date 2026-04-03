@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% block content %}
+  <main id="page-content" class="pt-[64px] md:pt-[80px]">
+    <section class="relative overflow-hidden bg-slate-50 px-4 py-16 md:px-6 md:py-24">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="animate-on-scroll mx-auto max-w-3xl text-center">
+          {% if page.badge_text %}
+            <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-brand-100 px-4 py-2 text-sm font-semibold text-brand-700">
+              {% if page.header_icon %}
+                <img src="{{ page.header_icon.url }}" alt="" class="h-5 w-5" />
+              {% endif %}
+              {{ page.badge_text }}
+            </div>
+          {% endif %}
+          <h1 class="text-[32px] font-bold leading-tight text-slate-950 md:text-[48px] lg:text-[56px]">
+            {{ page.title }}
+          </h1>
+          {% if page.subtitle %}
+            <p class="mt-6 text-lg text-slate-600 md:text-xl">
+              {{ page.subtitle }}
+            </p>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-16 md:px-6 md:py-20">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="grid gap-8 lg:grid-cols-2">
+          {% if blocks.mission %}
+            <div class="animate-on-scroll rounded-[28px] bg-white p-8 shadow-[0_8px_30px_rgba(15,23,42,0.06)] md:p-10">
+              <div class="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-100">
+                {% if blocks.mission.icon %}
+                  <img src="{{ blocks.mission.icon.url }}" alt="" class="h-7 w-7" />
+                {% else %}
+                  <span class="text-xl font-bold text-brand-500">1</span>
+                {% endif %}
+              </div>
+              <h2 class="text-2xl font-bold text-slate-950 md:text-3xl">{{ blocks.mission.title }}</h2>
+              <div class="mt-4 space-y-4 text-lg leading-relaxed text-slate-600">{{ blocks.mission.content|linebreaks }}</div>
+            </div>
+          {% endif %}
+          {% if blocks.vision %}
+            <div class="animate-on-scroll rounded-[28px] bg-white p-8 shadow-[0_8px_30px_rgba(15,23,42,0.06)] md:p-10">
+              <div class="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-400/20">
+                {% if blocks.vision.icon %}
+                  <img src="{{ blocks.vision.icon.url }}" alt="" class="h-7 w-7" />
+                {% else %}
+                  <span class="text-xl font-bold text-brand-500">2</span>
+                {% endif %}
+              </div>
+              <h2 class="text-2xl font-bold text-slate-950 md:text-3xl">{{ blocks.vision.title }}</h2>
+              <div class="mt-4 space-y-4 text-lg leading-relaxed text-slate-600">{{ blocks.vision.content|linebreaks }}</div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    {% with story=blocks.our_story %}
+      {% if story %}
+        <section class="bg-slate-50 px-4 py-16 md:px-6 md:py-24">
+          <div class="mx-auto max-w-[1500px]">
+            <div class="animate-on-scroll mx-auto max-w-4xl">
+              <h2 class="mb-10 text-center text-3xl font-bold text-slate-950 md:text-4xl">{{ story.title }}</h2>
+              <div class="space-y-6 text-lg leading-relaxed text-slate-600">{{ story.content|linebreaks }}</div>
+
+              <div class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+                {% for statistic in statistics %}
+                  <div class="animate-on-scroll rounded-2xl bg-white p-6 text-center shadow-sm">
+                    <p class="text-3xl font-bold text-brand-500 md:text-4xl">{{ statistic.number }}</p>
+                    <p class="mt-2 text-sm text-slate-600">{{ statistic.label }}</p>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </section>
+      {% endif %}
+    {% endwith %}
+
+    <section class="px-4 py-16 md:px-6 md:py-24">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="animate-on-scroll mb-12 text-center">
+          <h2 class="text-3xl font-bold text-slate-950 md:text-4xl">فريق القيادة</h2>
+          <p class="mt-4 text-lg text-slate-600">تعرف على القادة الذين يقودون رؤية أكاديمية سنا</p>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {% for member in team_members %}
+            <div class="animate-on-scroll rounded-[28px] bg-white p-6 text-center shadow-[0_8px_30px_rgba(15,23,42,0.06)]">
+              {% if member.photo %}
+                <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="mx-auto mb-4 h-24 w-24 rounded-full object-cover" />
+              {% else %}
+                <div class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-orange-400 text-2xl font-bold text-white">
+                  {{ member.name|slice:":2" }}
+                </div>
+              {% endif %}
+              <h3 class="text-xl font-bold text-slate-950">{{ member.name }}</h3>
+              <p class="mt-1 text-brand-500">{{ member.title }}</p>
+              <p class="mt-3 text-sm text-slate-600">{{ member.description }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-brand-gradient px-4 py-16 md:px-6 md:py-20">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="animate-on-scroll mb-10 text-center">
+          <h2 class="text-3xl font-bold text-white md:text-4xl">أرقام نتحدث بها</h2>
+          <p class="mt-4 text-lg text-white/80">إنجازات نفتخر بها على مدار السنوات</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+          {% for achievement in achievements %}
+            <div class="animate-on-scroll rounded-[24px] bg-white/10 p-6 text-center backdrop-blur-sm">
+              <p class="text-4xl font-bold text-white md:text-5xl">{{ achievement.number }}</p>
+              <p class="mt-2 text-sm text-white/80">{{ achievement.label }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-16 md:px-6 md:py-24">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="animate-on-scroll mb-12 text-center">
+          <h2 class="text-3xl font-bold text-slate-950 md:text-4xl">شركاؤنا واعتماداتنا</h2>
+          <p class="mt-4 text-lg text-slate-600">نتعاون مع أفضل المؤسسات التعليمية في المملكة</p>
+        </div>
+
+        <div class="mb-12 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
+          {% for partner in partners %}
+            <div class="animate-on-scroll flex h-16 items-center justify-center rounded-xl bg-slate-50 p-4 text-center grayscale transition hover:grayscale-0">
+              {% if partner.logo %}
+                <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="h-10 w-auto" />
+              {% else %}
+                <span class="text-sm font-semibold text-slate-600">{{ partner.name }}</span>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="animate-on-scroll mx-auto max-w-md rounded-[28px] bg-white p-8 text-center shadow-[0_8px_30px_rgba(15,23,42,0.08)]">
+          {% if site_settings.accreditation_badge %}
+            <img src="{{ site_settings.accreditation_badge.url }}" alt="شارة الاعتماد" class="mx-auto h-20 w-20" />
+          {% else %}
+            <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-brand-100 text-2xl font-bold text-brand-600">✓</div>
+          {% endif %}
+          <h3 class="mt-4 text-xl font-bold text-slate-950">منصة معتمدة</h3>
+          <p class="mt-2 text-slate-600">{{ site_settings.accreditation_text }}</p>
+        </div>
+      </div>
+    </section>
+
+    {% if cta %}
+      <section class="bg-slate-50 px-4 py-16 md:px-6 md:py-24">
+        <div class="mx-auto max-w-[1500px]">
+          <div class="animate-on-scroll mx-auto max-w-3xl text-center">
+            <h2 class="text-3xl font-bold text-slate-950 md:text-4xl">{{ cta.heading }}</h2>
+            {% if cta.body_text %}
+              <p class="mt-4 text-lg text-slate-600">{{ cta.body_text }}</p>
+            {% endif %}
+            <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              {% if cta.primary_cta_text and cta.primary_cta_url %}
+                <a href="{{ cta.primary_cta_url }}" class="inline-flex h-14 items-center justify-center rounded-full bg-brand-500 px-8 text-lg font-semibold text-white shadow-[0_16px_32px_rgba(37,99,235,0.22)] transition hover:bg-brand-700">
+                  {{ cta.primary_cta_text }}
+                </a>
+              {% endif %}
+              {% if cta.secondary_cta_text and cta.secondary_cta_url %}
+                <a href="{{ cta.secondary_cta_url }}" class="inline-flex h-14 items-center justify-center rounded-full border border-slate-300 bg-white px-8 text-lg font-semibold text-slate-700 transition hover:border-brand-500 hover:text-brand-500">
+                  {{ cta.secondary_cta_text }}
+                </a>
+              {% endif %}
+            </div>
+            {% if cta.social_proof_text %}
+              <p class="mt-6 text-sm text-slate-500">{{ cta.social_proof_text }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  </main>
+{% endblock content %}

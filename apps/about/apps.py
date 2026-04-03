@@ -2,4 +2,7 @@ from django.apps import AppConfig
 
 
 class AboutConfig(AppConfig):
-    name = 'about'
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'apps.about'
+    label = 'about'
+    verbose_name = 'عن الأكاديمية'

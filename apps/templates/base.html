@@ -1,0 +1,263 @@
+{% load static %}
+<!doctype html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% if page_meta and page_meta.meta_title %}{{ page_meta.meta_title }}{% elif site_settings.site_name %}{{ site_settings.site_name }}{% else %}أكاديمية سنا{% endif %}</title>
+    <meta name="description" content="{% if page_meta and page_meta.meta_description %}{{ page_meta.meta_description }}{% elif site_settings.site_description %}{{ site_settings.site_description }}{% else %}منصة تعليمية عربية تقدم تجربة تعليمية واضحة وموثوقة للطلاب والأسر.{% endif %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+</head>
+<body class="font-arabic bg-white text-slate-900 leading-relaxed antialiased overflow-x-hidden">
+    <a class="screen-reader-only focus:absolute focus:right-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-slate-900" href="#page-content">
+        الانتقال إلى المحتوى
+    </a>
+
+    <div aria-hidden="true" class="pointer-events-none fixed inset-x-0 top-0 z-0 h-[420px] bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.12),transparent_58%)]"></div>
+
+    <header data-site-header class="fixed inset-x-0 top-0 z-50 border-b border-white/40 bg-white/70 backdrop-blur-2xl transition-all duration-500">
+        <div class="mx-auto max-w-[1500px] px-4 md:px-8">
+            <div class="flex h-[88px] items-center justify-between gap-6">
+                <a class="group relative flex items-center gap-3 transition-transform duration-300 hover:scale-[1.02]" href="{% url 'main:home' %}" aria-label="{{ site_settings.site_name|default:'Sana Academy' }}">
+                    <div class="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] bg-gradient-to-tr from-brand-700 via-brand-500 to-[#38bdf8] shadow-[0_12px_24px_-8px_rgba(37,99,235,0.6)]">
+                        <svg class="relative z-10 h-7 w-7 text-white drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <span class="text-[26px] font-black tracking-tight text-slate-900 drop-shadow-sm leading-none" style="font-family: &quot;Outfit&quot;, system-ui, sans-serif">
+                            {{ site_settings.site_name|default:'Sana' }}
+                        </span>
+                        <span class="mt-1 text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400">Premium Education</span>
+                    </div>
+                </a>
+
+                <nav class="hidden flex-1 items-center justify-center lg:flex">
+                    <ul class="flex items-center gap-10">
+                        <li><a data-nav-link data-nav-type="desktop" class="group relative py-2 text-base font-semibold text-slate-700 transition hover:text-brand-600" href="{% url 'main:home' %}">الرئيسية<span class="absolute right-0 bottom-0 h-0.5 w-0 bg-brand-500 transition-all duration-300 group-hover:w-full"></span></a></li>
+                        <li><a data-nav-link data-nav-type="desktop" class="group relative py-2 text-base font-semibold text-slate-700 transition hover:text-brand-600" href="{% url 'teacher:list' %}">المعلمون<span class="absolute right-0 bottom-0 h-0.5 w-0 bg-brand-500 transition-all duration-300 group-hover:w-full"></span></a></li>
+                        <li><a data-nav-link data-nav-type="desktop" class="group relative py-2 text-base font-semibold text-slate-700 transition hover:text-brand-600" href="{% url 'about:how_it_works' %}">كيف نعمل<span class="absolute right-0 bottom-0 h-0.5 w-0 bg-brand-500 transition-all duration-300 group-hover:w-full"></span></a></li>
+                        <li><a data-nav-link data-nav-type="desktop" class="group relative py-2 text-base font-semibold text-slate-700 transition hover:text-brand-600" href="{% url 'price:pricing' %}">الأسعار<span class="absolute right-0 bottom-0 h-0.5 w-0 bg-brand-500 transition-all duration-300 group-hover:w-full"></span></a></li>
+                        <li><a data-nav-link data-nav-type="desktop" class="group relative py-2 text-base font-semibold text-slate-700 transition hover:text-brand-600" href="{% url 'blogs:list' %}">المدونة<span class="absolute right-0 bottom-0 h-0.5 w-0 bg-brand-500 transition-all duration-300 group-hover:w-full"></span></a></li>
+                    </ul>
+                </nav>
+
+                <div class="flex items-center justify-end gap-4">
+                    <a class="hidden h-12 items-center justify-center rounded-2xl border border-slate-200/60 bg-white/50 px-6 text-sm font-bold text-slate-700 backdrop-blur-md transition-all duration-300 hover:border-brand-400 hover:bg-white hover:text-brand-600 hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.1)] md:inline-flex" href="{% url 'contact:contact' %}">
+                        تواصل معنا
+                    </a>
+                    <a class="group relative hidden h-12 items-center justify-center overflow-hidden rounded-2xl bg-brand-600 px-8 text-[15px] font-bold text-white shadow-[0_12px_24px_-8px_rgba(37,99,235,0.45)] transition-all duration-300 hover:scale-[1.03] hover:bg-brand-700 md:inline-flex" href="{% url 'teacher:apply' %}">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] transition-transform duration-700 group-hover:translate-x-[100%]"></div>
+                        <span class="relative z-10 flex items-center gap-2">
+                            انضم كمعلم
+                            <svg class="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                        </span>
+                    </a>
+                    <button type="button" data-menu-toggle aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobile-menu" class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200/60 bg-white/50 text-slate-700 backdrop-blur-md transition hover:border-brand-400 hover:text-brand-600 lg:hidden">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div data-menu-backdrop class="pointer-events-none fixed inset-0 z-40 bg-slate-950/30 opacity-0 transition duration-300"></div>
+
+    <aside id="mobile-menu" data-mobile-menu aria-hidden="true" class="glass-panel fixed right-0 top-0 z-50 flex h-full w-[min(88vw,380px)] translate-x-full flex-col overflow-y-auto rounded-l-[32px] border-r-0 p-5 transition duration-300">
+        <div class="flex items-start justify-between gap-4">
+            <div class="min-w-0">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-gradient-to-tr from-brand-700 via-brand-500 to-[#38bdf8] text-white shadow-md shadow-brand-500/20">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </div>
+                <div class="ml-2 flex flex-col justify-center">
+                    <span class="text-[20px] font-black tracking-tight text-slate-900 drop-shadow-sm leading-none" style="font-family: &quot;Outfit&quot;, system-ui, sans-serif">
+                        {{ site_settings.site_name|default:'Sana Academy' }}
+                    </span>
+                    <span class="mt-0.5 text-[8px] uppercase tracking-[0.2em] font-bold text-slate-400">Premium Education</span>
+                </div>
+                <p class="mt-3 text-sm text-slate-500">{{ site_settings.site_description|default:'منصة عربية مصممة لتمنح الأسرة السعودية شعورًا فوريًا بالثقة والوضوح.' }}</p>
+            </div>
+            <button type="button" data-menu-close aria-label="إغلاق القائمة" class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-brand-500/30 hover:text-brand-500">
+                <img src="{% static 'assets/icons/close-x.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+            </button>
+        </div>
+
+        <div class="shell-divider mt-6"></div>
+
+        <nav class="mt-6">
+            <ul class="space-y-2">
+                <li><a data-nav-link data-nav-type="mobile" class="block rounded-2xl px-4 py-3 text-base font-medium text-slate-700 transition hover:bg-brand-50 hover:text-brand-500" href="{% url 'main:home' %}">الرئيسية</a></li>
+                <li><a data-nav-link data-nav-type="mobile" class="block rounded-2xl px-4 py-3 text-base font-medium text-slate-700 transition hover:bg-brand-50 hover:text-brand-500" href="{% url 'about:about' %}">عن الأكاديمية</a></li>
+                <li><a data-nav-link data-nav-type="mobile" class="block rounded-2xl px-4 py-3 text-base font-medium text-slate-700 transition hover:bg-brand-50 hover:text-brand-500" href="{% url 'teacher:list' %}">المعلمون</a></li>
+                <li><a data-nav-link data-nav-type="mobile" class="block rounded-2xl px-4 py-3 text-base font-medium text-slate-700 transition hover:bg-brand-50 hover:text-brand-500" href="{% url 'about:how_it_works' %}">كيف نعمل</a></li>
+                <li><a data-nav-link data-nav-type="mobile" class="block rounded-2xl px-4 py-3 text-base font-medium text-slate-700 transition hover:bg-brand-50 hover:text-brand-500" href="{% url 'price:pricing' %}">الأسعار</a></li>
+                <li><a data-nav-link data-nav-type="mobile" class="block rounded-2xl px-4 py-3 text-base font-medium text-slate-700 transition hover:bg-brand-50 hover:text-brand-500" href="{% url 'main:faq' %}">الأسئلة الشائعة</a></li>
+                <li><a data-nav-link data-nav-type="mobile" class="block rounded-2xl px-4 py-3 text-base font-medium text-slate-700 transition hover:bg-brand-50 hover:text-brand-500" href="{% url 'blogs:list' %}">المدونة</a></li>
+                <li><a data-nav-link data-nav-type="mobile" class="block rounded-2xl px-4 py-3 text-base font-medium text-slate-700 transition hover:bg-brand-50 hover:text-brand-500" href="{% url 'contact:contact' %}">تواصل معنا</a></li>
+                <li><a data-nav-link data-nav-type="mobile" class="block rounded-2xl px-4 py-3 text-base font-semibold text-brand-600 transition hover:bg-brand-50" href="{% url 'teacher:apply' %}">✨ انضم كمعلم</a></li>
+            </ul>
+        </nav>
+
+        <div class="mt-6 grid gap-3">
+            <a class="inline-flex h-12 items-center justify-center rounded-full bg-brand-500 px-5 text-sm font-semibold text-white" href="{% url 'price:pricing' %}">ابدأ اشتراكك</a>
+            {% if site_settings.whatsapp %}
+                <a class="inline-flex h-12 items-center justify-center rounded-full border border-[#25D366]/25 bg-[#25D366]/10 px-5 text-sm font-semibold text-[#128c47]" href="https://wa.me/{{ site_settings.whatsapp }}">تواصل عبر واتساب</a>
+            {% endif %}
+        </div>
+
+        <div class="mt-6 rounded-[28px] bg-slate-950 px-5 py-6 text-white">
+            <p class="text-xs font-semibold tracking-[0.24em] text-white/60">معلومات سريعة</p>
+            <ul class="mt-4 space-y-3 text-sm text-white/80">
+                {% if site_settings.phone %}
+                    <li class="flex items-center justify-between gap-4"><span>الهاتف</span><a href="tel:{{ site_settings.phone }}" class="font-medium text-white">{{ site_settings.phone }}</a></li>
+                {% endif %}
+                {% if site_settings.email %}
+                    <li class="flex items-center justify-between gap-4"><span>البريد</span><a href="mailto:{{ site_settings.email }}" class="font-medium text-white">{{ site_settings.email }}</a></li>
+                {% endif %}
+                {% if site_settings.address %}
+                    <li class="flex items-center justify-between gap-4"><span>العنوان</span><span class="font-medium text-white">{{ site_settings.address }}</span></li>
+                {% endif %}
+            </ul>
+        </div>
+
+        {% if site_settings.social_links.all %}
+            <div class="mt-6 flex flex-wrap gap-3">
+                {% for social in site_settings.social_links.all %}
+                    <a class="footer-social-link" href="{{ social.url }}" aria-label="{{ social.get_platform_display }}">
+                        {% if social.platform == 'instagram' %}
+                            <img src="{% static 'assets/icons/instagram.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                        {% elif social.platform == 'x' %}
+                            <img src="{% static 'assets/icons/twitter-x.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                        {% elif social.platform == 'tiktok' %}
+                            <img src="{% static 'assets/icons/tiktok.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                        {% elif social.platform == 'linkedin' %}
+                            <img src="{% static 'assets/icons/linkedin.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                        {% elif social.platform == 'youtube' %}
+                            <img src="{% static 'assets/icons/youtube.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                        {% elif social.platform == 'facebook' %}
+                            <img src="{% static 'assets/icons/facebook.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                        {% elif social.platform == 'whatsapp' %}
+                            <img src="{% static 'assets/icons/whatsapp.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                        {% endif %}
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </aside>
+
+    {% block content %}{% endblock %}
+
+    <footer class="px-4 pb-4 pt-8 md:px-6 md:pt-10">
+        <div class="mx-auto max-w-[1500px] rounded-t-[36px] bg-brand-50 px-6 py-8 md:px-10 md:py-10">
+            <div class="flex flex-col gap-6 border-b border-brand-100 pb-6 md:flex-row md:items-center md:justify-between">
+                <div class="max-w-xl">
+                    {% if site_settings.logo %}
+                        <img src="{{ site_settings.logo.url }}" alt="شعار {{ site_settings.site_name }}" class="h-11 w-auto" />
+                    {% else %}
+                        <img src="{% static 'assets/logos/brand-logo.svg' %}" alt="شعار {{ site_settings.site_name|default:'أكاديمية سنا' }}" class="h-11 w-auto" />
+                    {% endif %}
+                    <p class="mt-4 text-sm text-slate-600">{{ site_settings.site_description|default:'منصة تعليمية عربية بعمق تجاري واضح وتجربة رقمية تمنح الأسرة السعودية إحساسًا فوريًا بالاحتراف.' }}</p>
+                </div>
+                {% if site_settings.social_links.all %}
+                    <div class="flex flex-wrap gap-3">
+                        {% for social in site_settings.social_links.all %}
+                            <a class="footer-social-link" href="{{ social.url }}" aria-label="{{ social.get_platform_display }}">
+                                {% if social.platform == 'instagram' %}
+                                    <img src="{% static 'assets/icons/instagram.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                                {% elif social.platform == 'x' %}
+                                    <img src="{% static 'assets/icons/twitter-x.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                                {% elif social.platform == 'tiktok' %}
+                                    <img src="{% static 'assets/icons/tiktok.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                                {% elif social.platform == 'linkedin' %}
+                                    <img src="{% static 'assets/icons/linkedin.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                                {% elif social.platform == 'youtube' %}
+                                    <img src="{% static 'assets/icons/youtube.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                                {% elif social.platform == 'facebook' %}
+                                    <img src="{% static 'assets/icons/facebook.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                                {% elif social.platform == 'whatsapp' %}
+                                    <img src="{% static 'assets/icons/whatsapp.svg' %}" alt="" aria-hidden="true" class="h-5 w-5" />
+                                {% endif %}
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="grid gap-8 py-8 md:grid-cols-2 xl:grid-cols-4">
+                <section>
+                    <h2 class="text-sm font-semibold text-slate-950">المزيد</h2>
+                    <ul class="mt-4 space-y-3 text-sm text-slate-600">
+                        <li><a class="transition hover:text-brand-500" href="{% url 'main:home' %}">الصفحة الرئيسية</a></li>
+                        <li><a class="transition hover:text-brand-500" href="{% url 'about:about' %}">عن الأكاديمية</a></li>
+                        <li><a class="transition hover:text-brand-500" href="{% url 'teacher:list' %}">المعلمون</a></li>
+                        <li><a class="transition hover:text-brand-500" href="{% url 'about:how_it_works' %}">كيف نعمل</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2 class="text-sm font-semibold text-slate-950">القانونية</h2>
+                    <ul class="mt-4 space-y-3 text-sm text-slate-600">
+                        <li><a class="transition hover:text-brand-500" href="{% url 'main:terms' %}">الشروط والأحكام</a></li>
+                        <li><a class="transition hover:text-brand-500" href="{% url 'main:privacy' %}">سياسة الخصوصية</a></li>
+                        <li><a class="transition hover:text-brand-500" href="{% url 'main:faq' %}">الأسئلة الشائعة</a></li>
+                        <li><a class="transition hover:text-brand-500" href="{% url 'contact:contact' %}">تواصل معنا</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2 class="text-sm font-semibold text-slate-950">الدعم</h2>
+                    <ul class="mt-4 space-y-3 text-sm text-slate-600">
+                        <li><a class="transition hover:text-brand-500" href="{% url 'price:pricing' %}">الأسعار والباقات</a></li>
+                        <li><a class="transition hover:text-brand-500" href="{% url 'contact:contact' %}">تواصل معنا</a></li>
+                        <li><a class="transition hover:text-brand-500" href="{% url 'main:faq' %}">الأسئلة الشائعة</a></li>
+                        <li><a class="transition hover:text-brand-500" href="{% url 'blogs:list' %}">المدونة</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2 class="text-sm font-semibold text-slate-950">الاعتماد</h2>
+                    <div class="mt-4 rounded-[28px] bg-white p-5 shadow-[0_20px_40px_rgba(15,23,42,0.06)]">
+                        <div class="flex items-center gap-4">
+                            {% if site_settings.accreditation_badge %}
+                                <img src="{{ site_settings.accreditation_badge.url }}" alt="شارة اعتماد {{ site_settings.site_name }}" class="h-16 w-16" loading="lazy" />
+                            {% else %}
+                                <img src="{% static 'assets/logos/accreditation-badge.svg' %}" alt="شارة اعتماد أكاديمية سنا" class="h-16 w-16" loading="lazy" />
+                            {% endif %}
+                            <div>
+                                <p class="font-semibold text-slate-950">شراكات ثقة وتعليم رقمي</p>
+                                <p class="mt-1 text-sm text-slate-600">{{ site_settings.accreditation_text|default:'أصول بصرية جاهزة لعرض جهات الاعتماد والشركاء في كل صفحة.' }}</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center gap-3 text-sm">
+                            {% if site_settings.whatsapp %}
+                                <a class="rounded-full bg-brand-500 px-4 py-2 font-semibold text-white" href="https://wa.me/{{ site_settings.whatsapp }}">واتساب</a>
+                            {% endif %}
+                            {% if site_settings.email %}
+                                <a class="rounded-full border border-brand-500/15 bg-brand-50 px-4 py-2 font-semibold text-brand-500" href="mailto:{{ site_settings.email }}">راسلنا</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="flex flex-col gap-3 border-t border-brand-100 pt-5 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+                <p>{{ site_settings.copyright_text|default:'© أكاديمية سنا. جميع الحقوق محفوظة.' }}</p>
+                <p>تجربة عربية أولاً، غنية بالمحتوى، ومبنية على محتوى CMS مشترك عبر جميع الصفحات.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script defer src="{% static 'js/navigation.js' %}"></script>
+    <script defer src="{% static 'js/animations.js' %}"></script>
+    <script defer src="{% static 'js/carousel.js' %}"></script>
+    <script defer src="{% static 'js/accordion.js' %}"></script>
+    <script defer src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

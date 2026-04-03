@@ -1,0 +1,350 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main id="page-content" class="min-h-screen pt-[88px]">
+
+    {# ── Hero ──────────────────────────────────────────────────────────────── #}
+    <section class="relative overflow-hidden bg-gradient-to-br from-slate-950 via-brand-900 to-slate-900 py-20 md:py-28">
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(37,99,235,0.25),transparent_60%)]"></div>
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(56,189,248,0.12),transparent_60%)]"></div>
+
+        <div class="relative mx-auto max-w-4xl px-4 text-center md:px-8">
+            {# Badge #}
+            <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-brand-200 backdrop-blur-sm">
+                <svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 7l-9-5 9-5 9 5-9 5z" />
+                </svg>
+                انضم إلى فريق المعلمين
+            </div>
+
+            <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
+                هل أنت معلم متميز؟
+                <span class="block bg-gradient-to-l from-[#38bdf8] to-brand-400 bg-clip-text text-transparent">
+                    انضم إلينا
+                </span>
+            </h1>
+            <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
+                نبحث عن معلمين شغوفين ومتخصصين للانضمام إلى منصة سنا أكاديمي وتقديم تجربة تعليمية استثنائية للطلاب وأولياء الأمور في المملكة العربية السعودية.
+            </p>
+
+            {# Quick stats #}
+            <div class="mt-10 flex flex-wrap justify-center gap-6">
+                {% for item in trust_items %}
+                    <div class="flex items-center gap-2 text-sm text-slate-300">
+                        <svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        {{ item }}
+                    </div>
+                {% empty %}
+                    <div class="flex items-center gap-2 text-sm text-slate-300"><svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>مرونة في الجداول</div>
+                    <div class="flex items-center gap-2 text-sm text-slate-300"><svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>رواتب تنافسية</div>
+                    <div class="flex items-center gap-2 text-sm text-slate-300"><svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>دعم كامل من الفريق</div>
+                    <div class="flex items-center gap-2 text-sm text-slate-300"><svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>آلاف الطلاب بانتظارك</div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    {# ── Main Content ──────────────────────────────────────────────────────── #}
+    <section class="py-16 md:py-24">
+        <div class="mx-auto max-w-6xl px-4 md:px-8">
+            <div class="grid gap-12 lg:grid-cols-[1fr_2fr]">
+
+                {# ── Left: Benefits sidebar ─────────────────────────────── #}
+                <aside class="space-y-6">
+                    <div class="rounded-3xl border border-brand-100 bg-brand-50 p-6">
+                        <h2 class="text-lg font-bold text-slate-900">مزايا الانضمام</h2>
+                        <ul class="mt-4 space-y-4">
+                            {% for benefit in benefits %}
+                                <li class="flex items-start gap-3 text-sm text-slate-700">
+                                    <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600">
+                                        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </span>
+                                    {{ benefit }}
+                                </li>
+                            {% empty %}
+                                <li class="flex items-start gap-3 text-sm text-slate-700"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600"><svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg></span>مرونة في تحديد مواعيدك</li>
+                                <li class="flex items-start gap-3 text-sm text-slate-700"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600"><svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg></span>راتب شهري ثابت + حوافز إضافية</li>
+                                <li class="flex items-start gap-3 text-sm text-slate-700"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600"><svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg></span>دعم تقني وإداري كامل</li>
+                                <li class="flex items-start gap-3 text-sm text-slate-700"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600"><svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg></span>وصول لآلاف الطلاب فور الانضمام</li>
+                                <li class="flex items-start gap-3 text-sm text-slate-700"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600"><svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg></span>تدريب وتطوير مستمر</li>
+                                <li class="flex items-start gap-3 text-sm text-slate-700"><span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600"><svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg></span>مجتمع معلمين داعم ومتفاعل</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-card">
+                        <h2 class="text-lg font-bold text-slate-900">ماذا نبحث عنه؟</h2>
+                        <ul class="mt-4 space-y-3">
+                            {% for req in requirements %}
+                                <li class="flex items-start gap-3 text-sm text-slate-600">
+                                    <svg class="mt-0.5 h-4 w-4 shrink-0 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    {{ req }}
+                                </li>
+                            {% empty %}
+                                <li class="flex items-start gap-3 text-sm text-slate-600"><svg class="mt-0.5 h-4 w-4 shrink-0 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>خبرة تدريسية لا تقل عن سنة</li>
+                                <li class="flex items-start gap-3 text-sm text-slate-600"><svg class="mt-0.5 h-4 w-4 shrink-0 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>شغف حقيقي بالتعليم</li>
+                                <li class="flex items-start gap-3 text-sm text-slate-600"><svg class="mt-0.5 h-4 w-4 shrink-0 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>القدرة على شرح المادة بأسلوب واضح</li>
+                                <li class="flex items-start gap-3 text-sm text-slate-600"><svg class="mt-0.5 h-4 w-4 shrink-0 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>التزام بالمواعيد والجلسات المحددة</li>
+                                <li class="flex items-start gap-3 text-sm text-slate-600"><svg class="mt-0.5 h-4 w-4 shrink-0 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>مؤهل أكاديمي في التخصص</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="rounded-3xl bg-slate-950 p-6 text-white">
+                        <p class="text-xs font-semibold tracking-[0.2em] text-white/50">تواصل سريع</p>
+                        {% if site_settings.whatsapp %}
+                            <a href="https://wa.me/{{ site_settings.whatsapp }}"
+                               class="mt-4 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm transition hover:bg-white/10">
+                                <svg class="h-5 w-5 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.12 1.524 5.855L.057 23.944l6.264-1.44A11.947 11.947 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm5.99 17.01A9.938 9.938 0 0112 22a9.938 9.938 0 01-5.062-1.373l-3.559.819.837-3.481A9.938 9.938 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10a9.938 9.938 0 01-1.01 4.01z"/>
+                                </svg>
+                                <span>تواصل عبر واتساب</span>
+                            </a>
+                        {% endif %}
+                        {% if site_settings.email %}
+                            <a href="mailto:{{ site_settings.email }}"
+                               class="mt-3 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm transition hover:bg-white/10">
+                                <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                <span>{{ site_settings.email }}</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                </aside>
+
+                {# ── Right: Form ────────────────────────────────────────── #}
+                <div>
+                    {% if success %}
+                        {# Success message #}
+                        <div class="flex flex-col items-center justify-center rounded-3xl border border-green-100 bg-green-50 px-8 py-16 text-center">
+                            <div class="flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
+                                <svg class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h2 class="mt-6 text-2xl font-bold text-slate-900">تم استلام طلبك بنجاح! 🎉</h2>
+                            <p class="mt-3 max-w-md text-base text-slate-600">
+                                شكرًا لاهتمامك بالانضمام إلى أكاديمية سنا. سيتواصل معك فريقنا خلال 3-5 أيام عمل لمراجعة طلبك.
+                            </p>
+                            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                                <a href="{% url 'teacher:apply' %}"
+                                   class="inline-flex h-12 items-center gap-2 rounded-2xl border border-slate-200 bg-white px-6 text-sm font-semibold text-slate-700 transition hover:border-brand-400 hover:text-brand-600">
+                                    تقديم طلب آخر
+                                </a>
+                                <a href="{% url 'main:home' %}"
+                                   class="inline-flex h-12 items-center gap-2 rounded-2xl bg-brand-600 px-6 text-sm font-bold text-white shadow-[0_8px_20px_-6px_rgba(37,99,235,0.5)] transition hover:bg-brand-700">
+                                    العودة للرئيسية
+                                </a>
+                            </div>
+                        </div>
+
+                    {% else %}
+                        {# Form card #}
+                        <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] md:p-10">
+                            <div class="mb-8 border-b border-slate-100 pb-6">
+                                <h2 class="text-2xl font-bold text-slate-900">نموذج التقديم</h2>
+                                <p class="mt-2 text-sm text-slate-500">
+                                    أكمل البيانات أدناه وسنتواصل معك في أقرب وقت ممكن.
+                                    <span class="text-red-500">*</span> حقول إلزامية.
+                                </p>
+                            </div>
+
+                            <form method="post" enctype="multipart/form-data" novalidate class="space-y-6">
+                                {% csrf_token %}
+
+                                {# Personal info row #}
+                                <div class="grid gap-6 sm:grid-cols-2">
+                                    {# Full name #}
+                                    <div>
+                                        <label for="{{ form.full_name.id_for_label }}" class="form-label">
+                                            {{ form.full_name.label }}
+                                            <span class="text-red-500">*</span>
+                                        </label>
+                                        {{ form.full_name }}
+                                        {% if form.full_name.errors %}
+                                            <p class="mt-1 text-xs text-red-600">{{ form.full_name.errors.0 }}</p>
+                                        {% endif %}
+                                    </div>
+
+                                    {# Phone #}
+                                    <div>
+                                        <label for="{{ form.phone.id_for_label }}" class="form-label">
+                                            {{ form.phone.label }}
+                                            <span class="text-red-500">*</span>
+                                        </label>
+                                        {{ form.phone }}
+                                        {% if form.phone.errors %}
+                                            <p class="mt-1 text-xs text-red-600">{{ form.phone.errors.0 }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                {# Email (optional) #}
+                                <div>
+                                    <label for="{{ form.email.id_for_label }}" class="form-label">
+                                        {{ form.email.label }}
+                                    </label>
+                                    {{ form.email }}
+                                    {% if form.email.errors %}
+                                        <p class="mt-1 text-xs text-red-600">{{ form.email.errors.0 }}</p>
+                                    {% endif %}
+                                </div>
+
+                                {# Specialization + Experience row #}
+                                <div class="grid gap-6 sm:grid-cols-2">
+                                    <div>
+                                        <label for="{{ form.specialization.id_for_label }}" class="form-label">
+                                            {{ form.specialization.label }}
+                                            <span class="text-red-500">*</span>
+                                        </label>
+                                        {{ form.specialization }}
+                                        {% if form.specialization.errors %}
+                                            <p class="mt-1 text-xs text-red-600">{{ form.specialization.errors.0 }}</p>
+                                        {% endif %}
+                                    </div>
+                                    <div>
+                                        <label for="{{ form.experience.id_for_label }}" class="form-label">
+                                            {{ form.experience.label }}
+                                            <span class="text-red-500">*</span>
+                                        </label>
+                                        {{ form.experience }}
+                                        {% if form.experience.errors %}
+                                            <p class="mt-1 text-xs text-red-600">{{ form.experience.errors.0 }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                {# Courses #}
+                                <div>
+                                    <label for="{{ form.courses.id_for_label }}" class="form-label">
+                                        {{ form.courses.label }}
+                                        <span class="text-red-500">*</span>
+                                    </label>
+                                    {{ form.courses }}
+                                    <p class="mt-1 text-xs text-slate-400">{{ form.courses.help_text }}</p>
+                                    {% if form.courses.errors %}
+                                        <p class="mt-1 text-xs text-red-600">{{ form.courses.errors.0 }}</p>
+                                    {% endif %}
+                                </div>
+
+                                {# Description #}
+                                <div>
+                                    <label for="{{ form.description.id_for_label }}" class="form-label">
+                                        {{ form.description.label }}
+                                        <span class="text-red-500">*</span>
+                                    </label>
+                                    {{ form.description }}
+                                    <p class="mt-1 text-xs text-slate-400">{{ form.description.help_text }}</p>
+                                    {% if form.description.errors %}
+                                        <p class="mt-1 text-xs text-red-600">{{ form.description.errors.0 }}</p>
+                                    {% endif %}
+                                </div>
+
+                                {# Attachments #}
+                                <div>
+                                    <label for="{{ form.attachments.id_for_label }}" class="form-label">
+                                        {{ form.attachments.label }}
+                                    </label>
+                                    <div class="mt-2 rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 p-6 transition hover:border-brand-300 hover:bg-brand-50/30">
+                                        <div class="text-center">
+                                            <svg class="mx-auto h-10 w-10 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                                            </svg>
+                                            <p class="mt-2 text-sm text-slate-600">{{ form.attachments.help_text }}</p>
+                                            <p class="mt-1 text-xs text-slate-400">صور، فيديوهات، PDF، شهادات، CV</p>
+                                        </div>
+                                        <div class="mt-4">
+                                            {{ form.attachments }}
+                                        </div>
+                                        {% if form.attachments.errors %}
+                                            <p class="mt-2 text-xs text-red-600">{{ form.attachments.errors.0 }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                {# Non-field errors #}
+                                {% if form.non_field_errors %}
+                                    <div class="rounded-2xl border border-red-200 bg-red-50 px-4 py-3">
+                                        {% for error in form.non_field_errors %}
+                                            <p class="text-sm text-red-700">{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+
+                                {# Submit #}
+                                <div class="flex items-center justify-between gap-4 border-t border-slate-100 pt-6">
+                                    <p class="text-xs text-slate-400">
+                                        بتقديم الطلب، توافق على مراجعة بياناتك من قِبَل فريق الأكاديمية.
+                                    </p>
+                                    <button type="submit"
+                                            class="group relative inline-flex h-13 min-w-[180px] items-center justify-center overflow-hidden rounded-2xl bg-brand-600 px-8 text-base font-bold text-white shadow-[0_12px_24px_-8px_rgba(37,99,235,0.5)] transition-all duration-300 hover:scale-[1.02] hover:bg-brand-700 active:scale-[0.98]">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] transition-transform duration-700 group-hover:translate-x-[100%]"></div>
+                                        <span class="relative z-10 flex items-center gap-2">
+                                            إرسال الطلب
+                                            <svg class="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<style>
+    .form-label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #334155;
+        margin-bottom: 0.375rem;
+    }
+    .form-input,
+    input[type="text"].form-input,
+    input[type="email"].form-input,
+    input[type="tel"].form-input,
+    select.form-input,
+    textarea.form-input {
+        display: block;
+        width: 100%;
+        border-radius: 0.875rem;
+        border: 1.5px solid #e2e8f0;
+        background-color: #f8fafc;
+        padding: 0.75rem 1rem;
+        font-size: 0.9375rem;
+        color: #0f172a;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        outline: none;
+        font-family: inherit;
+    }
+    .form-input:focus {
+        border-color: #2563eb;
+        background-color: #fff;
+        box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+    }
+    select.form-input {
+        appearance: none;
+        cursor: pointer;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: left 0.75rem center;
+        background-size: 1.25rem;
+        padding-left: 2.5rem;
+    }
+</style>
+{% endblock %}

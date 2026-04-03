@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block content %}
+  <main id="page-content" class="pt-[64px] md:pt-[80px]">
+    <section class="px-4 pb-8 pt-8 md:px-6 md:pb-12 md:pt-10">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="animate-on-scroll text-center">
+          <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">الأسئلة الشائعة</p>
+          <h1 class="mt-4 text-3xl font-bold leading-[1.35] text-slate-950 md:text-5xl">كل ما تحتاج معرفته قبل البدء</h1>
+          <p class="mx-auto mt-5 max-w-3xl text-base leading-8 text-slate-600 md:text-lg">
+            إجابات شاملة على الأسئلة الأكثر شيوعًا حول خدماتنا. إذا لم تجد إجابتك، تواصل معنا مباشرة وسنساعدك.
+          </p>
+          <div class="mx-auto mt-8 max-w-xl">
+            <div class="relative">
+              <input
+                type="search"
+                placeholder="ابحث في الأسئلة..."
+                class="w-full rounded-2xl border border-slate-200 bg-white px-6 py-4 pr-14 text-base text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+              />
+              <span class="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400">?</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-6 md:px-6 md:py-8">
+      <div class="mx-auto max-w-[1000px]">
+        <div class="animate-on-scroll">
+          <div data-filter-group="faq" class="no-scrollbar flex flex-wrap gap-2 md:gap-3">
+            <button
+              type="button"
+              data-filter-button="all"
+              aria-pressed="true"
+              class="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition md:px-6 md:py-3"
+            >
+              الكل
+            </button>
+            {% for category in faq_categories %}
+              <button
+                type="button"
+                data-filter-button="{{ category.value }}"
+                aria-pressed="false"
+                class="rounded-full border border-slate-200 bg-slate-50 px-5 py-2.5 text-sm font-semibold text-slate-600 transition hover:border-blue-300 hover:bg-blue-50 md:px-6 md:py-3"
+              >
+                {{ category.label }}
+              </button>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-8 md:px-6 md:py-12">
+      <div class="mx-auto max-w-[1000px]">
+        <div data-filter-items="faq" data-accordion class="space-y-3">
+          {% for faq in faqs %}
+            <article data-accordion-item data-filter-item="{{ faq.category }}" class="overflow-hidden rounded-[20px] bg-slate-50">
+              <button
+                type="button"
+                data-accordion-button
+                aria-expanded="false"
+                class="flex w-full items-center justify-between gap-4 px-5 py-7 text-right"
+              >
+                <span class="text-base font-bold text-slate-950 lg:text-[22px]">{{ faq.question }}</span>
+                <span data-accordion-icon class="text-[40px] font-thin leading-none text-brand-500">+</span>
+              </button>
+              <div data-accordion-panel aria-hidden="true" class="faq-panel px-8 pb-8 text-base font-medium leading-8 text-slate-600">
+                {{ faq.answer }}
+              </div>
+            </article>
+          {% empty %}
+            <div class="rounded-[20px] bg-slate-50 px-6 py-8 text-center text-slate-600">لا توجد أسئلة شائعة منشورة حاليًا.</div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-10 md:px-6 md:py-16">
+      <div class="mx-auto max-w-[1000px]">
+        <div class="animate-on-scroll overflow-hidden rounded-[32px] bg-brand-gradient p-8 text-white shadow-shell md:p-10">
+          <div class="text-center">
+            <h2 class="text-2xl font-bold md:text-3xl">لم تجد إجابتك؟</h2>
+            <p class="mx-auto mt-3 max-w-2xl text-base text-white/85">
+              فريقنا جاهز للإجابة على جميع استفساراتك. تواصل معنا الآن وسنرد عليك في أقرب وقت.
+            </p>
+            <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              {% if site_settings.whatsapp %}
+                <a class="inline-flex h-14 items-center justify-center rounded-xl bg-[#25D366] px-8 text-lg font-semibold text-white" href="https://wa.me/{{ site_settings.whatsapp }}">
+                  تواصل عبر الواتساب
+                </a>
+              {% endif %}
+              {% if site_settings.email %}
+                <a class="inline-flex h-14 items-center justify-center rounded-xl border border-white/30 bg-white/10 px-8 text-lg font-semibold text-white backdrop-blur" href="mailto:{{ site_settings.email }}">
+                  راسلنا عبر البريد
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-10 md:px-6 md:py-16">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="animate-on-scroll text-center">
+          <h2 class="text-2xl font-bold text-slate-950 md:text-3xl">روابط مفيدة</h2>
+        </div>
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {% for link in related_links %}
+            <a
+              href="{{ link.url }}"
+              class="animate-on-scroll group rounded-[28px] border border-slate-200 bg-white p-6 shadow-card transition hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(15,23,42,0.12)]"
+            >
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-lg font-bold text-brand-500">
+                {{ forloop.counter }}
+              </div>
+              <h3 class="mt-5 text-lg font-bold text-slate-950 transition group-hover:text-brand-500">{{ link.title }}</h3>
+              {% if link.description %}
+                <p class="mt-3 text-sm leading-7 text-slate-500">{{ link.description }}</p>
+              {% endif %}
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock content %}

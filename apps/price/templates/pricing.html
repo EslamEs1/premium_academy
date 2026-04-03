@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <main id="page-content" class="pt-[64px] md:pt-[80px]">
+    <section class="px-4 pb-8 pt-8 md:px-6 md:pb-12 md:pt-10">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="animate-on-scroll text-center">
+          <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">
+            الأسعار والباقات
+          </p>
+          <h1 class="mt-4 text-3xl font-bold leading-[1.35] text-slate-950 md:text-5xl">
+            {{ page_settings.title|default:'خطط مرنة تناسب احتياجاتك' }}
+          </h1>
+          <p class="mx-auto mt-5 max-w-3xl text-base leading-8 text-slate-600 md:text-lg">
+            {{ page_settings.description|default:page_settings.subtitle|default:'اختر الخطة المناسبة لتحقيق أهدافك التعليمية. نوفر خيارات متنوعة تناسب مختلف الميزانيات والاحتياجات مع ضمان الجودة العالية.' }}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-8 md:px-6 md:py-12">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="animate-on-scroll grid gap-6 lg:grid-cols-3">
+          {% for plan in plans %}
+            <article class="{% if plan.is_popular %}relative rounded-[28px] border-2 border-yellow-400 bg-white p-8 shadow-[0_24px_60px_rgba(250,204,21,0.15)] lg:scale-105{% elif forloop.last %}rounded-[28px] bg-brand-gradient p-8 text-white shadow-shell{% else %}rounded-[28px] border border-slate-200 bg-white p-8 shadow-card{% endif %}">
+              {% if plan.is_popular %}
+                <div
+                  class="absolute -top-4 right-6 rounded-full bg-yellow-400 px-4 py-1.5 text-sm font-bold text-slate-900">
+                  الأكثر طلبًا
+                </div>
+              {% endif %}
+              <h3 class="text-xl font-bold {% if forloop.last and not plan.is_popular %}text-white{% else %}text-slate-950{% endif %}">{{ plan.name }}</h3>
+              <div class="mt-4">
+                <span class="text-4xl font-bold {% if forloop.last and not plan.is_popular %}text-white{% else %}text-brand-500{% endif %}">{{ plan.price|floatformat:0 }}</span>
+                <span class="text-lg {% if forloop.last and not plan.is_popular %}text-white/70{% else %}text-slate-500{% endif %}">{{ plan.billing_period }}</span>
+              </div>
+              <p class="mt-3 text-sm {% if forloop.last and not plan.is_popular %}text-white/70{% else %}text-slate-500{% endif %}">
+                {{ plan.description }}
+              </p>
+              <ul class="mt-6 space-y-3">
+                {% for feature in plan.features.all %}
+                  <li class="flex items-center gap-3 text-sm {% if forloop.parentloop.last and not plan.is_popular %}text-white/90{% elif feature.is_included %}text-slate-600{% else %}text-slate-400{% endif %}">
+                    <span class="inline-flex h-5 w-5 items-center justify-center rounded-full {% if feature.is_included %}bg-green-100 text-green-600{% else %}bg-slate-200 text-slate-500{% endif %}">
+                      {% if feature.is_included %}✓{% else %}×{% endif %}
+                    </span>
+                    <span>{{ feature.text }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
+              <a href="{{ plan.cta_url }}"
+                class="mt-8 inline-flex h-14 w-full items-center justify-center rounded-xl {% if plan.is_popular %}bg-brand-500 text-lg font-semibold text-white shadow-[0_18px_40px_rgba(37,99,235,0.22)] transition hover:bg-brand-700{% elif forloop.last %}bg-white text-lg font-semibold text-brand-500 shadow-[0_18px_40px_rgba(0,0,0,0.15)] transition hover:bg-slate-50{% else %}border border-brand-500/20 bg-white text-lg font-semibold text-brand-500 transition hover:bg-brand-50{% endif %}">{{ plan.cta_text }}</a>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-10 md:px-6 md:py-16">
+      <div class="mx-auto max-w-[1200px]">
+        <div class="animate-on-scroll text-center">
+          <h2 class="text-2xl font-bold text-slate-950 md:text-3xl">
+            مقارنة المميزات
+          </h2>
+          <p class="mt-3 text-sm text-slate-500">
+            اطلع على الفروقات بين الباقات لاختيار الأنسب
+          </p>
+        </div>
+        <div class="animate-on-scroll mt-10 overflow-x-auto">
+          <table class="w-full min-w-[600px]">
+            <thead>
+              <tr class="border-b border-slate-200">
+                <th class="pb-4 text-right text-sm font-semibold text-slate-900">
+                  الميزة
+                </th>
+                {% for plan in plans %}
+                  <th class="pb-4 text-center text-sm font-semibold {% if plan.is_popular %}text-brand-500{% else %}text-slate-900{% endif %}">
+                    {{ plan.name|cut:'الباقة ' }}
+                  </th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody class="text-sm">
+              {% for feature in comparison_features %}
+                <tr class="{% if not forloop.last %}border-b border-slate-100{% endif %}">
+                  <td class="py-4 text-slate-700">{{ feature.label }}</td>
+                  <td class="py-4 text-center text-slate-600">{{ feature.basic_value }}</td>
+                  <td class="py-4 text-center font-semibold text-slate-900">{{ feature.premium_value }}</td>
+                  <td class="py-4 text-center text-slate-600">{{ feature.professional_value }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-10 md:px-6 md:py-16">
+      <div class="mx-auto max-w-[1000px]">
+        <div class="animate-on-scroll text-center">
+          <h2 class="text-2xl font-bold text-slate-950 md:text-3xl">
+            أسئلة حول الدفع والاشتراك
+          </h2>
+        </div>
+        <div data-accordion class="animate-on-scroll mt-10 space-y-3">
+          {% for faq in pricing_faqs %}
+            <article data-accordion-item class="overflow-hidden rounded-[20px] bg-slate-50">
+              <button type="button" data-accordion-button aria-expanded="false"
+                class="flex w-full items-center justify-between gap-4 px-5 py-7 text-right">
+                <span class="text-base font-bold text-slate-950 lg:text-[22px]">{{ faq.question }}</span>
+                <span data-accordion-icon class="text-[40px] font-thin leading-none text-brand-500">+</span>
+              </button>
+              <div data-accordion-panel aria-hidden="true"
+                class="faq-panel px-8 pb-8 text-base font-medium leading-8 text-slate-600">
+                {{ faq.answer }}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-10 md:px-6 md:py-16">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="animate-on-scroll text-center">
+          <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">
+            تجارب الطلاب
+          </p>
+          <h2 class="mt-3 text-3xl font-bold text-slate-950 md:text-4xl">
+            نتائج حقيقية من طلاب حقيقيين
+          </h2>
+        </div>
+        <div class="no-scrollbar mt-10 flex gap-4 overflow-x-auto pb-2 lg:gap-6">
+          {% for testimonial in testimonials %}
+            <article class="animate-on-scroll w-[280px] shrink-0 rounded-2xl bg-white p-6 shadow-card md:w-[340px]">
+              <div class="flex items-center gap-4">
+                <div
+                  class="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#2563EB] to-blue-800 text-lg font-bold text-white">
+                  {{ testimonial.student_initials }}
+                </div>
+                <div>
+                  <h3 class="font-bold">{{ testimonial.student_name }}</h3>
+                  <p class="text-sm text-slate-500">{{ testimonial.level }} | {{ testimonial.subject }}</p>
+                </div>
+              </div>
+              <p class="mt-4 text-yellow-400">★ {{ testimonial.rating }}/5</p>
+              <p class="mt-4 text-base leading-8 text-slate-600">
+                {{ testimonial.quote }}
+              </p>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    {% if cta %}
+      <section class="bg-slate-50 px-4 py-16 md:px-6 md:py-20">
+        <div class="mx-auto max-w-[1000px] text-center">
+          <div class="animate-on-scroll">
+            {% if cta.subheading %}
+              <p class="text-sm font-semibold tracking-[0.22em] text-brand-500">
+                {{ cta.subheading }}
+              </p>
+            {% endif %}
+            <h2 class="mt-3 text-[28px] font-bold text-slate-950 md:text-4xl">
+              {{ cta.heading }}
+            </h2>
+            {% if cta.body_text %}
+              <p class="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-600 md:text-lg">
+                {{ cta.body_text }}
+              </p>
+            {% endif %}
+            <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              {% if cta.primary_cta_text and cta.primary_cta_url %}
+                <a class="inline-flex h-14 items-center justify-center rounded-xl bg-brand-500 px-8 text-xl font-semibold text-white shadow-[0_18px_40px_rgba(37,99,235,0.22)]"
+                  href="{{ cta.primary_cta_url }}">{{ cta.primary_cta_text }}</a>
+              {% endif %}
+              {% if cta.secondary_cta_text and cta.secondary_cta_url %}
+                <a class="inline-flex h-14 items-center justify-center rounded-xl bg-[#25D366] px-8 text-xl font-semibold text-white"
+                  href="{{ cta.secondary_cta_url }}">{{ cta.secondary_cta_text }}</a>
+              {% endif %}
+            </div>
+            {% if cta.social_proof_text %}
+              <p class="mt-6 text-sm text-slate-500">
+                {{ cta.social_proof_text }}
+              </p>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  </main>
+
+{% endblock content %}

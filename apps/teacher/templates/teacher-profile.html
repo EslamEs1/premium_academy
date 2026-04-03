@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <main id="page-content" class="pt-[64px] md:pt-[80px]">
+    <nav class="px-4 py-4 md:px-6 md:py-5" aria-label="التنقل التفصيلي">
+      <div class="mx-auto max-w-[1500px]">
+        <ol class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+          <li>
+            <a href="{% url 'main:home' %}" class="transition hover:text-brand-500">الرئيسية</a>
+          </li>
+          <li class="text-slate-300">/</li>
+          <li>
+            <a href="{% url 'teacher:list' %}" class="transition hover:text-brand-500">المعلمون</a>
+          </li>
+          <li class="text-slate-300">/</li>
+          <li class="font-medium text-slate-700">{{ teacher.name }}</li>
+        </ol>
+      </div>
+    </nav>
+
+    <section class="px-4 pb-8 pt-4 md:px-6 md:pb-12 md:pt-6">
+      <div class="mx-auto max-w-[1500px]">
+        <div
+          class="animate-on-scroll overflow-hidden rounded-[36px] border border-brand-100 bg-white/90 px-6 py-8 shadow-shell md:px-10 md:py-10">
+          <div class="grid items-start gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+            <div class="flex flex-col items-center text-center lg:items-start lg:text-right">
+              <div class="relative">
+                {% if teacher.photo %}
+                  <img src="{{ teacher.photo.url }}" alt="{{ teacher.name }}"
+                    class="h-32 w-32 rounded-full object-cover shadow-[0_20px_50px_rgba(37,99,235,0.25)] md:h-40 md:w-40" />
+                {% else %}
+                  <div
+                    class="flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-[#2563EB] to-blue-800 text-4xl font-bold text-white shadow-[0_20px_50px_rgba(37,99,235,0.25)] md:h-40 md:w-40 md:text-5xl">
+                    {{ teacher.initials|default:teacher.name|slice:":2" }}
+                  </div>
+                {% endif %}
+                <div
+                  class="absolute -bottom-1 -right-1 flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-yellow-400 text-sm font-bold text-slate-900">
+                  ★
+                </div>
+              </div>
+              <h1 class="mt-6 text-2xl font-bold text-slate-950 md:text-3xl">
+                {{ teacher.name }}
+              </h1>
+              <p class="mt-2 text-base text-slate-500">{{ teacher.title }}</p>
+              <div class="mt-4 flex flex-wrap justify-center gap-2 lg:justify-start">
+                <span class="rounded-full bg-blue-100 px-4 py-1.5 text-sm font-medium text-blue-700">
+                  {{ teacher.primary_subject.name }}
+                </span>
+                {% for specialization in specializations %}
+                  {% if specialization.label and specialization.label != teacher.primary_subject.name %}
+                    <span class="rounded-full bg-blue-100 px-4 py-1.5 text-sm font-medium text-blue-700">
+                      {{ specialization.label }}
+                    </span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <div class="mt-4 flex flex-wrap justify-center gap-2 lg:justify-start">
+                <span class="rounded-full bg-yellow-100 px-4 py-1.5 text-sm font-medium text-yellow-800">
+                  {{ teacher.experience_years }} سنوات خبرة
+                </span>
+              </div>
+              <div class="mt-6 rounded-2xl bg-slate-50 px-5 py-4 text-center lg:w-full">
+                <p class="text-sm text-slate-500">يبدأ من</p>
+                <p class="mt-1 text-2xl font-bold text-brand-500">
+                  {{ teacher.session_rate }} ر.س / الحصة
+                </p>
+              </div>
+              <div class="mt-6 grid w-full gap-3">
+                <a href="{{ teacher.booking_cta_url|default:'/contact/' }}"
+                  class="inline-flex h-14 items-center justify-center rounded-xl bg-brand-500 px-8 text-lg font-semibold text-white shadow-[0_18px_40px_rgba(37,99,235,0.22)]">
+                  {{ teacher.booking_cta_text|default:'احجز حصة' }}
+                </a>
+                {% if teacher.whatsapp_url %}
+                  <a href="{{ teacher.whatsapp_url }}"
+                    class="inline-flex h-14 items-center justify-center rounded-xl border border-[#25D366]/25 bg-[#25D366]/10 px-8 text-lg font-semibold text-[#128c47]">
+                    تواصل عبر واتساب
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+            <div>
+              <div class="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
+                <div class="rounded-2xl bg-slate-50 p-4 text-center">
+                  <p class="text-2xl font-bold text-brand-500 md:text-3xl">{{ teacher.rating }}</p>
+                  <p class="mt-1 text-sm text-slate-500">التقييم</p>
+                </div>
+                <div class="rounded-2xl bg-slate-50 p-4 text-center">
+                  <p class="text-2xl font-bold text-brand-500 md:text-3xl">{{ teacher.student_count }}</p>
+                  <p class="mt-1 text-sm text-slate-500">طالب</p>
+                </div>
+                <div class="rounded-2xl bg-slate-50 p-4 text-center">
+                  <p class="text-2xl font-bold text-brand-500 md:text-3xl">{{ teacher.completed_sessions }}</p>
+                  <p class="mt-1 text-sm text-slate-500">حصة مكتملة</p>
+                </div>
+                <div class="rounded-2xl bg-slate-50 p-4 text-center">
+                  <p class="text-2xl font-bold text-brand-500 md:text-3xl">{{ teacher.experience_years }}</p>
+                  <p class="mt-1 text-sm text-slate-500">سنوات خبرة</p>
+                </div>
+              </div>
+              <div class="mt-6">
+                <h2 class="text-lg font-bold text-slate-950">
+                  نبذة عن المعلم
+                </h2>
+                <div class="mt-3 text-base leading-8 text-slate-600">
+                  {{ teacher.full_bio|linebreaks }}
+                </div>
+                {% if teacher.qualifications %}
+                  <div class="mt-4 rounded-2xl bg-slate-50 p-4 text-sm leading-7 text-slate-600">
+                    {{ teacher.qualifications|linebreaksbr }}
+                  </div>
+                {% endif %}
+              </div>
+              <div class="mt-6 flex flex-wrap gap-4">
+                {% for feature in features %}
+                  <div class="flex items-center gap-2 text-sm text-slate-600">
+                    <span
+                      class="flex h-5 w-5 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-600">✓</span>
+                    <span>{{ feature.text }}</span>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-8 md:px-6 md:py-12">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="animate-on-scroll">
+          <h2 class="text-xl font-bold text-slate-950 md:text-2xl">
+            التخصصات والمراحل
+          </h2>
+          <p class="mt-2 text-sm text-slate-500">
+            المواد والمراحل الدراسية التي يدرسها المعلم
+          </p>
+          <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {% for specialization in specializations %}
+              <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                <p class="font-semibold text-slate-900">
+                  {{ specialization.label|default:specialization.subject.name }}
+                </p>
+                <p class="mt-1 text-sm text-slate-500">{{ specialization.grade_level }}</p>
+              </div>
+            {% empty %}
+              <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                <p class="font-semibold text-slate-900">{{ teacher.primary_subject.name }}</p>
+                <p class="mt-1 text-sm text-slate-500">{{ teacher.experience_description }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-8 md:px-6 md:py-12">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="animate-on-scroll">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-xl font-bold text-slate-950 md:text-2xl">
+                آراء الطلاب
+              </h2>
+              <p class="mt-2 text-sm text-slate-500">
+                تقييمات حقيقية من طلاب درسوا معه
+              </p>
+            </div>
+            <div class="hidden rounded-full bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-500 sm:block">
+              {{ teacher.rating }} من ٥ نجوم
+            </div>
+          </div>
+          <div class="mt-6 grid gap-4 md:grid-cols-2">
+            {% for review in reviews %}
+              <article class="rounded-2xl bg-white p-6 shadow-card">
+                <div class="flex items-center gap-4">
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#2563EB] to-blue-800 text-base font-bold text-white">
+                    {{ review.student_initials|default:review.student_name|slice:":2" }}
+                  </div>
+                  <div>
+                    <h3 class="font-bold">{{ review.student_name }}</h3>
+                    <p class="text-sm text-slate-500">{{ review.level }}{% if review.subject %} • {{ review.subject }}{% endif %}</p>
+                  </div>
+                  <div class="mr-auto text-yellow-400">★ {{ review.rating }}/5</div>
+                </div>
+                <p class="mt-4 text-base leading-8 text-slate-600">
+                  {{ review.quote }}
+                </p>
+                <p class="mt-3 text-sm text-slate-400">{{ review.review_date|date:"j F Y" }}</p>
+              </article>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-8 md:px-6 md:py-12">
+      <div class="mx-auto max-w-[1500px]">
+        <div
+          class="animate-on-scroll grid gap-4 rounded-[32px] border border-slate-200/80 bg-slate-50 px-5 py-6 shadow-[0_18px_44px_rgba(15,23,42,0.05)] sm:grid-cols-2 lg:grid-cols-4">
+          <article class="rounded-[24px] bg-white px-5 py-5 text-center shadow-sm">
+            <p class="text-sm text-slate-500">الحصص المكتملة</p>
+            <p class="mt-2 text-3xl font-bold text-brand-500">{{ teacher.completed_sessions }}</p>
+            <p class="mt-1 text-sm text-slate-600">حصة ناجحة</p>
+          </article>
+          <article class="rounded-[24px] bg-white px-5 py-5 text-center shadow-sm">
+            <p class="text-sm text-slate-500">عدد الطلاب</p>
+            <p class="mt-2 text-3xl font-bold text-brand-500">{{ teacher.student_count }}</p>
+            <p class="mt-1 text-sm text-slate-600">طالب نشط</p>
+          </article>
+          <article class="rounded-[24px] bg-white px-5 py-5 text-center shadow-sm">
+            <p class="text-sm text-slate-500">التقييم</p>
+            <p class="mt-2 text-3xl font-bold text-brand-500">{{ teacher.rating }}</p>
+            <p class="mt-1 text-sm text-slate-600">من ٥ نجوم</p>
+          </article>
+          <article class="rounded-[24px] bg-white px-5 py-5 text-center shadow-sm">
+            <p class="text-sm text-slate-500">سنوات في المنصة</p>
+            <p class="mt-2 text-3xl font-bold text-brand-500">{{ teacher.platform_years }}</p>
+            <p class="mt-1 text-sm text-slate-600">سنوات</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-8 md:px-6 md:py-12">
+      <div class="mx-auto max-w-[1500px]">
+        <div
+          class="animate-on-scroll overflow-hidden rounded-[32px] border border-slate-200 bg-white p-6 shadow-card md:p-8">
+          <h2 class="text-xl font-bold text-slate-950 md:text-2xl">
+            أوقات الإتاحة
+          </h2>
+          <p class="mt-2 text-sm text-slate-500">المواعيد المتاحة للحجز</p>
+          <div class="mt-6 rounded-2xl bg-brand-gradient p-6 text-white">
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {% for slot in availability %}
+                <div class="rounded-xl bg-white/10 px-4 py-3 backdrop-blur">
+                  <p class="text-sm text-white/70">{{ slot.day_of_week }}</p>
+                  <p class="mt-1 font-semibold">{{ slot.start_time|time:"g A" }} - {{ slot.end_time|time:"g A" }}</p>
+                  {% if slot.note %}
+                    <p class="mt-1 text-xs text-white/80">{{ slot.note }}</p>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+            <p class="mt-5 text-sm text-white/80">
+              ملاحظة: المواعيد المحددة تُرتب بعد التواصل مع فريق الدعم حسب جدول الطالب وتوفر المعلم.
+            </p>
+          </div>
+          <div class="mt-6 text-center">
+            <a href="{{ teacher.booking_cta_url|default:'/contact/' }}"
+              class="inline-flex h-12 items-center justify-center rounded-full bg-brand-500 px-8 text-base font-semibold text-white shadow-[0_16px_32px_rgba(37,99,235,0.22)]">
+              احجز موعدًا مناسبًا
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-8 md:px-6 md:py-12">
+      <div class="mx-auto max-w-[1500px]">
+        <div class="animate-on-scroll">
+          <h2 class="text-xl font-bold text-slate-950 md:text-2xl">
+            معلمون مشابهون
+          </h2>
+          <p class="mt-2 text-sm text-slate-500">
+            معلمون آخرون في نفس التخصص
+          </p>
+        </div>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {% for similar_teacher in similar_teachers %}
+            <article
+              class="animate-on-scroll group overflow-hidden rounded-2xl bg-white shadow-card transition hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(15,23,42,0.12)]">
+              <a href="{{ similar_teacher.get_absolute_url }}" class="block">
+                <div class="relative overflow-hidden bg-gradient-to-br from-[#2563EB] to-blue-800 p-5 text-white">
+                  <div
+                    class="flex h-20 w-20 items-center justify-center rounded-full border border-white/20 bg-white/10 text-2xl font-bold backdrop-blur-sm">
+                    {{ similar_teacher.initials|default:similar_teacher.name|slice:":2" }}
+                  </div>
+                  <p class="mt-3 text-sm font-medium text-white/80">{{ similar_teacher.primary_subject.name }}</p>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-bold text-slate-900 transition group-hover:text-brand-500">
+                    {{ similar_teacher.name }}
+                  </h3>
+                  <p class="mt-1 text-sm text-slate-500">{{ similar_teacher.experience_years }} سنوات خبرة</p>
+                  <div class="mt-2 flex items-center gap-1 text-sm text-slate-600">
+                    <span class="text-yellow-400">★</span>
+                    <span class="font-semibold">{{ similar_teacher.rating }}</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    {% if cta %}
+      <section class="bg-slate-50 px-4 py-16 md:px-6 md:py-20">
+        <div class="mx-auto max-w-[1000px] text-center">
+          <div
+            class="animate-on-scroll overflow-hidden rounded-[32px] bg-brand-gradient p-8 text-white shadow-shell md:p-12">
+            {% if cta.subheading %}
+              <p class="text-sm font-semibold tracking-[0.22em] text-white/70">
+                {{ cta.subheading }}
+              </p>
+            {% endif %}
+            <h2 class="mt-3 text-[28px] font-bold md:text-4xl">
+              {{ cta.heading }}
+            </h2>
+            {% if cta.body_text %}
+              <p class="mx-auto mt-4 max-w-2xl text-base leading-8 text-white/85 md:text-lg">
+                {{ cta.body_text }}
+              </p>
+            {% endif %}
+            <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              {% if cta.primary_cta_text and cta.primary_cta_url %}
+                <a class="inline-flex h-14 items-center justify-center rounded-xl bg-white px-8 text-xl font-semibold text-brand-500 shadow-[0_18px_40px_rgba(0,0,0,0.15)]"
+                  href="{{ cta.primary_cta_url }}">{{ cta.primary_cta_text }}</a>
+              {% endif %}
+              {% if cta.secondary_cta_text and cta.secondary_cta_url %}
+                <a class="inline-flex h-14 items-center justify-center rounded-xl bg-[#25D366] px-8 text-xl font-semibold text-white"
+                  href="{{ cta.secondary_cta_url }}">{{ cta.secondary_cta_text }}</a>
+              {% endif %}
+            </div>
+            {% if cta.social_proof_text %}
+              <p class="mt-6 text-sm text-white/70">
+                {{ cta.social_proof_text }}
+              </p>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  </main>
+
+{% endblock content %}
