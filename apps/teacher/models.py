@@ -9,65 +9,71 @@ from apps.main.models import ActiveOrderedModel, SeoModel, generate_unique_slug
 
 
 class TeacherPageSettings(SeoModel):
-    hero_title = models.CharField(max_length=200, blank=True)
-    hero_subtitle = models.TextField(blank=True)
-    hero_image = models.ImageField(upload_to='teachers/', blank=True)
+    hero_title = models.CharField('عنوان الهيرو', max_length=200, blank=True)
+    hero_subtitle = models.TextField('العنوان الفرعي للهيرو', blank=True)
+    hero_image = models.ImageField('صورة الهيرو', upload_to='teachers/', blank=True)
 
     class Meta:
-        verbose_name = 'Teacher Page Settings'
-        verbose_name_plural = 'Teacher Page Settings'
+        verbose_name = 'إعدادات صفحة المعلمين'
+        verbose_name_plural = 'إعدادات صفحة المعلمين'
 
     def __str__(self):
-        return self.hero_title or 'Teacher Page Settings'
+        return self.hero_title or 'إعدادات صفحة المعلمين'
 
 
 class TeacherStat(ActiveOrderedModel):
-    number = models.CharField(max_length=20)
-    label = models.CharField(max_length=100)
-    description = models.CharField(max_length=200, blank=True)
-    icon = models.CharField(max_length=50, blank=True)
+    number = models.CharField('الرقم', max_length=20)
+    label = models.CharField('التسمية', max_length=100)
+    description = models.CharField('الوصف', max_length=200, blank=True)
+    icon = models.CharField('الأيقونة', max_length=50, blank=True)
 
     class Meta:
         ordering = ['order', 'id']
+        verbose_name = 'إحصائية معلم'
+        verbose_name_plural = 'إحصائيات المعلمين'
 
     def __str__(self):
         return self.label
 
 
 class Teacher(SeoModel, ActiveOrderedModel):
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=120, unique=True, blank=True)
-    initials = models.CharField(max_length=10, blank=True)
+    name = models.CharField('الاسم', max_length=100)
+    slug = models.SlugField('المعرف', max_length=120, unique=True, blank=True)
+    initials = models.CharField('الأحرف الأولى', max_length=10, blank=True)
     primary_subject = models.ForeignKey(
         Subject,
         on_delete=models.PROTECT,
         related_name='teachers',
+        verbose_name='المادة الرئيسية',
     )
-    title = models.CharField(max_length=200)
-    short_bio = models.CharField(max_length=255, blank=True)
-    full_bio = models.TextField()
-    qualifications = models.TextField(blank=True)
-    experience_years = models.PositiveSmallIntegerField(default=0)
-    experience_description = models.CharField(max_length=200, blank=True)
+    title = models.CharField('اللقب', max_length=200)
+    short_bio = models.CharField('نبذة مختصرة', max_length=255, blank=True)
+    full_bio = models.TextField('السيرة الذاتية')
+    qualifications = models.TextField('المؤهلات', blank=True)
+    experience_years = models.PositiveSmallIntegerField('سنوات الخبرة', default=0)
+    experience_description = models.CharField('وصف الخبرة', max_length=200, blank=True)
     rating = models.DecimalField(
+        'التقييم',
         max_digits=2,
         decimal_places=1,
         default=Decimal('5.0'),
         validators=[MinValueValidator(Decimal('1.0')), MaxValueValidator(Decimal('5.0'))],
     )
-    student_count = models.PositiveIntegerField(default=0)
-    completed_sessions = models.PositiveIntegerField(default=0)
-    platform_years = models.PositiveSmallIntegerField(default=0)
-    success_rate = models.PositiveSmallIntegerField(default=98)
-    session_rate = models.DecimalField(max_digits=8, decimal_places=2, default=Decimal('0.00'))
-    photo = models.ImageField(upload_to='teachers/', blank=True)
-    booking_cta_text = models.CharField(max_length=50, blank=True, default='احجز حصة')
-    booking_cta_url = models.CharField(max_length=200, blank=True, default='/contact/')
-    whatsapp_number = models.CharField(max_length=20, blank=True)
-    is_featured = models.BooleanField(default=False)
+    student_count = models.PositiveIntegerField('عدد الطلاب', default=0)
+    completed_sessions = models.PositiveIntegerField('الحصص المكتملة', default=0)
+    platform_years = models.PositiveSmallIntegerField('سنوات على المنصة', default=0)
+    success_rate = models.PositiveSmallIntegerField('نسبة النجاح %', default=98)
+    session_rate = models.DecimalField('سعر الحصة', max_digits=8, decimal_places=2, default=Decimal('0.00'))
+    photo = models.ImageField('الصورة', upload_to='teachers/', blank=True)
+    booking_cta_text = models.CharField('نص زر الحجز', max_length=50, blank=True, default='احجز حصة')
+    booking_cta_url = models.CharField('رابط الحجز', max_length=200, blank=True, default='/contact/')
+    whatsapp_number = models.CharField('رقم واتساب', max_length=20, blank=True)
+    is_featured = models.BooleanField('مميز', default=False)
 
     class Meta:
         ordering = ['order', 'id']
+        verbose_name = 'معلم'
+        verbose_name_plural = 'المعلمون'
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -98,11 +104,14 @@ class TeacherFeature(ActiveOrderedModel):
         Teacher,
         on_delete=models.CASCADE,
         related_name='features',
+        verbose_name='المعلم',
     )
-    text = models.CharField(max_length=200)
+    text = models.CharField('النص', max_length=200)
 
     class Meta:
         ordering = ['order', 'id']
+        verbose_name = 'ميزة المعلم'
+        verbose_name_plural = 'مميزات المعلم'
 
     def __str__(self):
         return self.text
@@ -113,6 +122,7 @@ class TeacherSpecialization(ActiveOrderedModel):
         Teacher,
         on_delete=models.CASCADE,
         related_name='specializations',
+        verbose_name='المعلم',
     )
     subject = models.ForeignKey(
         Subject,
@@ -120,15 +130,18 @@ class TeacherSpecialization(ActiveOrderedModel):
         related_name='teacher_specializations',
         null=True,
         blank=True,
+        verbose_name='المادة',
     )
-    label = models.CharField(max_length=100, blank=True)
-    grade_level = models.CharField(max_length=200, blank=True)
+    label = models.CharField('التسمية', max_length=100, blank=True)
+    grade_level = models.CharField('المرحلة الدراسية', max_length=200, blank=True)
 
     class Meta:
         ordering = ['order', 'id']
+        verbose_name = 'تخصص المعلم'
+        verbose_name_plural = 'تخصصات المعلم'
 
     def __str__(self):
-        return self.label or getattr(self.subject, 'name', 'Specialization')
+        return self.label or getattr(self.subject, 'name', 'تخصص')
 
 
 class TeacherReview(ActiveOrderedModel):
@@ -136,20 +149,24 @@ class TeacherReview(ActiveOrderedModel):
         Teacher,
         on_delete=models.CASCADE,
         related_name='reviews',
+        verbose_name='المعلم',
     )
-    student_name = models.CharField(max_length=100)
-    student_initials = models.CharField(max_length=10, blank=True)
-    level = models.CharField(max_length=100, blank=True)
-    subject = models.CharField(max_length=100, blank=True)
+    student_name = models.CharField('اسم الطالب', max_length=100)
+    student_initials = models.CharField('الأحرف الأولى', max_length=10, blank=True)
+    level = models.CharField('المرحلة', max_length=100, blank=True)
+    subject = models.CharField('المادة', max_length=100, blank=True)
     rating = models.PositiveSmallIntegerField(
+        'التقييم',
         default=5,
         validators=[MinValueValidator(1), MaxValueValidator(5)],
     )
-    quote = models.TextField()
-    review_date = models.DateField()
+    quote = models.TextField('نص المراجعة')
+    review_date = models.DateField('تاريخ المراجعة')
 
     class Meta:
         ordering = ['order', 'id']
+        verbose_name = 'مراجعة معلم'
+        verbose_name_plural = 'مراجعات المعلم'
 
     def save(self, *args, **kwargs):
         if not self.student_initials:
@@ -169,22 +186,24 @@ class TeacherAvailability(ActiveOrderedModel):
         Teacher,
         on_delete=models.CASCADE,
         related_name='availability',
+        verbose_name='المعلم',
     )
-    day_of_week = models.CharField(max_length=100)
-    start_time = models.TimeField()
-    end_time = models.TimeField()
-    note = models.CharField(max_length=300, blank=True)
+    day_of_week = models.CharField('اليوم', max_length=100)
+    start_time = models.TimeField('وقت البدء')
+    end_time = models.TimeField('وقت الانتهاء')
+    note = models.CharField('ملاحظة', max_length=300, blank=True)
 
     class Meta:
         ordering = ['order', 'id']
-        verbose_name_plural = 'Teacher availability'
+        verbose_name = 'توفر المعلم'
+        verbose_name_plural = 'أوقات توفر المعلم'
 
     def __str__(self):
         return self.day_of_week
 
 
 class TeacherApplication(models.Model):
-    """Submitted by teachers who want to join the academy."""
+    """طلب انضمام معلم جديد."""
 
     STATUS_PENDING = 'pending'
     STATUS_REVIEWING = 'reviewing'
@@ -205,12 +224,9 @@ class TeacherApplication(models.Model):
         ('more_10', 'أكثر من 10 سنوات'),
     ]
 
-    # Identity
     full_name = models.CharField('الاسم الكامل', max_length=150)
     phone = models.CharField('رقم الهاتف', max_length=30)
     email = models.EmailField('البريد الإلكتروني', blank=True)
-
-    # Professional
     specialization = models.CharField('التخصص', max_length=200)
     experience = models.CharField(
         'سنوات الخبرة',
@@ -226,8 +242,6 @@ class TeacherApplication(models.Model):
         'نبذة عنك',
         help_text='أخبرنا عن نفسك وخبرتك التعليمية.',
     )
-
-    # Admin
     status = models.CharField(
         'الحالة',
         max_length=20,
@@ -257,7 +271,7 @@ def _application_attachment_path(instance, filename):
 
 
 class TeacherApplicationAttachment(models.Model):
-    """Files, videos, screenshots, certificates attached to an application."""
+    """مرفقات طلب الانضمام."""
 
     TYPE_CHOICES = [
         ('certificate', 'شهادة'),
@@ -280,7 +294,7 @@ class TeacherApplicationAttachment(models.Model):
         default='other',
     )
     file = models.FileField('الملف', upload_to=_application_attachment_path)
-    uploaded_at = models.DateTimeField(auto_now_add=True)
+    uploaded_at = models.DateTimeField('تاريخ الرفع', auto_now_add=True)
 
     class Meta:
         verbose_name = 'مرفق'

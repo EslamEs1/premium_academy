@@ -1,0 +1,16 @@
+[Unit]
+Description=Gunicorn daemon for SNA Academy
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/home/snaacademy/premium_academy
+ExecStart=/home/snaacademy/premium_academy/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          config.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

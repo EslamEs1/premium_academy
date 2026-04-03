@@ -15,7 +15,9 @@ build/
 *.log
 
 # Environment
-.env*
+.env
+.env.production
+.env.local
 
 # Python / Django
 __pycache__/

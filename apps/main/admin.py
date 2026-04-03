@@ -26,7 +26,7 @@ from apps.main.models import (
 
 
 class SingletonAdminMixin(admin.ModelAdmin):
-    """قاعدة للنماذج التي يجب أن يكون لها سجل واحد فقط."""
+    """Base admin mixin for models that should only have one instance."""
 
     def has_add_permission(self, request):
         if not super().has_add_permission(request):
@@ -51,40 +51,30 @@ class SocialLinkInline(admin.TabularInline):
     model = SocialLink
     extra = 0
     ordering = ('order', 'id')
-    verbose_name = 'رابط تواصل اجتماعي'
-    verbose_name_plural = 'روابط التواصل الاجتماعي'
 
 
 class ServiceFeatureInline(admin.TabularInline):
     model = ServiceFeature
     extra = 0
     ordering = ('order', 'id')
-    verbose_name = 'ميزة الخدمة'
-    verbose_name_plural = 'ميزات الخدمة'
 
 
 class FeaturePointInline(admin.TabularInline):
     model = FeaturePoint
     extra = 0
     ordering = ('order', 'id')
-    verbose_name = 'نقطة'
-    verbose_name_plural = 'النقاط'
 
 
 class FeatureTabInline(admin.TabularInline):
     model = FeatureTab
     extra = 0
     ordering = ('order', 'id')
-    verbose_name = 'تبويب'
-    verbose_name_plural = 'التبويبات'
 
 
 class FeatureTabPointInline(admin.TabularInline):
     model = FeatureTabPoint
     extra = 0
     ordering = ('order', 'id')
-    verbose_name = 'نقطة تبويب'
-    verbose_name_plural = 'نقاط التبويب'
 
 
 @admin.register(SiteSettings)
@@ -92,7 +82,7 @@ class SiteSettingsAdmin(SingletonAdminMixin):
     inlines = [SocialLinkInline]
     fieldsets = (
         (
-            'الهوية البصرية',
+            'Brand',
             {
                 'fields': (
                     'site_name',
@@ -105,7 +95,7 @@ class SiteSettingsAdmin(SingletonAdminMixin):
             },
         ),
         (
-            'معلومات التواصل',
+            'Contact',
             {
                 'fields': (
                     'phone',
@@ -144,7 +134,7 @@ class FAQAdmin(admin.ModelAdmin):
     search_fields = ('question', 'answer')
     ordering = ('category', 'order', 'id')
 
-    @admin.display(description='السؤال')
+    @admin.display(description='Question')
     def question_preview(self, obj):
         return obj.question[:60]
 
@@ -186,7 +176,7 @@ class LegalPageAdmin(admin.ModelAdmin):
 class HeroSectionAdmin(SingletonAdminMixin):
     fieldsets = (
         (
-            'محتوى القسم الرئيسي',
+            None,
             {
                 'fields': (
                     'headline',
@@ -197,7 +187,7 @@ class HeroSectionAdmin(SingletonAdminMixin):
             },
         ),
         (
-            'أزرار الدعوة للتصرف',
+            'Call To Action',
             {
                 'fields': (
                     'primary_cta_text',
@@ -257,7 +247,7 @@ class ProcessStepAdmin(admin.ModelAdmin):
 class AppPromoSectionAdmin(SingletonAdminMixin):
     fieldsets = (
         (
-            'محتوى قسم التطبيق',
+            None,
             {
                 'fields': (
                     'title',
@@ -269,7 +259,7 @@ class AppPromoSectionAdmin(SingletonAdminMixin):
             },
         ),
         (
-            'روابط المتاجر',
+            'Store Links',
             {
                 'fields': (
                     'google_play_url',

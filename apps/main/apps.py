@@ -5,3 +5,4 @@ class MainConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'apps.main'
     label = 'main'
+    verbose_name = 'الإعدادات العامة'

@@ -18,39 +18,31 @@ class TeacherFeatureInline(admin.TabularInline):
     model = TeacherFeature
     extra = 0
     ordering = ('order', 'id')
-    verbose_name = 'ميزة'
-    verbose_name_plural = 'مميزات المعلم'
 
 
 class TeacherSpecializationInline(admin.TabularInline):
     model = TeacherSpecialization
     extra = 0
     ordering = ('order', 'id')
-    verbose_name = 'تخصص'
-    verbose_name_plural = 'تخصصات المعلم'
 
 
 class TeacherReviewInline(admin.StackedInline):
     model = TeacherReview
     extra = 0
     ordering = ('order', 'id')
-    verbose_name = 'تقييم'
-    verbose_name_plural = 'تقييمات الطلاب'
 
 
 class TeacherAvailabilityInline(admin.TabularInline):
     model = TeacherAvailability
     extra = 0
     ordering = ('order', 'id')
-    verbose_name = 'وقت متاح'
-    verbose_name_plural = 'جدول التوفر'
 
 
 @admin.register(TeacherPageSettings)
 class TeacherPageSettingsAdmin(SingletonAdminMixin):
     fieldsets = (
         (
-            'محتوى صفحة المعلمين',
+            None,
             {
                 'fields': (
                     'hero_title',
@@ -60,7 +52,7 @@ class TeacherPageSettingsAdmin(SingletonAdminMixin):
             },
         ),
         (
-            'تحسين محركات البحث (SEO)',
+            'SEO',
             {
                 'fields': (
                     'meta_title',
@@ -92,79 +84,15 @@ class TeacherAdmin(admin.ModelAdmin):
         TeacherReviewInline,
         TeacherAvailabilityInline,
     ]
-    fieldsets = (
-        (
-            'البيانات الشخصية',
-            {
-                'fields': (
-                    'name',
-                    'slug',
-                    'initials',
-                    'photo',
-                    'primary_subject',
-                    'title',
-                    'short_bio',
-                    'full_bio',
-                    'qualifications',
-                )
-            },
-        ),
-        (
-            'الإحصائيات والخبرة',
-            {
-                'fields': (
-                    'experience_years',
-                    'experience_description',
-                    'rating',
-                    'student_count',
-                    'completed_sessions',
-                    'platform_years',
-                    'success_rate',
-                    'session_rate',
-                )
-            },
-        ),
-        (
-            'روابط التواصل والحجز',
-            {
-                'fields': (
-                    'whatsapp_number',
-                    'booking_cta_text',
-                    'booking_cta_url',
-                )
-            },
-        ),
-        (
-            'الإعدادات',
-            {
-                'fields': (
-                    'is_active',
-                    'is_featured',
-                    'order',
-                )
-            },
-        ),
-        (
-            'تحسين محركات البحث (SEO)',
-            {
-                'fields': (
-                    'meta_title',
-                    'meta_description',
-                )
-            },
-        ),
-    )
 
 
-# ── طلبات الانضمام ──────────────────────────────────────────────────────────
+# ── Teacher Application ──────────────────────────────────────────────────────
 
 class TeacherApplicationAttachmentInline(admin.TabularInline):
     model = TeacherApplicationAttachment
     extra = 0
     readonly_fields = ('attachment_type', 'file', 'uploaded_at')
     can_delete = False
-    verbose_name = 'مرفق'
-    verbose_name_plural = 'المرفقات المُرفَقة بالطلب'
 
     def has_add_permission(self, request, obj=None):
         return False
@@ -180,36 +108,13 @@ class TeacherApplicationAdmin(admin.ModelAdmin):
     ordering = ('-submitted_at',)
     inlines = [TeacherApplicationAttachmentInline]
     fieldsets = (
-        (
-            'المعلومات الشخصية',
-            {
-                'fields': (
-                    'full_name',
-                    'phone',
-                    'email',
-                )
-            },
-        ),
-        (
-            'التفاصيل المهنية',
-            {
-                'fields': (
-                    'specialization',
-                    'experience',
-                    'courses',
-                    'description',
-                )
-            },
-        ),
-        (
-            'إدارة الطلب',
-            {
-                'fields': (
-                    'status',
-                    'admin_notes',
-                    'submitted_at',
-                    'reviewed_at',
-                )
-            },
-        ),
+        ('معلومات شخصية', {
+            'fields': ('full_name', 'phone', 'email'),
+        }),
+        ('التفاصيل المهنية', {
+            'fields': ('specialization', 'experience', 'courses', 'description'),
+        }),
+        ('إدارة الطلب', {
+            'fields': ('status', 'admin_notes', 'submitted_at', 'reviewed_at'),
+        }),
     )

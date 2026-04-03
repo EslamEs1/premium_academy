@@ -8,7 +8,7 @@ from apps.main.admin import SingletonAdminMixin
 class BlogPageSettingsAdmin(SingletonAdminMixin):
     fieldsets = (
         (
-            'محتوى صفحة المدونة',
+            None,
             {
                 'fields': (
                     'title',
@@ -18,7 +18,7 @@ class BlogPageSettingsAdmin(SingletonAdminMixin):
             },
         ),
         (
-            'تحسين محركات البحث (SEO)',
+            'SEO',
             {
                 'fields': (
                     'meta_title',
@@ -54,39 +54,3 @@ class BlogPostAdmin(admin.ModelAdmin):
     search_fields = ('title', 'excerpt', 'content', 'meta_title', 'meta_description')
     prepopulated_fields = {'slug': ('title',)}
     autocomplete_fields = ('category', 'author')
-    fieldsets = (
-        (
-            'محتوى المقالة',
-            {
-                'fields': (
-                    'title',
-                    'slug',
-                    'category',
-                    'author',
-                    'cover_image',
-                    'excerpt',
-                    'content',
-                    'read_time',
-                )
-            },
-        ),
-        (
-            'النشر والظهور',
-            {
-                'fields': (
-                    'status',
-                    'is_featured',
-                    'published_date',
-                )
-            },
-        ),
-        (
-            'تحسين محركات البحث (SEO)',
-            {
-                'fields': (
-                    'meta_title',
-                    'meta_description',
-                )
-            },
-        ),
-    )
